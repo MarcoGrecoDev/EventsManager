@@ -110,7 +110,7 @@
                                                     class="btn btn-sm w-100 {{ $event->iscrizioni_chiuse ? 'btn-outline-success' : 'btn-outline-secondary' }}"
                                                     data-hint="{{ $event->iscrizioni_chiuse ? 'Riapre le iscrizioni a questo evento' : 'Chiude le iscrizioni: chi è già iscritto resta iscritto, ma non se ne aggiungono altri' }}">
                                                 <i class="fas {{ $event->iscrizioni_chiuse ? 'fa-lock-open' : 'fa-lock' }}"></i>
-                                                {{ $event->iscrizioni_chiuse ? 'Riapri Adesioni' : 'Chiudi Adesioni' }}
+                                                {{ $event->iscrizioni_chiuse ? 'Riapri Adesioni' : 'Chius. Adesioni' }}
                                             </button>
                                         </form>
                                     @endif

@@ -19,6 +19,25 @@
             max-height: 250px;
         }
 
+        /* Pulsanti admin (Modifica / Chiudi Adesioni / Cancella): sempre sulla stessa riga, stessa larghezza */
+        .event-admin-actions {
+            flex-wrap: nowrap;
+            max-width: 100%;
+        }
+        .event-admin-actions > a,
+        .event-admin-actions > form {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .event-admin-actions .btn {
+            width: 100%;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         /* Dettagli evento: corpo descrizione in nero (link restano riconoscibili) */
         .event-main-card .card-body .mb-4 > h5 {
             color: #000;
@@ -69,7 +88,7 @@
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                             <h2 class="mb-0">{{ $event->title }}</h2>
                             @auth
-                                <div class="d-flex flex-wrap gap-2">
+                                <div class="d-flex flex-nowrap gap-2 event-admin-actions">
                                     @if(auth()->user()->isAdmin() || auth()->id() === $event->id_organizzatore)
                                         @if(auth()->user()->isAdmin())
                                             <a href="{{ route('admin.events.edit', $event) }}" class="btn btn-warning btn-sm btn-border-brown" data-hint="Modifica evento">
@@ -84,22 +103,24 @@
                                     @if(auth()->user()->isAdmin() || auth()->id() === $event->id_organizzatore)
                                         <form action="{{ route(auth()->user()->isAdmin() ? 'admin.events.toggle-registration' : 'manage.events.toggle-registration', $event) }}"
                                               method="POST"
-                                              onsubmit="return confirm('{{ $event->iscrizioni_chiuse ? 'Vuoi riaprire le iscrizioni a questo evento?' : 'Vuoi chiudere le iscrizioni a questo evento? Chi è già iscritto resta iscritto, ma nessun altro potrà iscriversi.' }}');">
+                                              onsubmit="return confirm('{{ $event->iscrizioni_chiuse ? 'Vuoi riaprire le iscrizioni a questo evento?' : 'Vuoi chiudere le iscrizioni a questo evento? Chi è già iscritto resta iscritto, ma nessun altro potrà iscriversi.' }}');"
+                                              class="event-admin-actions__item">
                                             @csrf
                                             <button type="submit"
-                                                    class="btn btn-sm {{ $event->iscrizioni_chiuse ? 'btn-outline-success' : 'btn-outline-secondary' }}"
+                                                    class="btn btn-sm w-100 {{ $event->iscrizioni_chiuse ? 'btn-outline-success' : 'btn-outline-secondary' }}"
                                                     data-hint="{{ $event->iscrizioni_chiuse ? 'Riapre le iscrizioni a questo evento' : 'Chiude le iscrizioni: chi è già iscritto resta iscritto, ma non se ne aggiungono altri' }}">
                                                 <i class="fas {{ $event->iscrizioni_chiuse ? 'fa-lock-open' : 'fa-lock' }}"></i>
-                                                {{ $event->iscrizioni_chiuse ? 'Riapri Adesioni' : 'Chiusura Adesioni' }}
+                                                {{ $event->iscrizioni_chiuse ? 'Riapri Adesioni' : 'Chiudi Adesioni' }}
                                             </button>
                                         </form>
                                     @endif
                                     @if(auth()->user()->isAdmin())
                                         <form action="{{ route('admin.events.destroy', $event) }}" method="POST"
-                                              onsubmit="return confirm('Sei sicuro di voler cancellare definitivamente questo evento?');">
+                                              onsubmit="return confirm('Sei sicuro di voler cancellare definitivamente questo evento?');"
+                                              class="event-admin-actions__item">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" data-hint="Cancella evento">
+                                            <button type="submit" class="btn btn-danger btn-sm w-100" data-hint="Cancella evento">
                                                 <i class="fas fa-trash-alt"></i> Cancella
                                             </button>
                                         </form>

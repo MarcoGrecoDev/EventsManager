@@ -60,9 +60,6 @@
     @endphp
     <div class="container" id="eventTop">
         <div class="mb-3 d-flex flex-wrap align-items-stretch gap-2">
-            <button type="button" class="btn btn-guest-details btn-sm" id="btnScrollToParticipants" style="border-radius: 0.6rem;" data-hint="Vai all'elenco degli iscritti">
-                <i class="fas fa-users"></i> Lista Iscritti
-            </button>
             <a href="{{ route('home') }}" class="btn btn-guest-details btn-sm" style="border-radius: 0.6rem; background-color: #6c757d; border-color: #5c636a;">
                 <i class="fas fa-arrow-left"></i> Torna alla home
             </a>
@@ -424,8 +421,15 @@
                                                         {{-- Sotto "Annulla Adesione": per tutti gli iscritti, non solo chi porta ospiti --}}
                                                         <a href="#eventForumBox" class="btn btn-primary btn-sm event-btn-compact-height event-participation-grid__cell--row2-right"
                                                            data-hint="Vai al forum dell'evento">
-                                                            <i class="fas fa-comments"></i> Forum
+                                                            <i class="fas fa-comments"></i> Forum evento
                                                         </a>
+                                                        {{-- Sotto "Porti Ospiti": pulsante Lista Iscritti, stessa squadratura del Forum --}}
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm event-btn-compact-height event-participation-grid__cell--row3-left"
+                                                                id="btnScrollToParticipants"
+                                                                data-hint="Vai all'elenco degli iscritti">
+                                                            <i class="fas fa-users"></i> Lista Iscritti
+                                                        </button>
                                                         {{-- Solo per l'admin, una riga più sotto --}}
                                                         @if($canSendEventComms)
                                                             <button type="button"
@@ -2556,6 +2560,10 @@
         }
         .event-participation-grid__cell--row3-right {
             grid-column: 2;
+            grid-row: 3;
+        }
+        .event-participation-grid__cell--row3-left {
+            grid-column: 1;
             grid-row: 3;
         }
 

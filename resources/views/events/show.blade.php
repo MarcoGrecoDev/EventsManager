@@ -65,16 +65,6 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card event-main-card">
-                    {{-- Cover Image: spostata sopra il titolo, e' la prima cosa che si vede aprendo la pagina evento --}}
-                    @if($event->cover_image_url)
-                        <div class="mb-1 event-cover-frame rounded shadow overflow-hidden">
-                            <img
-                                src="{{ $event->cover_image_url }}"
-                                alt="{{ $event->title }}"
-                                class="event-cover-img"
-                            >
-                        </div>
-                    @endif
                     <div class="card-header">
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                             <h2 class="mb-0">{{ $event->title }}</h2>
@@ -118,6 +108,16 @@
                             @endauth
                         </div>
                     </div>
+                    {{-- Cover Image --}}
+                    @if($event->cover_image_url)
+                        <div class="mb-1 event-cover-frame rounded shadow overflow-hidden">
+                            <img
+                                src="{{ $event->cover_image_url }}"
+                                alt="{{ $event->title }}"
+                                class="event-cover-img"
+                            >
+                        </div>
+                    @endif
 
                     {{-- Evento al completo: box subito sotto l'immagine --}}
                     @if($event->isFull())

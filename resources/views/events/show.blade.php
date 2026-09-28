@@ -1861,8 +1861,12 @@
         .event-meta-stack .event-meta-iscr-empty-box,
         .event-meta-stack .event-registration-deadline-box {
             padding: 0.26rem 0.5rem;
-            font-size: 1rem;
-            line-height: 1.2;
+            font-size: 0.9rem;
+            line-height: 1.15;
+        }
+        /* Solo l'etichetta (Data/Dove/Indirizzo/Città/€) leggermente più grande, non il contenuto */
+        .event-meta-stack .fw-semibold {
+            font-size: 1.05rem;
         }
         .event-meta-stack .event-meta-map-slot .btn.btn-event-map-paired,
         .event-meta-stack .event-meta-map-unavailable {

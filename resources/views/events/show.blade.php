@@ -108,18 +108,8 @@
                             @endauth
                         </div>
                     </div>
-                    {{-- Cover Image --}}
-                    @if($event->cover_image_url)
-                        <div class="mb-1 event-cover-frame rounded shadow overflow-hidden">
-                            <img
-                                src="{{ $event->cover_image_url }}"
-                                alt="{{ $event->title }}"
-                                class="event-cover-img"
-                            >
-                        </div>
-                    @endif
 
-                    {{-- Evento al completo: box subito sotto l'immagine --}}
+                    {{-- Evento al completo: box subito sotto il titolo --}}
                     @if($event->isFull())
                         <div class="event-closed-box mt-2">
                             STOP ADESIONI - ( Aperta Lista Riserva)

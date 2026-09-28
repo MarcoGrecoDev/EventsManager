@@ -96,12 +96,12 @@ class Event extends Model
         try {
             $d = $this->date->copy()->locale('it');
 
-            return $d->translatedFormat('l, j F') . ', H. ' . $d->format('H:i');
+            return $d->translatedFormat('l, j F') . ', h. ' . $d->format('H:i');
         } catch (\Throwable $e) {
             try {
                 $d = \Carbon\Carbon::parse($this->dataevento)->locale('it');
 
-                return $d->translatedFormat('l, j F') . ', H. ' . $d->format('H:i');
+                return $d->translatedFormat('l, j F') . ', h. ' . $d->format('H:i');
             } catch (\Throwable $e2) {
                 return null;
             }

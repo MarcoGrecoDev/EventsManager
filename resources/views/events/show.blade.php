@@ -710,7 +710,6 @@
                                     <div class="event-meta-price-box event-meta-row__cell">
                                         <i class="fas fa-euro-sign"></i>
                                         <span class="event-meta-price-line">
-                                            <span class="fw-semibold">€</span>
                                             <span class="ms-1 event-meta-date-value">{{ $event->formatted_cost ?? '0,00' }}</span>
                                         </span>
                                     </div>

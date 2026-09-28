@@ -1861,8 +1861,8 @@
         .event-meta-stack .event-meta-iscr-empty-box,
         .event-meta-stack .event-registration-deadline-box {
             padding: 0.26rem 0.5rem;
-            font-size: 0.9rem;
-            line-height: 1.15;
+            font-size: 1rem;
+            line-height: 1.2;
         }
         .event-meta-stack .event-meta-map-slot .btn.btn-event-map-paired,
         .event-meta-stack .event-meta-map-unavailable {

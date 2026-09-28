@@ -373,6 +373,13 @@
                                                 @endphp
                                                 <div class="d-flex justify-content-end">
                                                     <div class="event-participation-grid event-participation-btns event-participation-btns--toglimi">
+                                                        {{-- Sopra "Porta un amico": pulsante Lista Iscritti, verde --}}
+                                                        <button type="button"
+                                                                class="btn btn-success btn-sm event-btn-compact-height event-participation-grid__cell--top-left"
+                                                                id="btnScrollToParticipants"
+                                                                data-hint="Vai all'elenco degli iscritti">
+                                                            <i class="fas fa-users"></i> Lista Iscritti
+                                                        </button>
                                                         @if($event->allow_guests)
                                                             @php
                                                                 $authCanAddMoreGuestsTop = auth()->user()->isApproved() && $event->canAddMoreGuests(auth()->user());
@@ -387,7 +394,7 @@
                                                                     }
                                                                 }
                                                             @endphp
-                                                            <form action="{{ route('events.add-guest', $event) }}" method="POST" class="mb-0 d-flex align-items-stretch event-participation-grid__cell--top-left">
+                                                            <form action="{{ route('events.add-guest', $event) }}" method="POST" class="mb-0 d-flex align-items-stretch event-participation-grid__cell--row2-left">
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-success btn-sm event-btn-compact-height w-100"
                                                                         @if(!$authCanAddMoreGuestsTop) disabled aria-disabled="true" @endif
@@ -406,9 +413,9 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        {{-- Sotto "Porta un amico": solo se ci sono ospiti da mostrare --}}
+                                                        {{-- Sotto "Comunicazioni" (colonna sinistra, riga 3): solo se ci sono ospiti da mostrare --}}
                                                         @if($currentUserGuestsCount > 0)
-                                                            <div class="event-porti-guest-box event-btn-meta-height event-porti-guest-box--clickable event-participation-grid__cell--row2-left"
+                                                            <div class="event-porti-guest-box event-btn-meta-height event-porti-guest-box--clickable event-participation-grid__cell--row3-left"
                                                                  role="button"
                                                                  tabindex="0"
                                                                  data-scroll-to-participant="{{ auth()->id() }}"
@@ -423,13 +430,6 @@
                                                            data-hint="Vai al forum dell'evento">
                                                             <i class="fas fa-comments"></i> Forum evento
                                                         </a>
-                                                        {{-- Sotto "Porti Ospiti": pulsante Lista Iscritti, stessa squadratura del Forum --}}
-                                                        <button type="button"
-                                                                class="btn btn-primary btn-sm event-btn-compact-height event-participation-grid__cell--row3-left"
-                                                                id="btnScrollToParticipants"
-                                                                data-hint="Vai all'elenco degli iscritti">
-                                                            <i class="fas fa-users"></i> Lista Iscritti
-                                                        </button>
                                                         {{-- Solo per l'admin, una riga più sotto --}}
                                                         @if($canSendEventComms)
                                                             <button type="button"
@@ -2534,9 +2534,10 @@
             justify-content: center;
         }
 
-        /* Griglia 2x2: Porta un amico | Annulla Adesione in alto, Porti Ospiti
-           (tutti) | Comunicazioni (solo admin) sotto, ciascuno nella propria
-           colonna fissa cosi' la posizione non cambia se manca l'altro. */
+        /* Griglia 3x2: Lista Iscritti | Annulla Adesione in alto, Porta un amico |
+           Forum evento allineati in riga 2, Porti Ospiti | Comunicazioni (solo
+           admin) in riga 3, ciascuno nella propria colonna fissa cosi' la
+           posizione non cambia se manca l'altro. */
         .event-participation-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;

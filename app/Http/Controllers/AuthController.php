@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Mail\NewRegistrationAdminMail;
 use App\Mail\RegistrationPendingUserMail;
-use App\Support\SiteSettings;
 
 class AuthController extends Controller
 {
@@ -103,11 +102,6 @@ class AuthController extends Controller
             ]);
         } catch (\Throwable $e) {
             // In caso di errore sul log, non bloccare il login utente
-        }
-
-        if (SiteSettings::getBool('site.announcement_enabled', false)
-            && trim((string) SiteSettings::get('site.announcement_message', '')) !== '') {
-            $request->session()->put('show_login_announcement', true);
         }
 
         return redirect()->route('home');

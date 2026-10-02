@@ -94,12 +94,19 @@ class EventController extends Controller
             }
         }
 
-        // Messaggio da mostrare all'utente subito dopo il login (impostato da AuthController::login()).
+        // Messaggio da mostrare una volta a ogni utente loggato (non solo subito dopo il
+        // login: anche chi ha gia' una sessione aperta deve vedere un nuovo annuncio
+        // appena pubblicato, senza dover rifare il login). Tracciato in sessione tramite
+        // un hash del testo: se il testo cambia, viene mostrato di nuovo.
         $loginAnnouncementMessage = null;
-        if (session()->pull('show_login_announcement', false)) {
+        if (Auth::check()) {
             $announcementText = trim((string) SiteSettings::get('site.announcement_message', ''));
             if (SiteSettings::getBool('site.announcement_enabled', false) && $announcementText !== '') {
-                $loginAnnouncementMessage = $announcementText;
+                $announcementHash = md5($announcementText);
+                if (session('seen_announcement_hash') !== $announcementHash) {
+                    $loginAnnouncementMessage = $announcementText;
+                    session(['seen_announcement_hash' => $announcementHash]);
+                }
             }
         }
 

@@ -34,7 +34,7 @@ class SiteSettingsController extends Controller
     public function updateAnnouncement(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'message' => 'nullable|string|max:2000',
+            'message' => 'nullable|string|max:2500',
         ]);
 
         $message = trim((string) ($validated['message'] ?? ''));

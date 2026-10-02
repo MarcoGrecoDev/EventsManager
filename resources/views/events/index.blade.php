@@ -110,7 +110,7 @@
                             <div class="modal-body">
                                 <div class="mb-2">
                                     <label for="announcementMessage" class="form-label">Testo del messaggio</label>
-                                    <textarea id="announcementMessage" name="message" class="form-control" rows="5" maxlength="2000"
+                                    <textarea id="announcementMessage" name="message" class="form-control" rows="5" maxlength="2500"
                                               placeholder="Scrivi qui il messaggio da mostrare agli utenti subito dopo il login...">{{ old('message', $adminAnnouncementMessage ?? '') }}</textarea>
                                 </div>
                                 <p class="small text-muted mb-0">

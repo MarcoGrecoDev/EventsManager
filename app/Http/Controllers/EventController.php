@@ -109,17 +109,23 @@ class EventController extends Controller
             ? (string) SiteSettings::get('site.announcement_message', '')
             : '';
 
-        return view('events.index', compact(
-            'events',
-            'waitlistedEventIds',
-            'waitlistByEventId',
-            'activeUsersCount',
-            'todayVisitsCount',
-            'visitVsActivePct',
-            'adminPendingRegistrationBanner',
-            'loginAnnouncementMessage',
-            'adminAnnouncementMessage'
-        ));
+        // No-cache: senza questa intestazione il browser puo' riproporre, tornando
+        // "indietro" nella cronologia, una versione salvata della pagina con il
+        // vecchio messaggio ancora visibile anche dopo che e' stato cancellato.
+        return response()
+            ->view('events.index', compact(
+                'events',
+                'waitlistedEventIds',
+                'waitlistByEventId',
+                'activeUsersCount',
+                'todayVisitsCount',
+                'visitVsActivePct',
+                'adminPendingRegistrationBanner',
+                'loginAnnouncementMessage',
+                'adminAnnouncementMessage'
+            ))
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache');
     }
 
     public function pastEvents(Request $request)

@@ -99,7 +99,7 @@
             </div>
 
             <div class="modal fade" id="adminAnnouncementModal" tabindex="-1" aria-labelledby="adminAnnouncementModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('admin.site-settings.announcement') }}">
                             @csrf
@@ -110,7 +110,7 @@
                             <div class="modal-body">
                                 <div class="mb-2">
                                     <label for="announcementMessage" class="form-label">Testo del messaggio</label>
-                                    <textarea id="announcementMessage" name="message" class="form-control" rows="5" maxlength="2500"
+                                    <textarea id="announcementMessage" name="message" class="form-control" rows="5"
                                               placeholder="Scrivi qui il messaggio da mostrare agli utenti subito dopo il login...">{{ old('message', $adminAnnouncementMessage ?? '') }}</textarea>
                                 </div>
                                 <p class="small text-muted mb-0">
@@ -164,7 +164,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="mb-0" style="white-space: pre-line;">{{ $loginAnnouncementMessage }}</p>
+                        <div class="mb-0 login-announcement-content">{!! $loginAnnouncementMessage !!}</div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ho capito</button>
@@ -172,6 +172,15 @@
                 </div>
             </div>
         </div>
+        <style>
+            .login-announcement-content img {
+                max-width: 100%;
+                height: auto;
+            }
+            .login-announcement-content p:last-child {
+                margin-bottom: 0;
+            }
+        </style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var el = document.getElementById('loginAnnouncementModal');
@@ -1036,6 +1045,14 @@
 @endsection
 
 @push('scripts')
+    @auth
+        @if(auth()->user()->isAdmin())
+            @include('partials.ckeditor4-description', [
+                'field' => 'announcementMessage',
+                'height' => 260,
+            ])
+        @endif
+    @endauth
     @if(isset($slideImages) && count($slideImages) > 0)
         <script>
             document.addEventListener('DOMContentLoaded', function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Support\SafeRichText;
 use App\Support\SiteSettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,10 +35,20 @@ class SiteSettingsController extends Controller
     public function updateAnnouncement(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'message' => 'nullable|string|max:2500',
+            'message' => 'nullable|string|max:20000',
         ]);
 
-        $message = trim((string) ($validated['message'] ?? ''));
+        // Il testo arriva come HTML da CKEditor (colore testo, immagini, ecc.): va sanificato
+        // allo stesso modo delle altre caselle di testo ricco del sito (forum, descrizione evento).
+        $message = SafeRichText::sanitize((string) ($validated['message'] ?? ''), true);
+
+        // CKEditor, quando lo si "svuota", lascia spesso un paragrafo vuoto (es. "<p><br></p>")
+        // invece di una stringa vuota: senza questo controllo il messaggio resterebbe attivo
+        // e gli utenti vedrebbero un box vuoto anche dopo averlo "cancellato".
+        $hasVisibleContent = trim(preg_replace('/<[^>]+>/', ' ', $message)) !== '' || stripos($message, '<img') !== false;
+        if (!$hasVisibleContent) {
+            $message = '';
+        }
 
         SiteSettings::set('site.announcement_message', $message);
         // Attivo automaticamente se c'è del testo, disattivo se il campo è vuoto:

@@ -126,9 +126,18 @@
         // maniglia di ridimensionamento resterebbe rotta anche dopo l'apertura: si rimanda
         // l'inizializzazione a quando il pannello viene effettivamente mostrato.
         var hiddenCollapseAncestor = el.closest('.collapse:not(.show)');
+        // Stesso discorso se il campo e' dentro un modale Bootstrap ancora chiuso
+        // (es. il box "Inserisci Messaggio"): va inizializzato solo quando si apre,
+        // altrimenti CKEditor calcola larghezza/altezza a 0 sul contenitore nascosto.
+        var hiddenModalAncestor = el.closest('.modal:not(.show)');
         if (hiddenCollapseAncestor) {
             hiddenCollapseAncestor.addEventListener('shown.bs.collapse', function onShown() {
                 hiddenCollapseAncestor.removeEventListener('shown.bs.collapse', onShown);
+                initCkEditor();
+            });
+        } else if (hiddenModalAncestor) {
+            hiddenModalAncestor.addEventListener('shown.bs.modal', function onShown() {
+                hiddenModalAncestor.removeEventListener('shown.bs.modal', onShown);
                 initCkEditor();
             });
         } else {

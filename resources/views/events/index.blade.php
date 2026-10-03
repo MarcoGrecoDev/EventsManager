@@ -98,7 +98,10 @@
                 </button>
             </div>
 
-            <div class="modal fade" id="adminAnnouncementModal" tabindex="-1" aria-labelledby="adminAnnouncementModalLabel" aria-hidden="true">
+            {{-- data-bs-focus="false": senza questo, Bootstrap "ruba" il focus a qualsiasi
+                 pannello che CKEditor apre fuori dal modale (es. il selettore colore),
+                 annullando il click prima che il colore venga applicato. --}}
+            <div class="modal fade" id="adminAnnouncementModal" tabindex="-1" aria-labelledby="adminAnnouncementModalLabel" aria-hidden="true" data-bs-focus="false">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('admin.site-settings.announcement') }}">

@@ -170,7 +170,7 @@
                         <div class="mb-0 login-announcement-content">{!! $loginAnnouncementMessage !!}</div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ho capito</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ho letto</button>
                     </div>
                 </div>
             </div>

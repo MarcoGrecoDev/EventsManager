@@ -94,13 +94,19 @@ class EventController extends Controller
             }
         }
 
-        // Messaggio da mostrare a ogni utente loggato, a ogni accesso alla home,
-        // finche' l'amministratore non lo cancella (nessun "visto una volta").
+        // Messaggio da mostrare una sola volta all'ingresso nel sito (prima visita alla
+        // home in questa sessione), non ad ogni ritorno alla home da un'altra pagina.
+        // Tracciato con un hash del testo in sessione: se l'admin pubblica un messaggio
+        // nuovo/diverso durante la stessa sessione, viene mostrato di nuovo una volta.
         $loginAnnouncementMessage = null;
         if (Auth::check()) {
             $announcementText = trim((string) SiteSettings::get('site.announcement_message', ''));
             if (SiteSettings::getBool('site.announcement_enabled', false) && $announcementText !== '') {
-                $loginAnnouncementMessage = $announcementText;
+                $announcementHash = md5($announcementText);
+                if (session('seen_announcement_hash') !== $announcementHash) {
+                    $loginAnnouncementMessage = $announcementText;
+                    session(['seen_announcement_hash' => $announcementHash]);
+                }
             }
         }
 

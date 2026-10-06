@@ -1946,6 +1946,20 @@
             color: #000;
         }
 
+        /* Etichette (Data/Dove/Indirizzo/Citta/€) e relative icone: blu scuro, come "Iscritti" */
+        .event-meta-stack .fw-semibold,
+        .event-meta-stack .event-meta-date-box > .fas,
+        .event-meta-stack .event-meta-place-box > .fas,
+        .event-meta-stack .event-meta-price-box > i {
+            color: #0a3d91 !important;
+        }
+
+        /* Titolo "Dettagli Evento" e relativa icona: stesso blu scuro */
+        .event-main-card .card-body .mb-4 > h5,
+        .event-main-card .card-body .mb-4 > h5 .fas {
+            color: #0a3d91 !important;
+        }
+
         .event-meta-row__cell {
             min-width: 0;
         }

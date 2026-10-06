@@ -828,6 +828,10 @@
                                         <ul class="list-unstyled mb-0 event-mini-participants-trial__list">
                                             @forelse($event->participants as $participant)
                                                 <li>{{ $participant->nickname }}</li>
+                                                {{-- Amici/ospiti portati da questo iscritto: una riga "A. Nickname" per ciascuno. --}}
+                                                @for($miniGi = 0; $miniGi < (int) ($participant->pivot->amici ?? 0); $miniGi++)
+                                                    <li>A. {{ $participant->nickname }}</li>
+                                                @endfor
                                             @empty
                                                 <li class="text-muted">Nessuno</li>
                                             @endforelse

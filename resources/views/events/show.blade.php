@@ -686,6 +686,11 @@
                                 $mapOpen = $event->googleMapsExternalUrl($mapWithAddress);
                             @endphp
 
+                            {{-- ESPERIMENTO (solo smartphone, da confermare): lista iscritti affiancata al
+                                 box data/dove/indirizzo/citta'/prezzo, versione minima solo nickname.
+                                 Il box completo con inviti/modifica resta invariato piu' in basso. --}}
+                            <div class="event-meta-trial-row">
+                            <div class="event-meta-trial-row__main">
                             <div class="event-meta-stack mb-1">
                                 {{-- Riga 1: Data evento | Nome locale --}}
                                 <div class="event-meta-row event-meta-row--line1">
@@ -812,6 +817,24 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                            </div>
+                            <div class="event-meta-trial-row__participants d-md-none">
+                                <div class="card card-sidebar event-mini-participants-trial">
+                                    <div class="card-header py-1 px-2">
+                                        <small class="fw-bold"><i class="fas fa-users"></i> Iscritti</small>
+                                    </div>
+                                    <div class="card-body py-1 px-2">
+                                        <ul class="list-unstyled mb-0 event-mini-participants-trial__list">
+                                            @forelse($event->participants as $participant)
+                                                <li>{{ $participant->nickname }}</li>
+                                            @empty
+                                                <li class="text-muted">Nessuno</li>
+                                            @endforelse
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
 
                             @if($mapSrc)
@@ -1932,6 +1955,45 @@
         @media (max-width: 575.98px) {
             .event-meta-row--line1 {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* ESPERIMENTO (solo smartphone): lista iscritti affiancata al box data/dove/ecc.
+           Sopra i 767px non ha nessun effetto (il box mini-iscritti resta nascosto da
+           d-md-none e .event-meta-trial-row non diventa flex). Da confermare o rimuovere. */
+        @media (max-width: 767.98px) {
+            .event-meta-trial-row {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+            .event-meta-trial-row__main {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .event-meta-trial-row__participants {
+                flex: 0 0 34%;
+                max-width: 34%;
+            }
+            .event-mini-participants-trial .card-header,
+            .event-mini-participants-trial .card-body {
+                padding: 0.35rem 0.5rem !important;
+            }
+            .event-mini-participants-trial small {
+                font-size: 0.72rem;
+            }
+            .event-mini-participants-trial__list {
+                max-height: 160px;
+                overflow-y: auto;
+                font-size: 0.7rem;
+                line-height: 1.3;
+                margin: 0;
+                padding: 0;
+            }
+            .event-mini-participants-trial__list li {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 

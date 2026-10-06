@@ -1985,10 +1985,11 @@
             .event-mini-participants-trial__list {
                 max-height: 160px;
                 overflow-y: auto;
-                font-size: 0.7rem;
+                font-size: 0.78rem;
                 line-height: 1.3;
                 margin: 0;
                 padding: 0;
+                color: #0a3d91;
             }
             .event-mini-participants-trial__list li {
                 white-space: nowrap;

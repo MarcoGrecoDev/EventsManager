@@ -821,16 +821,18 @@
                             </div>
                             <div class="event-meta-trial-row__participants d-md-none">
                                 <div class="card card-sidebar event-mini-participants-trial">
-                                    <div class="card-header py-1 px-2">
-                                        <small class="fw-bold"><i class="fas fa-users"></i> Iscritti</small>
+                                    <div class="card-header py-1 px-2 event-mini-participants-trial__header">
+                                        <small class="fw-bold"><i class="fas fa-users"></i> Iscritti
+                                            <span class="event-mini-participants-trial__count">({{ $event->participants_count }})</span>
+                                        </small>
                                     </div>
                                     <div class="card-body py-1 px-2">
                                         <ul class="list-unstyled mb-0 event-mini-participants-trial__list">
                                             @forelse($event->participants as $participant)
                                                 <li>{{ $participant->nickname }}</li>
-                                                {{-- Amici/ospiti portati da questo iscritto: una riga "A. Nickname" per ciascuno. --}}
+                                                {{-- Amici/ospiti portati da questo iscritto: una riga "A-Nickname" per ciascuno. --}}
                                                 @for($miniGi = 0; $miniGi < (int) ($participant->pivot->amici ?? 0); $miniGi++)
-                                                    <li>A. {{ $participant->nickname }}</li>
+                                                    <li>A-{{ $participant->nickname }}</li>
                                                 @endfor
                                             @empty
                                                 <li class="text-muted">Nessuno</li>
@@ -1985,6 +1987,14 @@
             }
             .event-mini-participants-trial small {
                 font-size: 0.72rem;
+            }
+            .event-mini-participants-trial__header,
+            .event-mini-participants-trial__header small,
+            .event-mini-participants-trial__header i {
+                color: #0a3d91 !important;
+            }
+            .event-mini-participants-trial__count {
+                font-weight: 600;
             }
             .event-mini-participants-trial__list {
                 max-height: 160px;

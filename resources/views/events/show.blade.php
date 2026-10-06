@@ -2000,7 +2000,7 @@
                 padding: 0.35rem 0.5rem !important;
             }
             .event-mini-participants-trial small {
-                font-size: 0.8rem;
+                font-size: 0.88rem;
             }
             .event-mini-participants-trial__header,
             .event-mini-participants-trial__header small,

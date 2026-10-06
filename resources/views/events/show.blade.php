@@ -686,8 +686,8 @@
                                 $mapOpen = $event->googleMapsExternalUrl($mapWithAddress);
                             @endphp
 
-                            {{-- ESPERIMENTO (solo smartphone, da confermare): lista iscritti affiancata al
-                                 box data/dove/indirizzo/citta'/prezzo, versione minima solo nickname.
+                            {{-- Solo smartphone: mini lista iscritti (solo nickname + amici/ospiti) affiancata al
+                                 box data/dove/indirizzo/citta'/prezzo. Confermata, non piu' provvisoria.
                                  Il box completo con inviti/modifica resta invariato piu' in basso. --}}
                             <div class="event-meta-trial-row">
                             <div class="event-meta-trial-row__main">
@@ -1978,9 +1978,9 @@
             }
         }
 
-        /* ESPERIMENTO (solo smartphone): lista iscritti affiancata al box data/dove/ecc.
+        /* Solo smartphone: mini lista iscritti affiancata al box data/dove/ecc. Confermata.
            Sopra i 767px non ha nessun effetto (il box mini-iscritti resta nascosto da
-           d-md-none e .event-meta-trial-row non diventa flex). Da confermare o rimuovere. */
+           d-md-none e .event-meta-trial-row non diventa flex). */
         @media (max-width: 767.98px) {
             .event-meta-trial-row {
                 display: flex;

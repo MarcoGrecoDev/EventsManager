@@ -2000,12 +2000,19 @@
                 padding: 0.35rem 0.5rem !important;
             }
             .event-mini-participants-trial small {
-                font-size: 0.95rem;
+                font-size: 0.8rem;
             }
             .event-mini-participants-trial__header,
             .event-mini-participants-trial__header small,
             .event-mini-participants-trial__header i {
                 color: #0a3d91 !important;
+            }
+            .event-mini-participants-trial__header {
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .event-mini-participants-trial__header small {
+                white-space: nowrap;
             }
             .event-mini-participants-trial__count {
                 font-weight: 600;

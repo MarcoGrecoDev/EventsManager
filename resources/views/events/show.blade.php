@@ -2018,7 +2018,7 @@
                 font-weight: 600;
             }
             .event-mini-participants-trial__list {
-                max-height: 160px;
+                max-height: 280px;
                 overflow-y: auto;
                 font-size: 0.78rem;
                 line-height: 1.3;

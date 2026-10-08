@@ -320,12 +320,17 @@
         }
         .excursio-quickbar__btn {
             font-weight: 700;
-            font-size: 0.82rem;
-            padding: 0.5rem 0.3rem;
-            border-radius: 0.5rem;
+            font-size: 0.68rem;
+            padding: 0.45rem 0.15rem;
+            border-radius: 0.4rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+        .excursio-quickbar__btn i {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.1rem;
         }
     </style>
 </head>
@@ -597,24 +602,34 @@
 @auth
     <div class="excursio-quickbar d-md-none">
         <div class="container-fluid">
-            <div class="row g-2">
-                <div class="col-4">
+            <div class="row g-1">
+                <div class="col">
                     <a href="{{ route('my-events.active') }}" class="btn btn-success w-100 excursio-quickbar__btn" data-hint="Eventi a cui sei iscritto">
                         <i class="fas fa-calendar-check"></i> Eventi
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col">
                     <a href="{{ route('profile.show', auth()->user()) }}" class="btn btn-primary w-100 excursio-quickbar__btn" data-hint="Il tuo profilo">
                         <i class="fas fa-user-circle"></i> Profilo
                     </a>
                 </div>
                 @if($showChatLink ?? true)
-                    <div class="col-4">
+                    <div class="col">
                         <a href="{{ route('chat.index') }}" class="btn btn-info w-100 excursio-quickbar__btn" data-hint="Area chat">
                             <i class="fas fa-comments"></i> Chat
                         </a>
                     </div>
                 @endif
+                <div class="col">
+                    <a href="{{ route('events.past') }}" class="btn btn-secondary w-100 excursio-quickbar__btn" data-hint="Storico delle uscite e voti">
+                        <i class="fas fa-history"></i> Storico
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('users.search') }}" class="btn btn-warning w-100 excursio-quickbar__btn" data-hint="Trova i tuoi amici">
+                        <i class="fas fa-search"></i> Amici
+                    </a>
+                </div>
             </div>
         </div>
     </div>

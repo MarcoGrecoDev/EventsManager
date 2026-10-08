@@ -1304,7 +1304,7 @@
                             <p class="text-muted">Nessun commento ancora. Sii il primo a commentare!</p>
                         @endif
                     </div>
-                    <div class="card-footer py-2 d-flex flex-nowrap justify-content-end gap-2">
+                    <div class="card-footer py-2 d-flex flex-nowrap justify-content-end gap-2 event-forum-box-footer">
                         @auth
                             @if(auth()->user()->isApproved())
                                 <button class="btn btn-success btn-sm event-forum-footer-btn rounded-pill" type="button"
@@ -2762,6 +2762,14 @@
         }
         .event-forum-box {
             border: 2px solid #0d6efd !important;
+        }
+        /* Il chatbot fluttuante (#excursio-chatbot, position:fixed, z-index:9999, in basso
+           a destra) puo' sovrapporsi a questi pulsanti quando il footer del forum scorre
+           in quella zona dello schermo, intercettando il click prima che arrivi al pulsante
+           vero. Stessa soluzione gia' usata per l'overlay nome ospite: z-index piu' alto. */
+        .event-forum-box-footer {
+            position: relative;
+            z-index: 10000;
         }
         /* "Torna in alto", "Inserisci Commento" e "Chiudi": stessa altezza e larghezza */
         .event-forum-footer-btn {

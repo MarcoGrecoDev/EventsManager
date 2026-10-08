@@ -604,6 +604,11 @@
         <div class="container-fluid">
             <div class="row g-1">
                 <div class="col">
+                    <a href="{{ route('home') }}" class="btn btn-dark w-100 excursio-quickbar__btn" data-hint="Torna alla home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </div>
+                <div class="col">
                     <a href="{{ route('my-events.active') }}" class="btn btn-success w-100 excursio-quickbar__btn" data-hint="Eventi a cui sei iscritto">
                         <i class="fas fa-calendar-check"></i> Eventi
                     </a>

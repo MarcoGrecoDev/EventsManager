@@ -60,10 +60,6 @@
     @endphp
     <div class="container" id="eventTop">
         <div class="mb-3 d-flex flex-wrap align-items-stretch gap-2">
-            <a href="{{ route('home') }}" class="btn btn-guest-details btn-sm" style="border-radius: 0.6rem; background-color: #6c757d; border-color: #5c636a;">
-                <i class="fas fa-arrow-left"></i> Torna alla home
-            </a>
-
             @if(session('success'))
                 <div class="event-flash-success-sm alert alert-success mb-0 d-inline-flex align-items-center">
                     <i class="fas fa-check-circle me-2"></i>

@@ -614,8 +614,18 @@
                     </a>
                 </div>
                 <div class="col">
+                    <a href="{{ route('events.past') }}" class="btn btn-secondary w-100 excursio-quickbar__btn" data-hint="Storico delle uscite e voti">
+                        <i class="fas fa-history"></i> Storico
+                    </a>
+                </div>
+                <div class="col">
                     <a href="{{ route('profile.show', auth()->user()) }}" class="btn btn-primary w-100 excursio-quickbar__btn" data-hint="Il tuo profilo">
                         <i class="fas fa-user-circle"></i> Profilo
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('users.search') }}" class="btn btn-warning w-100 excursio-quickbar__btn" data-hint="Trova i tuoi amici">
+                        <i class="fas fa-search"></i> Amici
                     </a>
                 </div>
                 @if($showChatLink ?? true)
@@ -626,14 +636,12 @@
                     </div>
                 @endif
                 <div class="col">
-                    <a href="{{ route('events.past') }}" class="btn btn-secondary w-100 excursio-quickbar__btn" data-hint="Storico delle uscite e voti">
-                        <i class="fas fa-history"></i> Storico
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('users.search') }}" class="btn btn-warning w-100 excursio-quickbar__btn" data-hint="Trova i tuoi amici">
-                        <i class="fas fa-search"></i> Amici
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="mb-0">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger w-100 excursio-quickbar__btn" data-hint="Esci dal tuo account">
+                            <i class="fas fa-sign-out-alt"></i> Esci
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

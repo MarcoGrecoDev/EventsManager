@@ -2373,12 +2373,13 @@
         }
 
         .event-meta-ultimi-posti {
+            display: block;
             font-weight: 800;
             font-size: 0.82rem;
             letter-spacing: 0.04em;
             color: #b00000;
             text-shadow: 0 0 2px #fff, 0 0 4px #fff;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         /* Quasi al completo: solo sfondo lampeggiante; Iscr./Lib./Tot. restano rosso/verde/arancio come prima */

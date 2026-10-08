@@ -358,17 +358,17 @@
         <img src="{{ asset('upload_immagini/excursio.png') }}" alt="Excursio" class="site-header-logo">
     </a>
 </div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark excursio-navbar py-1">
+<nav class="navbar navbar-dark bg-dark excursio-navbar py-1">
     <div class="container-fluid px-3 px-xl-4">
         <a href="{{ route('home') }}" class="navbar-brand mb-0 text-white fw-semibold py-1" title="Home">
             <i class="fas fa-home me-1"></i><span class="d-none d-sm-inline">Home</span>
         </a>
-        <span class="navbar-text excursio-navbar__hamburger-hint d-md-none me-2">Tocca per tutti i link</span>
+        <span class="navbar-text excursio-navbar__hamburger-hint me-2">Clicca/Tocca per tutti i link</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Apri il menu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-md-flex" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNav">
             @php
                 $isAdmin = auth()->check() && auth()->user()->isAdmin();
                 // Mostra sempre il link chat agli utenti loggati: se la feature è OFF, verrà mostrata la pagina "in arrivo".

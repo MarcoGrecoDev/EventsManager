@@ -336,6 +336,12 @@
             font-size: 0.75rem;
             color: #ffc107 !important;
         }
+        .excursio-quickbar__welcome {
+            color: #495057;
+        }
+        .excursio-quickbar__welcome strong {
+            color: #212529;
+        }
     </style>
 </head>
 <body>
@@ -383,7 +389,7 @@
                         </a>
                     </li>
                 @else
-                <li class="nav-item d-flex align-items-center me-1 me-md-2">
+                <li class="nav-item d-none d-md-flex align-items-center me-1 me-md-2">
                     <span class="navbar-text text-white-50 small">
                         <i class="fas fa-smile-beam me-1"></i>
                         {{ (auth()->user()->sesso ?? '') === 'f' ? 'Benvenuta' : 'Benvenuto' }}
@@ -607,6 +613,11 @@
 @auth
     <div class="excursio-quickbar d-md-none">
         <div class="container-fluid">
+            <div class="excursio-quickbar__welcome small text-center mb-2">
+                <i class="fas fa-smile-beam me-1"></i>
+                {{ (auth()->user()->sesso ?? '') === 'f' ? 'Benvenuta' : 'Benvenuto' }}
+                <strong>{{ auth()->user()->username }}</strong>
+            </div>
             <div class="row g-1">
                 <div class="col">
                     <a href="{{ route('home') }}" class="btn btn-dark w-100 excursio-quickbar__btn" data-hint="Torna alla home">

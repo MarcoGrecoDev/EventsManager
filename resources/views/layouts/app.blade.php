@@ -320,8 +320,8 @@
         }
         .excursio-quickbar__btn {
             font-weight: 700;
-            font-size: 0.68rem;
-            padding: 0.45rem 0.15rem;
+            font-size: 0.6rem;
+            padding: 0.4rem 0.1rem;
             border-radius: 0.4rem;
             white-space: nowrap;
             overflow: hidden;
@@ -329,7 +329,7 @@
         }
         .excursio-quickbar__btn i {
             display: block;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             margin-bottom: 0.1rem;
         }
     </style>

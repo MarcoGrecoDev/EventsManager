@@ -318,6 +318,13 @@
             border-bottom: 1px solid #dee2e6;
             padding: 0.5rem 0;
         }
+        @media (max-width: 767.98px) {
+            .excursio-quickbar {
+                position: sticky;
+                top: var(--site-sticky-header-h, 0px);
+                z-index: 1029;
+            }
+        }
         .excursio-quickbar__btn {
             font-weight: 700;
             font-size: 0.6rem;

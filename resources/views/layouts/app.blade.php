@@ -311,6 +311,22 @@
         }
 
         /* (rimossa) Banner admin: nuove iscrizioni da approvare */
+
+        /* Barra rapida sotto la navbar (solo smartphone) */
+        .excursio-quickbar {
+            background: #f1f3f5;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+        }
+        .excursio-quickbar__btn {
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 0.5rem 0.3rem;
+            border-radius: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 <body>
@@ -575,6 +591,34 @@
     </div>
 </nav>
 </header>
+
+{{-- Barra rapida (solo smartphone): pulsanti piu' grandi/pratici per le pagine piu' usate,
+     sotto la navbar. Su PC resta tutto come prima (link gia' presenti nella navbar). --}}
+@auth
+    <div class="excursio-quickbar d-md-none">
+        <div class="container-fluid">
+            <div class="row g-2">
+                <div class="col-4">
+                    <a href="{{ route('my-events.active') }}" class="btn btn-success w-100 excursio-quickbar__btn" data-hint="Eventi a cui sei iscritto">
+                        <i class="fas fa-calendar-check"></i> Eventi
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="{{ route('profile.show', auth()->user()) }}" class="btn btn-primary w-100 excursio-quickbar__btn" data-hint="Il tuo profilo">
+                        <i class="fas fa-user-circle"></i> Profilo
+                    </a>
+                </div>
+                @if($showChatLink ?? true)
+                    <div class="col-4">
+                        <a href="{{ route('chat.index') }}" class="btn btn-info w-100 excursio-quickbar__btn" data-hint="Area chat">
+                            <i class="fas fa-comments"></i> Chat
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+@endauth
 
 <div class="container-fluid mt-4">
     @php $hideSidebar = View::hasSection('no_sidebar'); @endphp

@@ -7,7 +7,7 @@
 <div class="card card-sidebar mb-3" style="border: 1px solid #198754;">
     <div class="card-header py-2" role="button" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}" style="cursor:pointer;">
         <small class="fw-bold">
-            <i class="fas fa-envelope text-danger me-1"></i> Unisciti a noi
+            Unisciti a noi
         </small>
     </div>
 </div>

@@ -8,7 +8,7 @@
    data-hint="Apri le previsioni meteo complete per Milano">
     <div class="card-header py-2">
         <small class="fw-bold">
-            <i class="fas fa-cloud-sun text-success me-1"></i> Meteo weekend
+            Meteo weekend
         </small>
     </div>
 </a>

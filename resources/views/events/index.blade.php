@@ -737,7 +737,7 @@
             .home-slideshow-row__online .card-header,
             .home-slideshow-row__participate .card-header {
                 overflow: hidden;
-                height: 2.1rem;
+                height: 2.7rem;
                 display: flex;
                 align-items: center;
             }
@@ -747,23 +747,29 @@
                 padding: 0.35rem !important;
                 overflow: hidden;
             }
-            /* Secondo box di ogni colonna (Unisciti a noi / Meteo weekend): un po'
-               piu' alto verso il basso, per leggere meglio il titolo. */
-            .home-slideshow-row__online .card:last-child .card-body,
-            .home-slideshow-row__participate .card:last-child .card-body {
-                height: 75px !important;
+            /* Secondo box di ogni colonna (Unisciti a noi / Meteo weekend): niente
+               card-body (sono solo un'intestazione cliccabile), quindi per farli piu'
+               alti si allunga direttamente il box/intestazione stessa. */
+            .home-slideshow-row__online .card:last-child,
+            .home-slideshow-row__participate .card:last-child {
+                height: 48px;
+                display: flex;
             }
-            /* Titoli e nickname troppo grandi per il riquadro stretto: dimensioni
-               ridotte, forzate con !important perche' altrove sono definite regole
-               globali con valori assoluti piu' grandi per il contesto sidebar. */
+            .home-slideshow-row__online .card:last-child .card-header,
+            .home-slideshow-row__participate .card:last-child .card-header {
+                height: 100%;
+                width: 100%;
+            }
+            /* Titoli: due parole, vanno a capo su due righe leggibili invece di
+               troncare con i puntini (poco leggibile su un riquadro cosi' stretto). */
             .home-slideshow-row__online .card-header small,
             .home-slideshow-row__participate .card-header small {
                 font-size: 0.72rem !important;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                white-space: normal;
+                line-height: 1.15;
                 display: block;
                 width: 100%;
+                text-align: center;
             }
             .home-slideshow-row__online .online-user-row .small,
             .home-slideshow-row__participate .online-user-row .small {

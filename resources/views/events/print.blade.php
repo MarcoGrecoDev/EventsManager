@@ -33,17 +33,26 @@
             margin-bottom: 1rem;
         }
 
+        /* table-layout:fixed rispetta le larghezze indicate per colonna, invece di
+           espandersi oltre la pagina quando un contenuto (email, nome lungo, ecc.)
+           non ci sta: il testo va a capo dentro la cella invece di uscire dal foglio. */
+        .print-table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
         .print-table th {
             background: #e9ecef;
             font-weight: 600;
-            white-space: nowrap;
         }
 
         .print-table td,
         .print-table th {
             vertical-align: middle;
             font-size: 0.875rem;
-            white-space: nowrap;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .guest-row-print td {
@@ -189,6 +198,20 @@
         .print-description__body img {
             display: none !important;
         }
+
+        /* Protezione extra: eventuali tabelle o elementi larghi inseriti nell'editor
+           non devono uscire dalla pagina quando si stampa. */
+        .print-description__body,
+        .print-description__body * {
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .print-description__body table {
+            width: 100% !important;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body class="p-3">
@@ -268,14 +291,14 @@
                 <table class="table table-bordered table-sm print-table">
                     <thead>
                     <tr>
-                        <th scope="col" style="width:1.8rem;">Nro</th>
-                        <th scope="col" style="width:10rem;">Partecipante</th>
-                        <th scope="col" class="col-phone" style="width:6.2rem;">Telefono</th>
-                        <th scope="col" style="width:2.8rem; text-align:center;">Ospiti</th>
-                        <th scope="col" class="col-email" style="width:10rem;">Email</th>
-                        <th scope="col" class="col-registered" style="width:7rem;">Data iscrizione</th>
-                        <th scope="col" class="col-birthdate" style="width:6rem;">Data nascita</th>
-                        <th scope="col" style="width:14rem;">Note</th>
+                        <th scope="col" style="width:1.6rem;">Nro</th>
+                        <th scope="col" style="width:7.5rem;">Partecipante</th>
+                        <th scope="col" class="col-phone" style="width:4.5rem;">Telefono</th>
+                        <th scope="col" style="width:2.4rem; text-align:center;">Ospiti</th>
+                        <th scope="col" class="col-email" style="width:6.5rem;">Email</th>
+                        <th scope="col" class="col-registered" style="width:5rem;">Data iscrizione</th>
+                        <th scope="col" class="col-birthdate" style="width:4rem;">Data nascita</th>
+                        <th scope="col" style="width:6rem;">Note</th>
                     </tr>
                     </thead>
                     <tbody>

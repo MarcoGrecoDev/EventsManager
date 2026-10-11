@@ -428,5 +428,10 @@
     "keywords": ["amministratore scintilla", "numero telefono", "contatto admin", "telefono amministratore", "email amministratore", "scintilla", "3387717376", "excursio@libero.it", "amministratore", "telefono admin", "email admin", "contattare amministratore"],
     "question": "Qual è il numero di telefono dell'Amministratore Scintilla?",
     "answer": "Il numero di telefono dell'Amministratore Scintilla è **3387717376**. Puoi contattarlo anche via email all'indirizzo **excursio@libero.it**."
+  },
+  {
+    "keywords": ["dati registrazione visibili", "chi vede i miei dati", "cosa vedono gli altri di me", "dati privati", "miei dati sono visibili", "informazioni visibili profilo", "visibilità dati", "dati non visibili", "email visibile", "telefono visibile", "indirizzo visibile", "data di nascita visibile", "cognome visibile", "residenza visibile"],
+    "question": "I miei dati di registrazione sono visibili agli altri utenti?",
+    "answer": "No: i dati che fornisci in fase di registrazione non sono visibili agli altri utenti. Gli unici dati visibili dagli altri utenti sono: nome di battesimo, sesso, nickname e descrizione. Tutte le altre informazioni (ad esempio cognome, email, telefono, data di nascita, residenza) restano private e non vengono mostrate a nessun altro membro della community."
   }
 ]

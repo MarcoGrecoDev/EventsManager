@@ -205,10 +205,16 @@
                 {{-- Visitatore non loggato, solo smartphone: "Utenti online" a sinistra
                      della galleria, "Non sei registrato..." a destra --}}
                 <div class="home-slideshow-row__online d-md-none">
+                    <a href="{{ route('login') }}" class="home-slideshow-row__quicklink">
+                        <i class="fas fa-sign-in-alt"></i> Accedi
+                    </a>
                     @include('partials.online-users-box')
                     @include('partials.guest-participate-box', ['idSuffix' => 'Gallery'])
                 </div>
                 <div class="home-slideshow-row__participate d-md-none">
+                    <a href="{{ route('register') }}" class="home-slideshow-row__quicklink">
+                        <i class="fas fa-user-plus"></i> Registrati
+                    </a>
                     @include('partials.recent-access-box')
                     @include('partials.gallery-placeholder-box')
                 </div>
@@ -704,8 +710,8 @@
                    contenuto sottostante (titolo "Eventi in programma"). I box hanno
                    tutti la stessa altezza fissa e contengono il loro contenuto (vedi
                    overflow:hidden sotto), quindi questo valore corrisponde esattamente
-                   a due box impilati. */
-                min-height: 230px;
+                   a due box impilati, piu' il link Accedi/Registrati sopra di essi. */
+                min-height: 265px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {
@@ -713,6 +719,25 @@
                 top: 0;
                 width: 23%;
                 z-index: 2;
+            }
+            /* Link "Accedi"/"Registrati" sopra ai box: stessa funzione dei link
+               omonimi nella navbar, visibili solo agli ospiti (non loggati). */
+            .home-slideshow-row__quicklink {
+                display: block;
+                text-align: center;
+                background-color: #198754;
+                color: #fff;
+                font-weight: 700;
+                font-size: 0.72rem;
+                padding: 0.3rem 0.2rem;
+                border-radius: 0.3rem;
+                margin-bottom: 0.4rem;
+                text-decoration: none;
+            }
+            .home-slideshow-row__quicklink:hover,
+            .home-slideshow-row__quicklink:focus {
+                background-color: #146c43;
+                color: #fff;
             }
             .home-slideshow-row__online {
                 left: 0;

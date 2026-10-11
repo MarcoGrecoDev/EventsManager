@@ -737,6 +737,9 @@
             .home-slideshow-row__online .card-header,
             .home-slideshow-row__participate .card-header {
                 overflow: hidden;
+                height: 2.1rem;
+                display: flex;
+                align-items: center;
             }
             .home-slideshow-row__online .card-body,
             .home-slideshow-row__participate .card-body {
@@ -750,6 +753,11 @@
             .home-slideshow-row__online .card-header small,
             .home-slideshow-row__participate .card-header small {
                 font-size: 0.65rem !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                width: 100%;
             }
             .home-slideshow-row__online .online-user-row .small,
             .home-slideshow-row__participate .online-user-row .small {

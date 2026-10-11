@@ -709,9 +709,10 @@
                    galleria (es. con piu' box impilati) finiscono per coprire il
                    contenuto sottostante (titolo "Eventi in programma"). I box hanno
                    tutti la stessa altezza fissa e contengono il loro contenuto (vedi
-                   overflow:hidden sotto), quindi questo valore corrisponde esattamente
-                   a due box impilati, piu' il link Accedi/Registrati sopra di essi. */
-                min-height: 265px;
+                   overflow:hidden sotto): il valore corrisponde esattamente all'altezza
+                   reale di link + due box impilati, senza margine extra inutilizzato
+                   (altrimenti si crea uno spazio vuoto tra galleria e titolo sotto). */
+                min-height: 195px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {

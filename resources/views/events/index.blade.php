@@ -705,13 +705,13 @@
                    tutti la stessa altezza fissa e contengono il loro contenuto (vedi
                    overflow:hidden sotto), quindi questo valore corrisponde esattamente
                    a due box impilati. */
-                min-height: 210px;
+                min-height: 230px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {
                 position: absolute;
                 top: 0;
-                width: 20%;
+                width: 23%;
                 z-index: 2;
             }
             .home-slideshow-row__online {
@@ -747,12 +747,18 @@
                 padding: 0.35rem !important;
                 overflow: hidden;
             }
+            /* Secondo box di ogni colonna (Unisciti a noi / Meteo weekend): un po'
+               piu' alto verso il basso, per leggere meglio il titolo. */
+            .home-slideshow-row__online .card:last-child .card-body,
+            .home-slideshow-row__participate .card:last-child .card-body {
+                height: 75px !important;
+            }
             /* Titoli e nickname troppo grandi per il riquadro stretto: dimensioni
                ridotte, forzate con !important perche' altrove sono definite regole
                globali con valori assoluti piu' grandi per il contesto sidebar. */
             .home-slideshow-row__online .card-header small,
             .home-slideshow-row__participate .card-header small {
-                font-size: 0.65rem !important;
+                font-size: 0.72rem !important;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;

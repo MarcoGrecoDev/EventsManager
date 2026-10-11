@@ -701,8 +701,11 @@
                 /* I box laterali sono "position: absolute" e non contano per l'altezza
                    della riga: senza un minimo esplicito, se sono piu' alti della
                    galleria (es. con piu' box impilati) finiscono per coprire il
-                   contenuto sottostante (titolo "Eventi in programma"). */
-                min-height: 210px;
+                   contenuto sottostante (titolo "Eventi in programma"). Con due box
+                   impilati su ciascun lato (Ultimi accessi + Meteo, Online + Unisciti a
+                   noi) il totale puo' superare 210px per via di variazioni di font/testo
+                   a capo: margine extra per restare sempre al sicuro. */
+                min-height: 240px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {

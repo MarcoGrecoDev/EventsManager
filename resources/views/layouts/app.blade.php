@@ -218,28 +218,12 @@
             border-color: #0f5c39;
             color: #fff;
         }
-        /* Desktop (md+): navbar orizzontale */
-        @media (min-width: 768px) {
-            .excursio-navbar__main-nav,
-            ul.excursio-navbar__main-nav {
-                flex-wrap: wrap !important;
-                align-items: center !important;
-            }
-            .excursio-navbar__main-nav .nav-item {
-                white-space: nowrap;
-            }
-            .excursio-navbar__main-nav .nav-link,
-            .excursio-navbar__main-nav .navbar-text {
-                padding-right: 0.5rem !important;
-                padding-left: 0.5rem !important;
-                font-size: 0.85rem;
-            }
-            .excursio-navbar__user-nav,
-            ul.excursio-navbar__user-nav {
-                flex-direction: row !important;
-                margin-left: auto !important;
-                align-items: center !important;
-            }
+        /* Il menu (link + benvenuto + esci) ora e' sempre a scomparsa (tre linee), sia su PC
+           che su smartphone: niente piu' layout orizzontale/centrato solo per il PC, cosi'
+           la lista resta incolonnata a sinistra sotto "Home" in entrambi i casi. */
+        .excursio-navbar__main-nav,
+        ul.excursio-navbar__main-nav {
+            align-items: flex-start !important;
         }
         /* Mobile: separatore visivo tra nav principale e logout */
         @media (max-width: 767.98px) {

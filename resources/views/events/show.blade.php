@@ -1301,7 +1301,7 @@
                                                             aria-controls="eventCommentCollapse">
                                                         <i class="fas fa-times"></i> Chiudi
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary btn-sm rounded-pill">
+                                                    <button type="submit" class="btn btn-primary btn-sm event-forum-footer-btn rounded-pill">
                                                         <i class="fas fa-paper-plane"></i> Invia Commento
                                                     </button>
                                                 </div>
@@ -1319,7 +1319,7 @@
                                         data-bs-toggle="collapse" data-bs-target="#eventCommentCollapse"
                                         data-hint="Inserisci commento o messaggio relativo a questo evento"
                                         aria-expanded="false" aria-controls="eventCommentCollapse">
-                                    <i class="fas fa-comment-dots me-1"></i> Inserisci Commento
+                                    <i class="fas fa-comment-dots me-1"></i> Commenta
                                 </button>
                             @endif
                         @endauth
@@ -2784,22 +2784,23 @@
             position: relative;
             z-index: 10000;
         }
-        /* "Torna in alto", "Inserisci Commento" e "Chiudi": stessa altezza e larghezza */
+        /* "Torna in alto", "Commenta", "Chiudi" e "Invia Commento": stessa altezza e larghezza,
+           un po' piu' bassa di prima. */
         .event-forum-footer-btn {
             min-width: 11rem;
-            height: 2.125rem;
+            height: 1.9rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
-        /* Nel footer del forum (Inserisci Commento + Torna in alto): sempre sulla
+        /* Nel footer del forum (Commenta + Torna in alto): sempre sulla
            stessa riga, larghezza condivisa invece di un minimo fisso che le
            farebbe andare a capo sugli schermi stretti. */
         .card-footer .event-forum-footer-btn {
             flex: 1 1 0;
             min-width: 0;
             height: auto;
-            min-height: 2.125rem;
+            min-height: 1.9rem;
         }
         .event-forum-footer-btn i {
             margin-right: 0.4rem;

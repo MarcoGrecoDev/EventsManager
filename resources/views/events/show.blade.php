@@ -1142,46 +1142,6 @@
                             <span class="badge bg-primary">{{ $comments->count() }}</span>
                         </h5>
                     </div>
-                    @auth
-                        @if(auth()->user()->isApproved())
-                            <div id="eventCommentCollapse" class="collapse">
-                                <div class="card-body border-bottom bg-light">
-                                    <form action="{{ url('events/' . $event->getKey() . '/comments') }}" method="POST" id="commentForm">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="commentContent" class="form-label">Il tuo commento</label>
-                                            <textarea class="form-control" id="commentContent" name="content"
-                                                      rows="5" placeholder="Scrivi il tuo commento..." required></textarea>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                            @if(auth()->user()->isAdmin())
-                                                <small class="text-muted">
-                                                    <i class="fas fa-info-circle"></i> Puoi usare la formattazione, inserire link e immagini.
-                                                </small>
-                                            @else
-                                                <small class="text-muted">
-                                                    <i class="fas fa-info-circle"></i> Scrivi il tuo commento in testo semplice.
-                                                </small>
-                                            @endif
-                                            <div class="d-flex gap-2">
-                                                <button type="button"
-                                                        class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#eventCommentCollapse"
-                                                        aria-expanded="true"
-                                                        aria-controls="eventCommentCollapse">
-                                                    <i class="fas fa-times"></i> Chiudi
-                                                </button>
-                                                <button type="submit" class="btn btn-primary btn-sm rounded-pill">
-                                                    <i class="fas fa-paper-plane"></i> Invia Commento
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        @endif
-                    @endauth
                     <div class="card-body">
                         @if($comments->count() > 0)
                             @foreach($comments as $comment)
@@ -1309,6 +1269,48 @@
                         @else
                             <p class="text-muted">Nessun commento ancora. Sii il primo a commentare!</p>
                         @endif
+                        {{-- Casella per il nuovo commento: subito sopra il pulsante "Inserisci Commento",
+                             cosi' tutti i messaggi precedenti restano sopra a quello che si sta scrivendo. --}}
+                        @auth
+                            @if(auth()->user()->isApproved())
+                                <div id="eventCommentCollapse" class="collapse">
+                                    <div class="border-top bg-light pt-3 mt-3">
+                                        <form action="{{ url('events/' . $event->getKey() . '/comments') }}" method="POST" id="commentForm">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="commentContent" class="form-label">Il tuo commento</label>
+                                                <textarea class="form-control" id="commentContent" name="content"
+                                                          rows="5" placeholder="Scrivi il tuo commento..." required></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                                @if(auth()->user()->isAdmin())
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-info-circle"></i> Puoi usare la formattazione, inserire link e immagini.
+                                                    </small>
+                                                @else
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-info-circle"></i> Scrivi il tuo commento in testo semplice.
+                                                    </small>
+                                                @endif
+                                                <div class="d-flex gap-2">
+                                                    <button type="button"
+                                                            class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#eventCommentCollapse"
+                                                            aria-expanded="true"
+                                                            aria-controls="eventCommentCollapse">
+                                                        <i class="fas fa-times"></i> Chiudi
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary btn-sm rounded-pill">
+                                                        <i class="fas fa-paper-plane"></i> Invia Commento
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                     <div class="card-footer py-2 d-flex flex-nowrap justify-content-end gap-2 event-forum-box-footer">
                         @auth

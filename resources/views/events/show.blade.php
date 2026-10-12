@@ -2784,23 +2784,18 @@
             position: relative;
             z-index: 10000;
         }
-        /* "Torna in alto", "Commenta", "Chiudi" e "Invia Commento": stessa altezza e larghezza,
-           un po' piu' bassa di prima. */
+        /* "Torna in alto", "Commenta", "Chiudi" e "Invia Commento": stessa regola per
+           tutti e quattro, cosi' hanno sempre la stessa larghezza/altezza ovunque si
+           trovino (si dividono equamente la riga invece di un minimo fisso, che li
+           farebbe diventare diversi tra loro o andare a capo sugli schermi stretti). */
         .event-forum-footer-btn {
-            min-width: 11rem;
-            height: 1.9rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* Nel footer del forum (Commenta + Torna in alto): sempre sulla
-           stessa riga, larghezza condivisa invece di un minimo fisso che le
-           farebbe andare a capo sugli schermi stretti. */
-        .card-footer .event-forum-footer-btn {
             flex: 1 1 0;
             min-width: 0;
             height: auto;
             min-height: 1.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .event-forum-footer-btn i {
             margin-right: 0.4rem;

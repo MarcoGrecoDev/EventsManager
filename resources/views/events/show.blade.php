@@ -1154,9 +1154,15 @@
                                                       rows="5" placeholder="Scrivi il tuo commento..." required></textarea>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                            <small class="text-muted">
-                                                <i class="fas fa-info-circle"></i> Puoi usare la formattazione, inserire link e immagini.
-                                            </small>
+                                            @if(auth()->user()->isAdmin())
+                                                <small class="text-muted">
+                                                    <i class="fas fa-info-circle"></i> Puoi usare la formattazione, inserire link e immagini.
+                                                </small>
+                                            @else
+                                                <small class="text-muted">
+                                                    <i class="fas fa-info-circle"></i> Scrivi il tuo commento in testo semplice.
+                                                </small>
+                                            @endif
                                             <div class="d-flex gap-2">
                                                 <button type="button"
                                                         class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill"
@@ -1578,14 +1584,18 @@
 @endsection
 @section('scripts')
     @parent
-    @include('partials.ckeditor4-description', [
-        'field' => 'commentContent',
-        'height' => 260,
-        'editable_line_height' => 1.22,
-        'editable_p_margin' => '0.2em',
-        'lazy_field_prefix' => 'replyContent-',
-        'lazy_height' => 260,
-    ])
+    {{-- Editor ricco (grassetto, corsivo, colori, immagini) solo per l'amministratore:
+         gli altri utenti scrivono il commento con una semplice casella di testo. --}}
+    @if(auth()->check() && auth()->user()->isAdmin())
+        @include('partials.ckeditor4-description', [
+            'field' => 'commentContent',
+            'height' => 260,
+            'editable_line_height' => 1.22,
+            'editable_p_margin' => '0.2em',
+            'lazy_field_prefix' => 'replyContent-',
+            'lazy_height' => 260,
+        ])
+    @endif
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Scroll al commento se specificato

@@ -347,7 +347,14 @@
         <a href="{{ route('home') }}" class="navbar-brand mb-0 text-white fw-semibold py-1" title="Home">
             <i class="fas fa-home me-1"></i><span class="d-none d-sm-inline">Home</span>
         </a>
-        <span class="navbar-text excursio-navbar__hamburger-hint me-2">Clicca/Tocca per tutti i link</span>
+        <span class="navbar-text excursio-navbar__hamburger-hint me-2"
+              role="button"
+              tabindex="0"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              style="cursor:pointer;">Clicca/Tocca per tutti i link</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Apri il menu">
             <span class="navbar-toggler-icon"></span>

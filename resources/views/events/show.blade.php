@@ -1282,7 +1282,7 @@
                                                 <textarea class="form-control" id="commentContent" name="content"
                                                           rows="5" placeholder="Scrivi il tuo commento..." required></textarea>
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                            <div class="mb-2">
                                                 @if(auth()->user()->isAdmin())
                                                     <small class="text-muted">
                                                         <i class="fas fa-info-circle"></i> Puoi usare la formattazione, inserire link e immagini.
@@ -1292,19 +1292,21 @@
                                                         <i class="fas fa-info-circle"></i> Scrivi il tuo commento in testo semplice.
                                                     </small>
                                                 @endif
-                                                <div class="d-flex gap-2">
-                                                    <button type="button"
-                                                            class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#eventCommentCollapse"
-                                                            aria-expanded="true"
-                                                            aria-controls="eventCommentCollapse">
-                                                        <i class="fas fa-times"></i> Chiudi
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary btn-sm event-forum-footer-btn rounded-pill">
-                                                        <i class="fas fa-paper-plane"></i> Invia Commento
-                                                    </button>
-                                                </div>
+                                            </div>
+                                            {{-- Stessa riga a tutta larghezza del footer "Commenta"/"Torna in alto",
+                                                 cosi' i quattro pulsanti sono davvero tutti uguali. --}}
+                                            <div class="d-flex flex-nowrap gap-2">
+                                                <button type="button"
+                                                        class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#eventCommentCollapse"
+                                                        aria-expanded="true"
+                                                        aria-controls="eventCommentCollapse">
+                                                    <i class="fas fa-times"></i> Chiudi
+                                                </button>
+                                                <button type="submit" class="btn btn-primary btn-sm event-forum-footer-btn rounded-pill">
+                                                    <i class="fas fa-paper-plane"></i> Invia
+                                                </button>
                                             </div>
                                         </form>
                                     </div>

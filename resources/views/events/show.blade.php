@@ -1686,6 +1686,7 @@
                     } catch (err) {
                         // Se l'inizializzazione fallisce per qualsiasi motivo, si torna alla
                         // semplice textarea (resta visibile, utilizzabile, con "required").
+                        console.error('Errore inizializzazione editor Comunicazioni:', err);
                         textareaEl.style.display = '';
                         textareaEl.setAttribute('required', 'required');
                         inlineEl.style.display = 'none';

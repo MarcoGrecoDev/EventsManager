@@ -710,10 +710,10 @@
                    contenuto sottostante (titolo "Eventi in programma"). I box hanno
                    tutti la stessa altezza fissa e contengono il loro contenuto (vedi
                    overflow:hidden sotto): il valore corrisponde all'altezza reale della
-                   colonna piu' alta (destra: link + 2 box + link meteo sotto), senza
-                   margine extra inutilizzato (altrimenti si crea uno spazio vuoto tra
-                   galleria e titolo sotto). */
-                min-height: 300px;
+                   colonna piu' alta (destra: link + 3 box impilati: Ultimi accessi,
+                   Ultimi Iscritti, Meteo), senza margine extra inutilizzato (altrimenti
+                   si crea uno spazio vuoto tra galleria e titolo sotto). */
+                min-height: 250px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {

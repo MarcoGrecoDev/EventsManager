@@ -1652,7 +1652,6 @@
                             removePlugins: 'elementspath',
                             versionCheck: false,
                             toolbar: [
-                                { name: 'document', items: ['Source'] },
                                 { name: 'clipboard', items: ['Undo', 'Redo'] },
                                 { name: 'editing', items: ['Find', 'Replace', 'SelectAll'] },
                                 { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
@@ -1672,6 +1671,10 @@
                             filebrowserImageUploadUrl: @json(route('ckeditor.upload', ['_token' => csrf_token()])),
                             filebrowserUploadUrl: @json(route('ckeditor.upload', ['_token' => csrf_token()])),
                             filebrowserUploadMethod: 'form'
+                        }).on('change', function (evt) {
+                            // Sincronizza ad ogni modifica (non solo all'invio): rete di
+                            // sicurezza per non ritrovarsi il campo vuoto al salvataggio.
+                            textareaEl.value = evt.editor.getData();
                         });
                     }
                 });

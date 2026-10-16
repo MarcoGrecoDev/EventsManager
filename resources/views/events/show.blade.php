@@ -1633,6 +1633,23 @@
                             removePlugins: 'elementspath',
                             resize_dir: 'vertical',
                             versionCheck: false,
+                            // Toolbar esplicita (altrimenti quella di default non mostra un
+                            // pulsante "Seleziona tutto": l'unico modo per selezionare tutto
+                            // il testo era il tasto Ctrl+A, che qui non funzionava).
+                            toolbar: [
+                                { name: 'document', items: ['Source'] },
+                                { name: 'clipboard', items: ['Undo', 'Redo'] },
+                                { name: 'editing', items: ['Find', 'Replace', 'SelectAll'] },
+                                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+                                '/',
+                                { name: 'paragraph', items: ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                                { name: 'links', items: ['Link', 'Unlink'] },
+                                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+                                { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                                { name: 'tools', items: ['Maximize', 'ShowBlocks'] }
+                            ],
+                            extraPlugins: 'justify',
                             allowedContent: true,
                             pasteFilter: null,
                             pasteFromWordRemoveFontStyles: false,

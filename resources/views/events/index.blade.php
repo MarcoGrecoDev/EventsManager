@@ -709,10 +709,11 @@
                    galleria (es. con piu' box impilati) finiscono per coprire il
                    contenuto sottostante (titolo "Eventi in programma"). I box hanno
                    tutti la stessa altezza fissa e contengono il loro contenuto (vedi
-                   overflow:hidden sotto): il valore corrisponde esattamente all'altezza
-                   reale di link + due box impilati, senza margine extra inutilizzato
-                   (altrimenti si crea uno spazio vuoto tra galleria e titolo sotto). */
-                min-height: 195px;
+                   overflow:hidden sotto): il valore corrisponde all'altezza reale della
+                   colonna piu' alta (destra: link + 2 box + link meteo sotto), senza
+                   margine extra inutilizzato (altrimenti si crea uno spazio vuoto tra
+                   galleria e titolo sotto). */
+                min-height: 300px;
             }
             .home-slideshow-row__online,
             .home-slideshow-row__participate {

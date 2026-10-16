@@ -646,6 +646,15 @@
                                                                                   rows="7"
                                                                                   maxlength="4000"
                                                                                   required>{{ $defaultMessage }}</textarea>
+                                                                        {{-- Editor "inline" (testo direttamente nella pagina, non in un iframe separato):
+                                                                             su smartphone il menu nativo "Seleziona tutto/Copia/Taglia" che compare
+                                                                             tenendo premuto sul testo funziona in modo affidabile solo cosi',
+                                                                             non dentro all'iframe dell'editor classico. Sostituisce la textarea
+                                                                             sopra (che resta pronta come ripiego se CKEditor non si carica). --}}
+                                                                        <div id="eventCommsMessageInline{{ $event->getKey() }}"
+                                                                             class="form-control"
+                                                                             style="display:none; min-height: 280px; overflow-y: auto;"
+                                                                             contenteditable="true"></div>
                                                                         @error('message')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                         @enderror
@@ -1626,16 +1635,22 @@
                 // selezionabile/modificabile (stesso bug gia' risolto altrove).
                 commsModalEl.addEventListener('shown.bs.modal', function () {
                     var textareaId = 'eventCommsMessage{{ $event->getKey() }}';
-                    if (typeof CKEDITOR !== 'undefined' && !CKEDITOR.instances[textareaId]) {
-                        CKEDITOR.replace(textareaId, {
+                    var inlineId = 'eventCommsMessageInline{{ $event->getKey() }}';
+                    var textareaEl = document.getElementById(textareaId);
+                    var inlineEl = document.getElementById(inlineId);
+                    if (typeof CKEDITOR !== 'undefined' && textareaEl && inlineEl && !CKEDITOR.instances[inlineId]) {
+                        // Editor "inline" invece di "replace" (iframe): su smartphone, tenendo
+                        // premuto sul testo, il menu nativo "Seleziona tutto/Copia/Taglia" del
+                        // telefono funziona in modo affidabile solo se il testo e' direttamente
+                        // nella pagina, non dentro un iframe separato come nell'editor classico.
+                        inlineEl.innerHTML = textareaEl.value;
+                        textareaEl.style.display = 'none';
+                        textareaEl.removeAttribute('required');
+                        inlineEl.style.display = 'block';
+                        CKEDITOR.inline(inlineId, {
                             language: 'it',
-                            height: 280,
                             removePlugins: 'elementspath',
-                            resize_dir: 'vertical',
                             versionCheck: false,
-                            // Toolbar esplicita (altrimenti quella di default non mostra un
-                            // pulsante "Seleziona tutto": l'unico modo per selezionare tutto
-                            // il testo era il tasto Ctrl+A, che qui non funzionava).
                             toolbar: [
                                 { name: 'document', items: ['Source'] },
                                 { name: 'clipboard', items: ['Undo', 'Redo'] },
@@ -1661,13 +1676,18 @@
                     }
                 });
 
-                // Sincronizza CKEditor nella textarea prima dell'invio
+                // Riporta il contenuto dell'editor inline nella textarea (quella
+                // effettivamente inviata dal form) prima dell'invio.
                 var commsForm = commsModalEl.querySelector('form');
                 if (commsForm) {
                     commsForm.addEventListener('submit', function () {
                         var textareaId = 'eventCommsMessage{{ $event->getKey() }}';
-                        if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances[textareaId]) {
-                            CKEDITOR.instances[textareaId].updateElement();
+                        var inlineId = 'eventCommsMessageInline{{ $event->getKey() }}';
+                        if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances[inlineId]) {
+                            var textareaEl = document.getElementById(textareaId);
+                            if (textareaEl) {
+                                textareaEl.value = CKEDITOR.instances[inlineId].getData();
+                            }
                         }
                     });
                 }

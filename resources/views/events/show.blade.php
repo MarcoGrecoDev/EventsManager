@@ -1648,7 +1648,9 @@
                         // premuto sul testo, il menu nativo "Seleziona tutto/Copia/Taglia" del
                         // telefono funziona in modo affidabile solo se il testo e' direttamente
                         // nella pagina, non dentro un iframe separato come nell'editor classico.
-                        inlineEl.innerHTML = textareaEl.value;
+                        // Il contenuto iniziale arriva direttamente da PHP (non da textarea.value,
+                        // per evitare qualsiasi problema di doppia codifica dei tag HTML).
+                        inlineEl.innerHTML = @json($defaultMessage ?? '');
                         textareaEl.style.display = 'none';
                         textareaEl.removeAttribute('required');
                         inlineEl.style.display = 'block';

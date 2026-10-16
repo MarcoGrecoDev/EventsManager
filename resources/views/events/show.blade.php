@@ -1643,7 +1643,7 @@
                             // nativo del telefono, che qui non funzionavano in modo affidabile.
                             toolbar: [
                                 { name: 'clipboard', items: ['Undo', 'Redo'] },
-                                { name: 'editing', items: ['Find', 'Replace', 'SelectAll'] },
+                                { name: 'editing', items: ['SelectAll'] },
                                 { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
                                 '/',
                                 { name: 'paragraph', items: ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },

@@ -1626,19 +1626,19 @@
             }
             @endif
 
-            // CKEditor nel modal Comunicazioni agli iscritti: inizializza all'apertura
+            // CKEditor nel modal Comunicazioni agli iscritti
             @if(isset($eventCommsModalId))
             var commsModalEl = document.getElementById(@json($eventCommsModalId));
             if (commsModalEl) {
-                // "shown" (non "show"): a modale ancora in transizione/non visibile,
-                // CKEditor calcolerebbe larghezza/altezza a 0 e il testo non sarebbe
-                // selezionabile/modificabile (stesso bug gia' risolto altrove).
-                commsModalEl.addEventListener('shown.bs.modal', function () {
-                    var textareaId = 'eventCommsMessage{{ $event->getKey() }}';
-                    var inlineId = 'eventCommsMessageInline{{ $event->getKey() }}';
-                    var textareaEl = document.getElementById(textareaId);
-                    var inlineEl = document.getElementById(inlineId);
-                    if (typeof CKEDITOR !== 'undefined' && textareaEl && inlineEl && !CKEDITOR.instances[inlineId]) {
+                var commsTextareaId = 'eventCommsMessage{{ $event->getKey() }}';
+                var commsInlineId = 'eventCommsMessageInline{{ $event->getKey() }}';
+                function initCommsEditor() {
+                    var textareaEl = document.getElementById(commsTextareaId);
+                    var inlineEl = document.getElementById(commsInlineId);
+                    if (typeof CKEDITOR === 'undefined' || !textareaEl || !inlineEl || CKEDITOR.instances[commsInlineId]) {
+                        return;
+                    }
+                    try {
                         // Editor "inline" invece di "replace" (iframe): su smartphone, tenendo
                         // premuto sul testo, il menu nativo "Seleziona tutto/Copia/Taglia" del
                         // telefono funziona in modo affidabile solo se il testo e' direttamente
@@ -1647,7 +1647,7 @@
                         textareaEl.style.display = 'none';
                         textareaEl.removeAttribute('required');
                         inlineEl.style.display = 'block';
-                        CKEDITOR.inline(inlineId, {
+                        CKEDITOR.inline(commsInlineId, {
                             language: 'it',
                             removePlugins: 'elementspath',
                             versionCheck: false,
@@ -1676,8 +1676,19 @@
                             // sicurezza per non ritrovarsi il campo vuoto al salvataggio.
                             textareaEl.value = evt.editor.getData();
                         });
+                    } catch (err) {
+                        // Se l'inizializzazione fallisce per qualsiasi motivo, si torna alla
+                        // semplice textarea (resta visibile, utilizzabile, con "required").
+                        textareaEl.style.display = '';
+                        textareaEl.setAttribute('required', 'required');
+                        inlineEl.style.display = 'none';
                     }
-                });
+                }
+                // Non si aspetta solo l'apertura del modale (su alcuni browser mobile
+                // l'evento "shown.bs.modal" puo' non scattare in modo affidabile): si
+                // tenta subito, e di nuovo all'apertura come rete di sicurezza.
+                initCommsEditor();
+                commsModalEl.addEventListener('shown.bs.modal', initCommsEditor);
 
                 // Riporta il contenuto dell'editor inline nella textarea (quella
                 // effettivamente inviata dal form) prima dell'invio.

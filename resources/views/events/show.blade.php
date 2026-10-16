@@ -595,7 +595,10 @@
                                             @endif
 
                                             @if($canSendEventComms)
-                                                <div class="modal fade" id="{{ $eventCommsModalId }}" tabindex="-1" aria-hidden="true">
+                                                {{-- data-bs-focus="false": senza questo, Bootstrap "ruba" il focus a qualsiasi
+                                                     pannello/dialog che CKEditor apre fuori dal modale (es. il dialog "Immagine"
+                                                     con larghezza/altezza e il pulsante OK), impedendo di usarlo. --}}
+                                                <div class="modal fade" id="{{ $eventCommsModalId }}" tabindex="-1" aria-hidden="true" data-bs-focus="false">
                                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header">

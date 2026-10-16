@@ -1618,7 +1618,10 @@
             @if(isset($eventCommsModalId))
             var commsModalEl = document.getElementById(@json($eventCommsModalId));
             if (commsModalEl) {
-                commsModalEl.addEventListener('show.bs.modal', function () {
+                // "shown" (non "show"): a modale ancora in transizione/non visibile,
+                // CKEditor calcolerebbe larghezza/altezza a 0 e il testo non sarebbe
+                // selezionabile/modificabile (stesso bug gia' risolto altrove).
+                commsModalEl.addEventListener('shown.bs.modal', function () {
                     var textareaId = 'eventCommsMessage{{ $event->getKey() }}';
                     if (typeof CKEDITOR !== 'undefined' && !CKEDITOR.instances[textareaId]) {
                         CKEDITOR.replace(textareaId, {

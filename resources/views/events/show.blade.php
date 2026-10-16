@@ -1611,6 +1611,11 @@
             'lazy_field_prefix' => 'replyContent-',
             'lazy_height' => 260,
         ])
+    @elseif($canSendEventComms ?? false)
+        {{-- Il box Comunicazioni e' disponibile anche all'organizzatore (non solo
+             all'admin): serve comunque la libreria CKEditor, ma senza agganciarla al
+             commento del forum (quello resta testo semplice per chi non e' admin). --}}
+        <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
     @endif
     <script>
         document.addEventListener('DOMContentLoaded', function() {

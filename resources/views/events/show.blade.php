@@ -1692,10 +1692,10 @@
                         inlineEl.style.display = 'none';
                     }
                 }
-                // Non si aspetta solo l'apertura del modale (su alcuni browser mobile
-                // l'evento "shown.bs.modal" puo' non scattare in modo affidabile): si
-                // tenta subito, e di nuovo all'apertura come rete di sicurezza.
-                initCommsEditor();
+                // Solo quando il modale e' davvero visibile: provarci subito, col
+                // modale ancora nascosto, fa inizializzare l'editor "inline" su un
+                // contenitore a larghezza/altezza zero, e il contenuto iniziale non
+                // viene elaborato correttamente (stesso tipo di bug gia' visto altrove).
                 commsModalEl.addEventListener('shown.bs.modal', initCommsEditor);
 
                 // Riporta il contenuto dell'editor inline nella textarea (quella

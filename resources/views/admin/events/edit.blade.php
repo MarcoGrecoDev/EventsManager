@@ -290,7 +290,7 @@
                                         <div class="form-check form-switch mb-0">
                                             <input type="checkbox" class="form-check-input" id="allow_guests" name="allow_guests" value="1"
                                                 {{ old('allow_guests', $event->allow_guests) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="allow_guests">Permetti ospiti</label>
+                                            <label class="form-check-label" for="allow_guests">Si Ospiti</label>
                                         </div>
                                         <div class="form-check form-switch mb-0">
                                             <input type="hidden" name="elenco_visibile" value="0">
@@ -367,7 +367,7 @@
                     cb.addEventListener('change', update);
                 }
                 syncLabel('is_active', 'Evento attivo', 'Evento Disattivo');
-                syncLabel('allow_guests', 'Permetti ospiti', 'No ospiti');
+                syncLabel('allow_guests', 'Si Ospiti', 'No ospiti');
             })();
 
             // Data+ora: combina `date_only` + `time_only` nel campo hidden `date`

@@ -353,6 +353,23 @@
     @include('admin.events.partials.greeting-box-scripts', ['formId' => 'admin-event-edit-form'])
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Titolo dinamico degli switch: "Evento attivo"/"Evento Disattivo",
+            // "Permetti ospiti"/"No ospiti", a seconda dello stato dell'interruttore.
+            (function setupSwitchLabels() {
+                function syncLabel(checkboxId, onText, offText) {
+                    var cb = document.getElementById(checkboxId);
+                    var lbl = document.querySelector('label[for="' + checkboxId + '"]');
+                    if (!cb || !lbl) return;
+                    function update() {
+                        lbl.textContent = cb.checked ? onText : offText;
+                    }
+                    update();
+                    cb.addEventListener('change', update);
+                }
+                syncLabel('is_active', 'Evento attivo', 'Evento Disattivo');
+                syncLabel('allow_guests', 'Permetti ospiti', 'No ospiti');
+            })();
+
             // Data+ora: combina `date_only` + `time_only` nel campo hidden `date`
             (function setupDateTimeCombine() {
                 var d = document.getElementById('date_only');

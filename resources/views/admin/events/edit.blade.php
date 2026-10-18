@@ -584,6 +584,18 @@
             white-space: nowrap;
         }
 
+        /* Titolo "Evento attivo"/"Permetti ospiti": verde scuro se attivo, rosso se disattivo */
+        #is_active:checked + label.form-check-label,
+        #allow_guests:checked + label.form-check-label {
+            color: #146c43;
+            font-weight: 600;
+        }
+        #is_active:not(:checked) + label.form-check-label,
+        #allow_guests:not(:checked) + label.form-check-label {
+            color: #b02a37;
+            font-weight: 600;
+        }
+
         /* Card esterna "Modifica Evento": bordo verde */
         .admin-event-edit-shell {
             border: 2px solid #198754 !important;

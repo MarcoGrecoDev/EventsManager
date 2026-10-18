@@ -339,7 +339,7 @@
                                                 : '';
                                         @endphp
                                         <div class="mb-3 event-meta-badges">
-                                            <span class="badge bg-primary event-meta-badges__badge event-meta-badges__badge--hint"
+                                            <span class="badge bg-primary event-meta-badges__badge event-meta-badges__badge--hint event-meta-badges__badge--fit"
                                                   title="Indica data e ora di inizio dell’evento.">
                                                 <i class="fas fa-calendar"></i>
                                                 {{ $eventDateShort }}
@@ -366,7 +366,7 @@
                                                 <span class="badge event-meta-badges__badge event-card-iscr-badge {{ $iscrClass }}">
                                                     <i class="fas fa-clock"></i>
                                                     @if($iscrOpen)
-                                                        Iscriviti entro {{ $weekdayAbbrIt[(int) $event->deadline->format('w')] }} {{ $event->deadline->format('d/m') }} h{{ $event->deadline->format('H:i') }}
+                                                        Iscrizioni entro {{ $weekdayAbbrIt[(int) $event->deadline->format('w')] }} {{ $event->deadline->format('d/m') }} h{{ $event->deadline->format('H:i') }}
                                                     @else
                                                         Adesioni chiuse
                                                     @endif
@@ -936,6 +936,12 @@
         .event-meta-badges .badge,
         .event-meta-badges .btn {
             width: 100%;
+        }
+        /* Box data evento (azzurro): non si allarga fino al bordo della colonna
+           come gli altri, resta stretto adattandosi al proprio contenuto. */
+        .event-meta-badges__badge--fit {
+            width: auto !important;
+            justify-self: start;
         }
         .event-meta-badges__badge {
             font-size: 0.85rem;

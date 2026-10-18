@@ -280,7 +280,7 @@
                                 </div>
 
                                 {{-- Sotto la riga file: Evento attivo, Permetti ospiti, Elenco partecipanti visibile --}}
-                                <div class="mt-2 pt-2 border-top">
+                                <div class="mt-2 pt-2 border-top event-edit-switches-box">
                                     <div class="d-flex flex-wrap align-items-center gap-3 gap-md-4 event-edit-event-switches-row">
                                         <div class="form-check form-switch mb-0">
                                             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1"
@@ -593,6 +593,14 @@
         #admin-event-edit-form .event-edit-cover-google-row #cover_image.form-control,
         #admin-event-edit-form .event-edit-cover-google-row #google_album_url.form-control {
             max-width: 100%;
+        }
+
+        /* Box che contiene gli switch "Evento attivo" / "Si Ospiti": evidenziato in arancione */
+        .event-edit-switches-box {
+            border: 2px solid #fd7e14 !important;
+            border-radius: 0.5rem;
+            background-color: rgba(253, 126, 20, 0.08);
+            padding: 0.6rem 0.75rem !important;
         }
 
         /* Switch "Evento attivo" + "Permetti ospiti" sempre in una riga */

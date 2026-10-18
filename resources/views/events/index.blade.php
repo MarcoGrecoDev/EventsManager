@@ -366,7 +366,7 @@
                                                 <span class="badge event-meta-badges__badge event-card-iscr-badge {{ $iscrClass }}">
                                                     <i class="fas fa-clock"></i>
                                                     @if($iscrOpen)
-                                                        Iscrizioni entro {{ $weekdayAbbrIt[(int) $event->deadline->format('w')] }} {{ $event->deadline->format('d/m') }}
+                                                        Iscriviti entro {{ $weekdayAbbrIt[(int) $event->deadline->format('w')] }} {{ $event->deadline->format('d/m') }} h{{ $event->deadline->format('H:i') }}
                                                     @else
                                                         Adesioni chiuse
                                                     @endif

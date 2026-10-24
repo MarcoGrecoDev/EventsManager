@@ -1343,7 +1343,7 @@
                             <h5 class="mb-0"><i class="fas fa-eye"></i> Visite pagina</h5>
                         </div>
                         <div class="card-body py-2">
-                            <p class="mb-0 small text-muted d-flex align-items-center gap-2">
+                            <div class="mb-0 small text-muted d-flex align-items-center gap-2">
                                 <span>
                                     <i class="fas fa-eye"></i> Visite:
                                     <a href="#" class="text-decoration-underline" role="button"
@@ -1360,7 +1360,7 @@
                                         <i class="fas fa-eraser"></i> Azzera
                                     </button>
                                 </form>
-                            </p>
+                            </div>
                             <div class="collapse mt-1" id="eventVisitorsList">
                                 @if($eventVisitors->isNotEmpty())
                                     <ul class="list-unstyled small mb-0 ps-1" style="max-height: 220px; overflow-y: auto;">

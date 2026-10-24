@@ -338,6 +338,12 @@
                                                 ? $weekdayAbbrIt[(int) $event->date->format('w')] . ' ' . $event->date->format('j') . ' ' . $event->date->locale('it')->translatedFormat('F') . ' h' . $event->date->format('H:i')
                                                 : '';
                                         @endphp
+                                        @if($mancanoPerCompletareMax)
+                                            <div class="mb-2 small fw-bold text-danger event-card-last-spots-msg">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                {{ $postiLiberiEv == 1 ? 'Ultimo posto disponibile' : $postiLiberiEv . ' posti disponibili' }}
+                                            </div>
+                                        @endif
                                         <div class="mb-3 event-meta-badges">
                                             <span class="badge bg-primary event-meta-badges__badge event-meta-badges__badge--hint"
                                                   title="Indica data e ora di inizio dell’evento.">

@@ -1102,6 +1102,15 @@
         @media (prefers-reduced-motion: reduce) {
             .event-full-banner__blink { animation: none; }
         }
+        /* Messaggio "Ultimo posto disponibile"/"N posti disponibili": meno spazio
+           sopra (vicino all'immagine) e lampeggiante come il banner "Completo". */
+        .event-card-last-spots-msg {
+            margin-top: -0.5rem;
+            animation: eventFullBlink 0.9s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .event-card-last-spots-msg { animation: none; }
+        }
 
         /* Migliora l'aspetto dei badge sulla thumbnail */
         .position-absolute .badge {

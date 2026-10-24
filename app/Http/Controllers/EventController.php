@@ -520,7 +520,10 @@ class EventController extends Controller
         }
 
         \App\Models\EventPageVisit::where('event_id', $event->getKey())->delete();
-        $event->update(['visite' => 0]);
+        // "visite" non è tra i campi fillable del modello: update() lo ignorerebbe
+        // silenziosamente senza errori. Si assegna l'attributo direttamente.
+        $event->visite = 0;
+        $event->save();
 
         return back()->with('success', 'Visite alla pagina evento azzerate.');
     }

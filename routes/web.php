@@ -886,6 +886,10 @@ Route::middleware(['auth', 'approved'])->group(function () {
     Route::post('/events/{event}/communications', [EventController::class, 'sendCommunication'])
         ->name('events.communications.send');
 
+    // Azzera il contatore e l'elenco delle visite alla pagina evento (solo admin)
+    Route::post('/events/{event}/reset-visits', [EventController::class, 'resetVisits'])
+        ->name('events.reset-visits');
+
     // Upload immagini da CKEditor (Forum eventi / descrizioni)
     Route::post('/ckeditor/upload', [CkeditorUploadController::class, 'upload'])->name('ckeditor.upload');
 

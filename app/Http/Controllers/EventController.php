@@ -509,6 +509,22 @@ class EventController extends Controller
         return back()->with('success', $msg);
     }
 
+    /**
+     * Azzera manualmente il contatore e l'elenco delle visite alla pagina evento
+     * (resta comunque automatico ad ogni rinnovo/duplicazione, che parte già da zero).
+     */
+    public function resetVisits(Event $event)
+    {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            abort(403);
+        }
+
+        \App\Models\EventPageVisit::where('event_id', $event->getKey())->delete();
+        $event->update(['visite' => 0]);
+
+        return back()->with('success', 'Visite alla pagina evento azzerate.');
+    }
+
     public function joinWaitlist(Event $event)
     {
         if (!Auth::check() || !Auth::user()->isApproved()) {

@@ -1370,6 +1370,13 @@
                                     <p class="small text-muted mb-0">Nessuna visita registrata ancora.</p>
                                 @endif
                             </div>
+                            <form action="{{ route('events.reset-visits', $event) }}" method="POST" class="mt-2 mb-0"
+                                  onsubmit="return confirm('Azzerare tutte le visite registrate per questo evento? L\'operazione non si può annullare.');">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                    <i class="fas fa-eraser"></i> Azzera visite
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endif

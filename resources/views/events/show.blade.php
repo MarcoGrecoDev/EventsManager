@@ -1343,14 +1343,23 @@
                             <h5 class="mb-0"><i class="fas fa-eye"></i> Visite pagina</h5>
                         </div>
                         <div class="card-body py-2">
-                            <p class="mb-0 small text-muted">
-                                <i class="fas fa-eye"></i> Visite:
-                                <a href="#" class="text-decoration-underline" role="button"
-                                   data-bs-toggle="collapse" data-bs-target="#eventVisitorsList"
-                                   aria-expanded="false" aria-controls="eventVisitorsList"
-                                   data-hint="Clicca per vedere chi ha visitato la pagina">
-                                    <strong>{{ number_format((int) $event->visite, 0, ',', '.') }}</strong>
-                                </a>
+                            <p class="mb-0 small text-muted d-flex align-items-center gap-2">
+                                <span>
+                                    <i class="fas fa-eye"></i> Visite:
+                                    <a href="#" class="text-decoration-underline" role="button"
+                                       data-bs-toggle="collapse" data-bs-target="#eventVisitorsList"
+                                       aria-expanded="false" aria-controls="eventVisitorsList"
+                                       data-hint="Clicca per vedere chi ha visitato la pagina">
+                                        <strong>{{ number_format((int) $event->visite, 0, ',', '.') }}</strong>
+                                    </a>
+                                </span>
+                                <form action="{{ route('events.reset-visits', $event) }}" method="POST" class="mb-0"
+                                      onsubmit="return confirm('Azzerare tutte le visite registrate per questo evento? L\'operazione non si può annullare.');">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2">
+                                        <i class="fas fa-eraser"></i> Azzera
+                                    </button>
+                                </form>
                             </p>
                             <div class="collapse mt-1" id="eventVisitorsList">
                                 @if($eventVisitors->isNotEmpty())
@@ -1370,13 +1379,6 @@
                                     <p class="small text-muted mb-0">Nessuna visita registrata ancora.</p>
                                 @endif
                             </div>
-                            <form action="{{ route('events.reset-visits', $event) }}" method="POST" class="mt-2 mb-0"
-                                  onsubmit="return confirm('Azzerare tutte le visite registrate per questo evento? L\'operazione non si può annullare.');">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger btn-sm w-100">
-                                    <i class="fas fa-eraser"></i> Azzera visite
-                                </button>
-                            </form>
                         </div>
                     </div>
                 @endif

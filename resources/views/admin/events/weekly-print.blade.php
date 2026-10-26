@@ -130,7 +130,7 @@
                     </div>
                     <div class="event-summary">
                         @php
-                            $eventMidSummary = $event->getHomepagePreview(750);
+                            $eventMidSummary = $event->getHomepagePreview(1000);
                             // Molte descrizioni sono salvate tutte in maiuscolo: qui si
                             // trasformano in minuscolo, con la maiuscola solo dopo ogni
                             // punto (come una frase normale), solo per la visualizzazione.

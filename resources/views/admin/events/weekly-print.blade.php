@@ -177,13 +177,9 @@
                 </div>
             @endforeach
 
-            <p class="text-center fw-bold mt-4" style="text-transform: uppercase;">
-                <a href="{{ route('home') }}">Maggiori dettagli e descrizioni sul sito</a>
-            </p>
-
             <div class="mt-4 pt-3 border-top small text-center">
-                <p class="mb-1">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
-                <p class="mb-1">Sito: www.excursio.org</p>
+                <p class="mb-1 fw-bold">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
+                <p class="mb-1">Sito: <a href="https://www.excursio.org" target="_blank" rel="noopener">www.excursio.org</a></p>
                 <p class="mb-3">Mail: excursio@libero.it — Loris cell. 3387717376</p>
                 <div class="text-muted text-start">
                     <p class="mb-1">

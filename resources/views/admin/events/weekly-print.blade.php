@@ -185,22 +185,24 @@
                 <p class="mb-1">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
                 <p class="mb-1">Sito: www.excursio.org</p>
                 <p class="mb-3">Mail: excursio@libero.it — Loris cell. 3387717376</p>
-                <p class="text-muted mb-1">
-                    Questo messaggio ti viene inviato in conformità al Regolamento UE 2016/679 (GDPR)
-                    e al D.Lgs. 196/2003 (Codice in materia di protezione dei dati personali).
-                </p>
-                <p class="text-muted mb-1">
-                    Se non desideri ricevere ulteriori comunicazioni, puoi richiedere la cancellazione
-                    immediata in qualsiasi momento:
-                </p>
-                <p class="text-muted mb-1">
-                    Per non ricevere più email: invia un messaggio a excursio@libero.it inserendo come
-                    oggetto "Cancellazione comunicazioni" e indicando nel testo l'indirizzo e-mail da rimuovere.
-                </p>
-                <p class="text-muted mb-0">
-                    Per eliminare la registrazione dal sito: puoi richiedere la cancellazione completa del
-                    tuo account e dei dati associati al sito Excursio scrivendo allo stesso indirizzo.
-                </p>
+                <div class="text-muted text-start">
+                    <p class="mb-1">
+                        Questo messaggio ti viene inviato in conformità al Regolamento UE 2016/679 (GDPR)
+                        e al D.Lgs. 196/2003 (Codice in materia di protezione dei dati personali).
+                    </p>
+                    <p class="mb-1">
+                        Se non desideri ricevere ulteriori comunicazioni, puoi richiedere la cancellazione
+                        immediata in qualsiasi momento:
+                    </p>
+                    <p class="mb-1">
+                        Per non ricevere più email: invia un messaggio a excursio@libero.it inserendo come
+                        oggetto "Cancellazione comunicazioni" e indicando nel testo l'indirizzo e-mail da rimuovere.
+                    </p>
+                    <p class="mb-0">
+                        Per eliminare la registrazione dal sito: puoi richiedere la cancellazione completa del
+                        tuo account e dei dati associati al sito Excursio scrivendo allo stesso indirizzo.
+                    </p>
+                </div>
             </div>
         @endif
 

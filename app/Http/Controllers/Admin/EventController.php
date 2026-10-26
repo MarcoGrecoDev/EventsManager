@@ -147,6 +147,34 @@ class EventController extends Controller
     }
 
     /**
+     * Pagina stampabile con il riepilogo di tutti gli eventi di una settimana
+     * (lunedì-domenica): titolo + riassunto di ciascuno. Parametro opzionale
+     * ?week=YYYY-MM-DD (una data qualsiasi dentro la settimana desiderata);
+     * senza parametro usa la settimana corrente.
+     */
+    public function weeklyPrint(Request $request)
+    {
+        $refDate = $request->query('week')
+            ? \Illuminate\Support\Carbon::parse((string) $request->query('week'))
+            : now();
+
+        $weekStart = $refDate->copy()->startOfWeek(\Illuminate\Support\Carbon::MONDAY)->startOfDay();
+        $weekEnd = $refDate->copy()->endOfWeek(\Illuminate\Support\Carbon::SUNDAY)->endOfDay();
+
+        $events = Event::query()
+            ->where('pubblicato', 1)
+            ->whereNotNull('dataevento')
+            ->whereBetween('dataevento', [$weekStart, $weekEnd])
+            ->orderBy('dataevento')
+            ->get();
+
+        $prevWeek = $weekStart->copy()->subWeek()->format('Y-m-d');
+        $nextWeek = $weekStart->copy()->addWeek()->format('Y-m-d');
+
+        return view('admin.events.weekly-print', compact('events', 'weekStart', 'weekEnd', 'prevWeek', 'nextWeek'));
+    }
+
+    /**
      * Suggerimenti autocomplete per il box ricerca Admin Events.
      */
     public function suggestions(Request $request)

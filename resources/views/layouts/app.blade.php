@@ -434,11 +434,11 @@
                                 </a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('admin.events.index') }}">Gestione Eventi</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.events.weekly-print') }}"><i class="fas fa-print me-1"></i>Promemoria settimanale</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.users.gallery') }}">Admin immagini utenti</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.common-event.form') }}">Eventi in comune</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Gestione gruppi</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.newsletter.create') }}">Newsletter</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.events.weekly-print') }}"><i class="fas fa-print me-1"></i>Promemoria settimanale</a></li>
                         </ul>
                     </li>
                     @if(auth()->user()->canManageEvents())

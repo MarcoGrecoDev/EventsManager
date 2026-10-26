@@ -130,7 +130,17 @@
                     </div>
                     <div class="event-summary">
                         @php
-                            $eventMidSummary = $event->full_public_preview;
+                            // Non si usa full_public_preview/incipit: l'incipit (breve
+                            // riassunto) ha sempre la priorita' sulla descrizione completa
+                            // in quell'accessor, quindi mostrerebbe sempre solo poche righe
+                            // a prescindere da qualunque limite. Qui si usa invece sempre
+                            // la descrizione completa dell'evento.
+                            $eventMidSummary = trim(html_entity_decode(
+                                strip_tags((string) $event->descrizione),
+                                ENT_QUOTES | ENT_HTML5,
+                                'UTF-8'
+                            ));
+                            $eventMidSummary = preg_replace('/\s+/u', ' ', $eventMidSummary) ?? $eventMidSummary;
                             // Molte descrizioni sono salvate tutte in maiuscolo: qui si
                             // trasformano in minuscolo, con la maiuscola solo dopo ogni
                             // punto (come una frase normale), solo per la visualizzazione.

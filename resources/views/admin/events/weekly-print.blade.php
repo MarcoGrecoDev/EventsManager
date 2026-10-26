@@ -45,6 +45,7 @@
             font-size: 0.9rem;
             color: #495057;
             margin-bottom: 0.75rem;
+            font-weight: 700;
         }
         .event-section .event-summary {
             font-size: 0.95rem;

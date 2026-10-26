@@ -73,6 +73,9 @@
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> Torna all'admin
             </a>
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-home"></i> Torna alla home
+            </a>
             <form action="{{ route('admin.events.weekly-print') }}" method="GET" class="d-flex align-items-center gap-2 ms-md-2">
                 <label for="weekPicker" class="small text-muted mb-0">Vai a una settimana specifica:</label>
                 <input type="date" id="weekPicker" name="week" class="form-control form-control-sm" style="width: auto;"

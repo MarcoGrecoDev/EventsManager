@@ -1136,6 +1136,12 @@
         var newsletterTestSendToReceiptBtn = document.getElementById('newsletterTestSendToReceiptBtn');
         if (newsletterTestSendToReceiptBtn && newsletterFormEl) {
             newsletterTestSendToReceiptBtn.addEventListener('click', function () {
+                // Riporta il contenuto di CKEditor nella textarea PRIMA di leggerne il
+                // valore: altrimenti risulta sempre vuoto e il controllo sotto blocca
+                // tutto senza che sembri succedere nulla.
+                if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances['message']) {
+                    CKEDITOR.instances['message'].updateElement();
+                }
                 var flag = document.getElementById('newsletter_test_send_to_receipt_admin');
                 var sel = document.getElementById('news_receipt_admin_id');
                 if (!flag || !sel || !sel.value) {

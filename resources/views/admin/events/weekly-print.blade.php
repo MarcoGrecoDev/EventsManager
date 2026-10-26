@@ -131,7 +131,7 @@
                         @endif
                     </div>
                     <div class="event-summary">
-                        @php($eventMidSummary = $event->getHomepagePreview(500))
+                        @php($eventMidSummary = $event->getHomepagePreview(750))
                         <p class="mb-0">{{ $eventMidSummary !== '' ? $eventMidSummary : 'Nessuna descrizione disponibile.' }}</p>
                     </div>
                 </div>

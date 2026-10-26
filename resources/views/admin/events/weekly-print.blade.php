@@ -182,9 +182,6 @@
             </p>
         @endif
 
-        <p class="small text-muted mt-3 no-print">
-            Generato il {{ now()->format('d/m/Y H:i') }} — Excursio
-        </p>
     </div>
 </body>
 </html>

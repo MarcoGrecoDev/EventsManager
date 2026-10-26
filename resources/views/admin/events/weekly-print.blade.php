@@ -126,9 +126,6 @@
                             &nbsp;·&nbsp;<i class="fas fa-hourglass-half"></i>
                             iscrizioni entro {{ $event->deadline->locale('it')->translatedFormat('l j F') }}
                         @endif
-                        @if($event->user)
-                            &nbsp;·&nbsp;<i class="fas fa-user"></i> Organizzatore: {{ $event->user->nickname }}
-                        @endif
                     </div>
                     <div class="event-summary">
                         @php

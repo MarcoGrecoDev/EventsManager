@@ -179,7 +179,7 @@
 
             <div class="mt-4 pt-3 border-top small text-center">
                 <p class="mb-1 fw-bold">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
-                <p class="mb-1">Sito: <a href="https://www.excursio.org" target="_blank" rel="noopener">www.excursio.org</a></p>
+                <p class="mb-1">Sito: <a href="https://www.excursio.org" target="_blank" rel="noopener" class="fw-bold">www.excursio.org</a></p>
                 <p class="mb-3">Mail: excursio@libero.it — Loris cell. 3387717376</p>
                 <div class="text-muted text-start">
                     <p class="mb-1">

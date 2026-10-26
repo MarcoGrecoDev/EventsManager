@@ -145,8 +145,20 @@
                             // limite fisso): così resta proporzionato ai dati essenziali
                             // anche quando le descrizioni hanno lunghezze molto diverse.
                             if ($eventMidSummary !== '') {
-                                $targetLen = (int) ceil(mb_strlen($eventMidSummary, 'UTF-8') / 3);
-                                $eventMidSummary = \App\Support\StrLimit::limit($eventMidSummary, max($targetLen, 150));
+                                $targetLen = max((int) ceil(mb_strlen($eventMidSummary, 'UTF-8') / 3), 150);
+                                if (mb_strlen($eventMidSummary, 'UTF-8') > $targetLen) {
+                                    $cut = mb_substr($eventMidSummary, 0, $targetLen, 'UTF-8');
+                                    // Preferisci tagliare a fine frase (dopo un punto), non a
+                                    // metà parola/frase: cerca l'ultimo ". " dentro il taglio.
+                                    $lastSentenceEnd = mb_strrpos($cut, '. ', 0, 'UTF-8');
+                                    if ($lastSentenceEnd !== false && $lastSentenceEnd >= $targetLen * 0.5) {
+                                        $eventMidSummary = mb_substr($cut, 0, $lastSentenceEnd + 1, 'UTF-8');
+                                    } else {
+                                        // Nessun punto utile: taglia almeno a fine parola.
+                                        $lastSpace = mb_strrpos($cut, ' ', 0, 'UTF-8');
+                                        $eventMidSummary = ($lastSpace !== false ? mb_substr($cut, 0, $lastSpace, 'UTF-8') : $cut) . '…';
+                                    }
+                                }
                             }
                             // Molte descrizioni sono salvate tutte in maiuscolo: qui si
                             // trasformano in minuscolo, con la maiuscola solo dopo ogni

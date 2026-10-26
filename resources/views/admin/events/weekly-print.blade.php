@@ -50,10 +50,6 @@
             font-size: 0.95rem;
             line-height: 1.55;
         }
-        .event-section .event-summary img {
-            max-width: 100%;
-            height: auto;
-        }
         @media print {
             .no-print { display: none !important; }
             body { padding: 0; margin: 0; }
@@ -135,7 +131,8 @@
                         @endif
                     </div>
                     <div class="event-summary">
-                        {!! $event->safe_description !== '' ? $event->safe_description : '<p class="text-muted">Nessuna descrizione disponibile.</p>' !!}
+                        @php($eventMidSummary = $event->getHomepagePreview(500))
+                        <p class="mb-0">{{ $eventMidSummary !== '' ? $eventMidSummary : 'Nessuna descrizione disponibile.' }}</p>
                     </div>
                 </div>
             @endforeach

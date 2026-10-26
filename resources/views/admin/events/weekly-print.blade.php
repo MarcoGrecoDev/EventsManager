@@ -106,9 +106,20 @@
                             &nbsp;·&nbsp;<i class="fas fa-map-marker-alt"></i>
                             {{ trim(implode(' — ', array_filter([$event->address, $event->city]))) }}
                         @endif
+                        @if($event->formatted_cost)
+                            &nbsp;·&nbsp;<i class="fas fa-euro-sign"></i> {{ $event->formatted_cost }}
+                        @endif
+                        @if($event->max_participants)
+                            &nbsp;·&nbsp;<i class="fas fa-users"></i>
+                            {{ $event->participants_count }}/{{ $event->max_participants }} posti
+                        @endif
+                        @if($event->deadline)
+                            &nbsp;·&nbsp;<i class="fas fa-hourglass-half"></i>
+                            iscrizioni entro {{ $event->deadline->locale('it')->translatedFormat('l j F') }}
+                        @endif
                     </div>
                     <p class="event-summary">
-                        {{ $event->short_preview !== '' ? $event->short_preview : 'Nessun riassunto disponibile.' }}
+                        {{ $event->full_public_preview !== '' ? $event->full_public_preview : 'Nessuna descrizione disponibile.' }}
                     </p>
                 </div>
             @endforeach

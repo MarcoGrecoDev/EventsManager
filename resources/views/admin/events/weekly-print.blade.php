@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promemoria settimanale eventi — {{ $weekStart->format('d/m/Y') }} - {{ $weekEnd->format('d/m/Y') }}</title>
+    <title>Programma eventi della settimana — {{ $weekStart->format('d/m/Y') }} - {{ $weekEnd->format('d/m/Y') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -90,7 +90,7 @@
     <div class="container-fluid" style="max-width: 900px;">
         <header class="mb-4">
             <h1 class="week-title">
-                <i class="fas fa-calendar-week"></i> Eventi della settimana
+                <i class="fas fa-calendar-week"></i> Programma eventi della settimana
             </h1>
             <p class="text-muted mb-0">
                 Dal <strong>{{ $weekStart->locale('it')->translatedFormat('l j F Y') }}</strong>

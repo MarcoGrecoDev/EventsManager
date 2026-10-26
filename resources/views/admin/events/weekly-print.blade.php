@@ -24,27 +24,34 @@
             font-size: 1.4rem;
             margin-bottom: 0.25rem;
         }
-        .event-card {
-            border: 2px solid #198754;
-            border-radius: 0.5rem;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
+        /* Niente box con bordo: le sezioni si susseguono come in un'email,
+           separate solo da spazio e una sottile riga grigia. */
+        .event-section {
+            padding: 1rem 0;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #dee2e6;
             page-break-inside: avoid;
         }
-        .event-card h2 {
-            font-size: 1.15rem;
+        .event-section:last-of-type {
+            border-bottom: none;
+        }
+        .event-section h2 {
+            font-size: 1.2rem;
             margin-bottom: 0.4rem;
             color: #146c43;
         }
-        .event-card .event-meta {
+        .event-section .event-meta {
             font-size: 0.9rem;
             color: #495057;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
-        .event-card .event-summary {
+        .event-section .event-summary {
             font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
+            line-height: 1.55;
+        }
+        .event-section .event-summary img {
+            max-width: 100%;
+            height: auto;
         }
         @media print {
             .no-print { display: none !important; }
@@ -97,7 +104,7 @@
             <p class="text-muted">Nessun evento pubblicato in questa settimana.</p>
         @else
             @foreach($events as $event)
-                <div class="event-card">
+                <div class="event-section">
                     <h2>{{ $event->title }}</h2>
                     <div class="event-meta">
                         <i class="fas fa-clock"></i>
@@ -117,10 +124,13 @@
                             &nbsp;·&nbsp;<i class="fas fa-hourglass-half"></i>
                             iscrizioni entro {{ $event->deadline->locale('it')->translatedFormat('l j F') }}
                         @endif
+                        @if($event->user)
+                            &nbsp;·&nbsp;<i class="fas fa-user"></i> Organizzatore: {{ $event->user->nickname }}
+                        @endif
                     </div>
-                    <p class="event-summary">
-                        {{ $event->full_public_preview !== '' ? $event->full_public_preview : 'Nessuna descrizione disponibile.' }}
-                    </p>
+                    <div class="event-summary">
+                        {!! $event->safe_description !== '' ? $event->safe_description : '<p class="text-muted">Nessuna descrizione disponibile.</p>' !!}
+                    </div>
                 </div>
             @endforeach
         @endif

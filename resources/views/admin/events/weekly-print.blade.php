@@ -141,6 +141,13 @@
                                 'UTF-8'
                             ));
                             $eventMidSummary = preg_replace('/\s+/u', ' ', $eventMidSummary) ?? $eventMidSummary;
+                            // Riassunto a circa 1/3 della lunghezza originale (non un
+                            // limite fisso): così resta proporzionato ai dati essenziali
+                            // anche quando le descrizioni hanno lunghezze molto diverse.
+                            if ($eventMidSummary !== '') {
+                                $targetLen = (int) ceil(mb_strlen($eventMidSummary, 'UTF-8') / 3);
+                                $eventMidSummary = \App\Support\StrLimit::limit($eventMidSummary, max($targetLen, 150));
+                            }
                             // Molte descrizioni sono salvate tutte in maiuscolo: qui si
                             // trasformano in minuscolo, con la maiuscola solo dopo ogni
                             // punto (come una frase normale), solo per la visualizzazione.

@@ -147,6 +147,10 @@
                     </div>
                 </div>
             @endforeach
+
+            <p class="text-center fw-bold mt-4" style="text-transform: uppercase;">
+                <a href="{{ route('home') }}">Maggiori dettagli e descrizioni sul sito</a>
+            </p>
         @endif
 
         <p class="small text-muted mt-3 no-print">

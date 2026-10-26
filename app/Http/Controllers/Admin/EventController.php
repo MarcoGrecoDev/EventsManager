@@ -162,7 +162,8 @@ class EventController extends Controller
         $weekEnd = $refDate->copy()->endOfWeek(\Illuminate\Support\Carbon::SUNDAY)->endOfDay();
 
         $events = Event::query()
-            ->where('pubblicato', 1)
+            // Niente filtro su "pubblicato": e' uno strumento solo per l'admin,
+            // deve ricordare anche gli eventi non ancora pubblicati/in bozza.
             ->whereNotNull('dataevento')
             ->whereBetween('dataevento', [$weekStart, $weekEnd])
             ->orderBy('dataevento')

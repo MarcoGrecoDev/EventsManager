@@ -39,9 +39,7 @@
             font-size: 1.2rem;
             margin-bottom: 0.4rem;
             color: #146c43;
-            /* I titoli sono salvati tutti in maiuscolo: qui solo visivamente in
-               minuscolo (non modifica il titolo salvato nel database). */
-            text-transform: lowercase;
+            text-transform: uppercase;
         }
         .event-section .event-meta {
             font-size: 0.9rem;
@@ -108,7 +106,12 @@
         @else
             @foreach($events as $event)
                 <div class="event-section">
-                    <h2>{{ $event->title }}</h2>
+                    <h2>
+                        {{ $event->title }}
+                        @if(!$event->is_active)
+                            <span class="badge bg-secondary" style="text-transform: none;">non pubblicato</span>
+                        @endif
+                    </h2>
                     <div class="event-meta">
                         <i class="fas fa-clock"></i>
                         {{ $event->date ? $event->date->locale('it')->translatedFormat('l j F Y') . ' ore ' . $event->date->format('H:i') : '' }}

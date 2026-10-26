@@ -39,6 +39,9 @@
             font-size: 1.2rem;
             margin-bottom: 0.4rem;
             color: #146c43;
+            /* I titoli sono salvati tutti in maiuscolo: qui solo visivamente in
+               minuscolo (non modifica il titolo salvato nel database). */
+            text-transform: lowercase;
         }
         .event-section .event-meta {
             font-size: 0.9rem;

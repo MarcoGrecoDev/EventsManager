@@ -131,7 +131,20 @@
                         @endif
                     </div>
                     <div class="event-summary">
-                        @php($eventMidSummary = $event->getHomepagePreview(750))
+                        @php
+                            $eventMidSummary = $event->getHomepagePreview(750);
+                            // Molte descrizioni sono salvate tutte in maiuscolo: qui si
+                            // trasformano in minuscolo, con la maiuscola solo dopo ogni
+                            // punto (come una frase normale), solo per la visualizzazione.
+                            if ($eventMidSummary !== '') {
+                                $eventMidSummary = mb_strtolower($eventMidSummary, 'UTF-8');
+                                $eventMidSummary = preg_replace_callback(
+                                    '/(^\s*\w|[.!?]\s+\w)/u',
+                                    fn ($m) => mb_strtoupper($m[0], 'UTF-8'),
+                                    $eventMidSummary
+                                );
+                            }
+                        @endphp
                         <p class="mb-0">{{ $eventMidSummary !== '' ? $eventMidSummary : 'Nessuna descrizione disponibile.' }}</p>
                     </div>
                 </div>

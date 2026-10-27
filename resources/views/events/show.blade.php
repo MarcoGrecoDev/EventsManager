@@ -1367,8 +1367,17 @@
                                                         $pCognomeIniziale = trim((string) ($participant->cognome ?? '')) !== ''
                                                             ? mb_strtoupper(mb_substr(trim($participant->cognome), 0, 1)) . '.'
                                                             : '';
+                                                        $pFullLabel = trim(($pNome !== '' ? $pNome : $participant->nickname) . ' ' . $pCognomeIniziale);
+                                                        $pGuestsCount = (int) ($participant->pivot->amici ?? 0);
+                                                        $pGuestEntries = \App\Support\OspitiGuestStore::decode($participant->pivot->ospiti_inseriti_il ?? null);
                                                     @endphp
-                                                    <li>{{ $pNome !== '' ? $pNome : $participant->nickname }} {{ $pCognomeIniziale }}</li>
+                                                    <li>{{ $pFullLabel }}</li>
+                                                    @for($gi = 0; $gi < $pGuestsCount; $gi++)
+                                                        @php
+                                                            $gNome = trim((string) ($pGuestEntries[$gi]['nome'] ?? ''));
+                                                        @endphp
+                                                        <li>{{ $gNome !== '' ? $gNome : 'Ospite' }} — Amico di {{ $pFullLabel }}</li>
+                                                    @endfor
                                                 @endforeach
                                             </ol>
                                         @endif

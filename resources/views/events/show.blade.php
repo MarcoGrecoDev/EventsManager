@@ -1328,12 +1328,60 @@
                                 </button>
                             @endif
                         @endauth
+                        @auth
+                            @if(auth()->user()->isAdmin())
+                                <button type="button" class="btn btn-info btn-sm event-forum-footer-btn rounded-pill"
+                                        data-bs-toggle="modal" data-bs-target="#eventParticipantsNumberedModal{{ $event->getKey() }}"
+                                        data-hint="Elenco numerato (solo admin): nome e iniziale del cognome di ogni iscritto">
+                                    <i class="fas fa-list-ol"></i> Elenco
+                                </button>
+                            @endif
+                        @endauth
                         <button type="button" id="btnScrollToPageTop" class="btn btn-secondary btn-sm event-forum-footer-btn rounded-pill" data-hint="Torna all'inizio della pagina">
                             <i class="fas fa-arrow-up"></i> Torna in alto
                         </button>
                     </div>
                 </div>
             </div>
+
+            @auth
+                @if(auth()->user()->isAdmin())
+                    @push('modals')
+                        <div class="modal fade" id="eventParticipantsNumberedModal{{ $event->getKey() }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            <i class="fas fa-list-ol"></i> Elenco iscritti (solo admin)
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @if($event->participants->isEmpty())
+                                            <p class="text-muted mb-0">Nessun iscritto.</p>
+                                        @else
+                                            <ol class="mb-0">
+                                                @foreach($event->participants as $participant)
+                                                    @php
+                                                        $pNome = trim((string) ($participant->nome ?? ''));
+                                                        $pCognomeIniziale = trim((string) ($participant->cognome ?? '')) !== ''
+                                                            ? mb_strtoupper(mb_substr(trim($participant->cognome), 0, 1)) . '.'
+                                                            : '';
+                                                    @endphp
+                                                    <li>{{ $pNome !== '' ? $pNome : $participant->nickname }} {{ $pCognomeIniziale }}</li>
+                                                @endforeach
+                                            </ol>
+                                        @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Chiudi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endpush
+                @endif
+            @endauth
 
             <div class="col-md-4">
                 @if(auth()->check() && auth()->user()->isAdmin())

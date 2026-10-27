@@ -1360,7 +1360,9 @@
                                         @if($event->participants->isEmpty())
                                             <p class="text-muted mb-0">Nessun iscritto.</p>
                                         @else
-                                            @php($listCounter = 0)
+                                            @php
+                                                $listCounter = 0;
+                                            @endphp
                                             <ul class="mb-0 list-unstyled event-participants-numbered-list">
                                                 @foreach($event->participants as $participant)
                                                     @php

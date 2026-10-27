@@ -1360,7 +1360,7 @@
                                         @if($event->participants->isEmpty())
                                             <p class="text-muted mb-0">Nessun iscritto.</p>
                                         @else
-                                            <ol class="mb-0">
+                                            <ol class="mb-0 event-participants-numbered-list">
                                                 @foreach($event->participants as $participant)
                                                     @php
                                                         $pNome = trim((string) ($participant->nome ?? ''));
@@ -2869,6 +2869,19 @@
         .event-forum-box-footer {
             position: relative;
             z-index: 10000;
+        }
+        /* Elenco numerato iscritti (solo admin): "1)" invece di "1." */
+        .event-participants-numbered-list {
+            list-style: none;
+            counter-reset: participantNum;
+            padding-left: 1.2rem;
+        }
+        .event-participants-numbered-list li {
+            counter-increment: participantNum;
+        }
+        .event-participants-numbered-list li::before {
+            content: counter(participantNum) ") ";
+            font-weight: 700;
         }
         /* "Torna in alto", "Commenta", "Chiudi" e "Invia Commento": stessa regola per
            tutti e quattro, cosi' hanno sempre la stessa larghezza/altezza ovunque si

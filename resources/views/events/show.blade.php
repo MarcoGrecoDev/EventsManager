@@ -1360,7 +1360,8 @@
                                         @if($event->participants->isEmpty())
                                             <p class="text-muted mb-0">Nessun iscritto.</p>
                                         @else
-                                            <ol class="mb-0 event-participants-numbered-list">
+                                            @php($listCounter = 0)
+                                            <ul class="mb-0 list-unstyled event-participants-numbered-list">
                                                 @foreach($event->participants as $participant)
                                                     @php
                                                         $pNome = trim((string) ($participant->nome ?? ''));
@@ -1370,16 +1371,18 @@
                                                         $pFullLabel = trim(($pNome !== '' ? $pNome : $participant->nickname) . ' ' . $pCognomeIniziale);
                                                         $pGuestsCount = (int) ($participant->pivot->amici ?? 0);
                                                         $pGuestEntries = \App\Support\OspitiGuestStore::decode($participant->pivot->ospiti_inseriti_il ?? null);
+                                                        $listCounter++;
                                                     @endphp
-                                                    <li>{{ $pFullLabel }}</li>
+                                                    <li>{{ $listCounter }}) {{ $pFullLabel }}</li>
                                                     @for($gi = 0; $gi < $pGuestsCount; $gi++)
                                                         @php
                                                             $gNome = trim((string) ($pGuestEntries[$gi]['nome'] ?? ''));
+                                                            $listCounter++;
                                                         @endphp
-                                                        <li>{{ $gNome !== '' ? $gNome : 'Ospite' }} — Amico di {{ $pFullLabel }}</li>
+                                                        <li>{{ $listCounter }}) {{ $gNome !== '' ? $gNome : 'Ospite' }} — Amico di {{ $pFullLabel }}</li>
                                                     @endfor
                                                 @endforeach
-                                            </ol>
+                                            </ul>
                                         @endif
                                     </div>
                                     <div class="modal-footer">
@@ -2879,18 +2882,10 @@
             position: relative;
             z-index: 10000;
         }
-        /* Elenco numerato iscritti (solo admin): "1)" invece di "1." */
-        .event-participants-numbered-list {
-            list-style: none;
-            counter-reset: participantNum;
-            padding-left: 1.2rem;
-        }
+        /* Elenco numerato iscritti (solo admin): "1)" e' testo vero (non generato
+           via CSS), cosi' selezionando il blocco si copia tutto, numeri compresi. */
         .event-participants-numbered-list li {
-            counter-increment: participantNum;
-        }
-        .event-participants-numbered-list li::before {
-            content: counter(participantNum) ") ";
-            font-weight: 700;
+            padding: 0.1rem 0;
         }
         /* "Torna in alto", "Commenta", "Chiudi" e "Invia Commento": stessa regola per
            tutti e quattro, cosi' hanno sempre la stessa larghezza/altezza ovunque si

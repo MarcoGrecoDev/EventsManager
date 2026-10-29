@@ -799,6 +799,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/forgot-password', [PasswordResetController::class, 'sendReset'])->name('password.send');
     Route::get('/reset-password', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
+
+    // Recupero username: l'utente fornisce l'email, lo username viene inviato solo a quella stessa email.
+    Route::get('/forgot-username', [\App\Http\Controllers\ForgotUsernameController::class, 'showForm'])->name('username.request');
+    Route::post('/forgot-username', [\App\Http\Controllers\ForgotUsernameController::class, 'send'])->name('username.send');
 });
 
 // Route protette

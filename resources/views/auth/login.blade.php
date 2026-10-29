@@ -51,6 +51,9 @@
                     <div class="text-center mt-2">
                         <a href="{{ route('password.request') }}">Password dimenticata?</a>
                     </div>
+                    <div class="text-center mt-1">
+                        <a href="{{ route('username.request') }}">Hai perso lo username?</a>
+                    </div>
                 </div>
             </div>
         </div>

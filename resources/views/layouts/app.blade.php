@@ -703,6 +703,9 @@
                             <a href="{{ route('password.request') }}" class="small text-center text-muted d-block mt-1">
                                 Password dimenticata?
                             </a>
+                            <a href="{{ route('username.request') }}" class="small text-center text-muted d-block">
+                                Hai perso lo username?
+                            </a>
                         </div>
                     </div>
                 </div>

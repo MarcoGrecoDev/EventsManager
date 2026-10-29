@@ -45,6 +45,11 @@
     "answer": "Nella pagina di login trovi il link «Password dimenticata?». Cliccaci e inserisci l'indirizzo email che hai usato in fase di registrazione. Riceverai un'email con un link per creare una nuova password. Il link ha una scadenza, quindi usalo al più presto. Se non trovi l'email, controlla nella cartella spam o posta indesiderata."
   },
   {
+    "keywords": ["ho perso username", "ho perso la password", "ho perso username e password", "perso username", "perso password", "non trovo username", "non trovo la password", "non ricordo username", "non ricordo il nickname", "recuperare username", "recuperare password", "dimenticato username", "dimenticato il nickname"],
+    "question": "Ho perso username e/o password, come li recupero?",
+    "answer": "Per la password: nella pagina di login clicca su «Password dimenticata?», inserisci l'email usata in registrazione e riceverai un link per crearne una nuova. Per lo username (il tuo nickname): non esiste un recupero automatico sul sito, ma lo trovi nell'email che hai ricevuto al momento della registrazione/approvazione dell'account; se non la trovi più, scrivi a excursio@libero.it indicando il tuo nome e cognome e un amministratore te lo comunicherà."
+  },
+  {
     "keywords": ["cambiare password", "modifica password", "nuova password", "password attuale"],
     "question": "Come cambio la mia password?",
     "answer": "Vai sul tuo profilo cliccando «Profilo» nella barra di navigazione. Nella pagina del profilo troverai la sezione per cambiare la password: dovrai inserire la password attuale e poi quella nuova due volte per conferma. Salva e il gioco è fatto."

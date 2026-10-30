@@ -81,8 +81,6 @@
 </div>
 
 <div class="content">
-    <p class="greeting">Ciao {{ $recipientName }},</p>
-
     <div>
         {!! $body !!}
     </div>

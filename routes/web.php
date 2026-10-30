@@ -558,9 +558,6 @@ Route::post('/mercatino/vetrina/annuncio/rinnova', function (Request $request) {
     if (! is_array($decoded)) {
         return back()->with('error', 'Annuncio non valido.');
     }
-    if (MercatinoAnnuncioStorage::isExpired($decoded)) {
-        return back()->with('error', 'Questo annuncio è scaduto. Pubblica un nuovo annuncio dalla pagina Mercatino.');
-    }
     $authorUsername = trim((string) ($decoded['autore_username'] ?? ''));
     $me = auth()->user();
     $meUsername = trim((string) ($me?->username ?? ''));

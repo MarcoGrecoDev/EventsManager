@@ -25,7 +25,7 @@
     }
     $ckCustomCssUrl = 'data:text/css;charset=utf-8,' . rawurlencode(implode('', $ckCssParts));
 @endphp
-<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var id = @json($fieldId);
@@ -90,8 +90,11 @@
             CKEDITOR.replace(id, {
                 language: 'it',
                 height: {{ $ckHeight }},
-                removePlugins: 'elementspath',
-                extraPlugins: 'justify,lineheight',
+                // "image2" (immagine avanzata) sostituisce "image": permette di centrare
+                // le immagini (sinistra/centro/destra), cosa che il plugin "image" base
+                // non consente in modo affidabile insieme ai pulsanti di giustificazione.
+                removePlugins: 'elementspath,image',
+                extraPlugins: 'justify,lineheight,image2',
                 resize_dir: 'vertical',
                 versionCheck: false,
                 toolbar: [

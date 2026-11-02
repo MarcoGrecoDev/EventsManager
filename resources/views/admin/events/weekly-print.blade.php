@@ -96,8 +96,8 @@
                 <i class="fas fa-calendar-week"></i> Programma eventi della settimana
             </h1>
             <p class="text-muted mb-0">
-                Dal <strong>{{ $weekStart->locale('it')->translatedFormat('l j F Y') }}</strong>
-                al <strong>{{ $weekEnd->locale('it')->translatedFormat('l j F Y') }}</strong>
+                Da <strong>{{ $weekStart->locale('it')->translatedFormat('l j F Y') }}</strong>
+                a <strong>{{ $weekEnd->locale('it')->translatedFormat('l j F Y') }}</strong>
             </p>
         </header>
 
@@ -124,7 +124,7 @@
                         @endif
                         @if($event->max_participants)
                             &nbsp;·&nbsp;<i class="fas fa-users"></i>
-                            {{ $event->participants_count }}/{{ $event->max_participants }} posti
+                            {{ $event->max_participants }} posti
                         @endif
                         @if($event->deadline)
                             &nbsp;·&nbsp;<i class="fas fa-hourglass-half"></i>

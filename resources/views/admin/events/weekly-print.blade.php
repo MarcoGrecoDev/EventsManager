@@ -183,7 +183,7 @@
             @endforeach
 
             <div class="mt-4 pt-3 border-top small text-center">
-                <p class="mb-0 fw-bold text-start" style="text-transform: uppercase; color: #146c43; font-size: 1.1rem;">Prossimi eventi in programma</p>
+                <p class="mb-0 fw-bold text-start" style="text-transform: uppercase; color: #146c43; font-size: 1.1rem;"><i class="fas fa-calendar-check"></i> Prossimi eventi in programma</p>
                 <br><br><br>
                 <p class="mb-1 fw-bold">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
                 <p class="mb-1">Sito: <a href="https://www.excursio.org" target="_blank" rel="noopener" class="fw-bold">www.excursio.org</a></p>

@@ -2,7 +2,7 @@
     $eventDbMissing = \App\Support\EventoTableSchema::missingOptionalColumns();
     $greetingEnabled = (bool) old('greeting_box_enabled', $event->greeting_box_enabled ?? false);
     $greetingDuration = (int) old('greeting_box_duration', $event->greeting_box_duration ?? 5);
-    $greetingMessage = old('greeting_box_message', $event->greeting_box_message ?? \App\Support\EventGreetingSettings::defaultMessageHtml());
+    $greetingMessage = old('greeting_box_message', $event->greeting_box_message ?? '');
     $greetingMaxWidth = (int) old('greeting_box_max_width', $event->greeting_box_max_width ?? 420);
     $greetingBorder = old('greeting_box_border_color', $event->greeting_box_border_color ?? '#198754');
     $greetingBg = old('greeting_box_bg_color', $event->greeting_box_bg_color ?? '#ffffff');

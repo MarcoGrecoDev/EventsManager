@@ -129,10 +129,11 @@ class EventGreetingSettings
             return [];
         }
 
+        // Non si sostituisce un messaggio vuoto con il testo di default: altrimenti
+        // riapparirebbe precompilato nell'editor la volta successiva, impedendo di
+        // ripartire da zero. Il fallback al testo di default resta solo lato
+        // visualizzazione (messageHtmlForEvent), per chi apre davvero il popup.
         $message = SafeRichText::sanitize((string) $request->input('greeting_box_message', ''), true);
-        if ($message === '') {
-            $message = self::defaultMessageHtml();
-        }
 
         return [
             'greeting_box_enabled' => $request->boolean('greeting_box_enabled') ? 1 : 0,

@@ -29,10 +29,6 @@ class EventGreetingSettings
 
         return self::$databaseReady;
     }
-    public static function defaultMessageHtml(): string
-    {
-        return '<p>Ciao {nickname} {nome}, questo evento è fatto per te</p>';
-    }
 
     public static function hasGreetingBox(Event $event): bool
     {
@@ -52,12 +48,7 @@ class EventGreetingSettings
 
     public static function messageHtmlForEvent(Event $event): string
     {
-        $html = trim((string) ($event->greeting_box_message ?? ''));
-        if ($html === '') {
-            return self::defaultMessageHtml();
-        }
-
-        return $html;
+        return trim((string) ($event->greeting_box_message ?? ''));
     }
 
     public static function boxMaxWidthForEvent(Event $event): int
@@ -92,9 +83,15 @@ class EventGreetingSettings
             return null;
         }
 
+        $messageHtml = self::renderMessageForEvent($event, $user);
+        if (trim(strip_tags($messageHtml)) === '') {
+            // Testo svuotato apposta dall'admin: niente popup, si va dritti ai dettagli.
+            return null;
+        }
+
         return [
             'durationMs' => self::durationSecondsForEvent($event) * 1000,
-            'messageHtml' => self::renderMessageForEvent($event, $user),
+            'messageHtml' => $messageHtml,
             'box' => [
                 'maxWidth' => self::boxMaxWidthForEvent($event),
                 'borderColor' => self::boxBorderColorForEvent($event),

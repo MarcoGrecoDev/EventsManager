@@ -94,12 +94,44 @@
                     });
                 }
 
+                var fieldId = @json('greeting_box_message_' . $ggId);
+                var originalMessage = @json($ggMessage);
+                var originalEnabled = @json($ggEnabled);
+                var originalDuration = @json($ggDuration);
+
                 var form = document.getElementById(@json('eventGreetingForm' . $ggId));
                 if (form) {
                     form.addEventListener('submit', function () {
-                        var fieldId = @json('greeting_box_message_' . $ggId);
                         if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances[fieldId]) {
                             CKEDITOR.instances[fieldId].updateElement();
+                        }
+                    });
+                }
+
+                // Se la finestra viene chiusa senza salvare (Annulla, clic fuori, Esc),
+                // scarta qualunque modifica non salvata: altrimenti CKEditor manterrebbe
+                // in memoria il testo digitato e lo ripresenterebbe, non precompilato ma
+                // "sporco", alla riapertura successiva nella stessa pagina.
+                var modalEl = document.getElementById(@json('eventGreetingModal' . $ggId));
+                if (modalEl) {
+                    modalEl.addEventListener('hidden.bs.modal', function () {
+                        if (toggle) {
+                            toggle.checked = originalEnabled;
+                        }
+                        if (fields) {
+                            fields.style.display = originalEnabled ? '' : 'none';
+                        }
+                        var durationInput = document.getElementById(@json('greeting_box_duration_' . $ggId));
+                        if (durationInput) {
+                            durationInput.value = originalDuration;
+                        }
+                        if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances[fieldId]) {
+                            CKEDITOR.instances[fieldId].setData(originalMessage);
+                        } else {
+                            var textarea = document.getElementById(fieldId);
+                            if (textarea) {
+                                textarea.value = originalMessage;
+                            }
                         }
                     });
                 }

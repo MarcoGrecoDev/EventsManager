@@ -695,6 +695,24 @@ class EventController extends Controller
         return back()->with('success', "Iscrizioni {$label} con successo!");
     }
 
+    /**
+     * Aggiorna solo il "box benvenuto" (messaggio popup su «Accedi ai dettagli»)
+     * per un singolo evento, dalla pagina Eventi in programma: evita di dover
+     * aprire tutta la pagina "Modifica evento" solo per questo.
+     */
+    public function updateGreetingBox(Request $request, Event $event)
+    {
+        if ($migrationError = EventGreetingSettings::migrationGuardError($request)) {
+            return back()->withErrors($migrationError);
+        }
+
+        $request->validate(EventGreetingSettings::validationRules());
+
+        $event->update(EventGreetingSettings::payloadFromRequest($request));
+
+        return back()->with('success', 'Messaggio popup aggiornato con successo!');
+    }
+
     private function processGalleryImages(array $images, Event $event): void
     {
         $uploadResults = $this->imageService->uploadEventImages($images, $event->getKey());

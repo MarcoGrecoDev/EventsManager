@@ -522,8 +522,11 @@
                                     </div>
 
                                     @auth
-                                        <div class="card-footer bg-transparent mt-auto">
-                                            @include('partials.event-details-button', ['event' => $event])
+                                        <div class="card-footer bg-transparent mt-auto d-flex flex-wrap gap-2">
+                                            @include('partials.event-details-button', ['event' => $event, 'btnClass' => 'btn btn-primary flex-grow-1'])
+                                            @if(auth()->user()->isAdmin())
+                                                @include('partials.event-greeting-quick-modal', ['event' => $event])
+                                            @endif
                                         </div>
                                     @endauth
                                 </div>

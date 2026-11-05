@@ -950,6 +950,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/events/{event}/cancel-duplicate', [\App\Http\Controllers\Admin\EventController::class, 'cancelDuplicate'])->name('events.cancel-duplicate');
     Route::post('/events/{event}/toggle-status', [\App\Http\Controllers\Admin\EventController::class, 'toggleStatus'])->name('events.toggle-status');
     Route::post('/events/{event}/toggle-registration', [\App\Http\Controllers\Admin\EventController::class, 'toggleRegistration'])->name('events.toggle-registration');
+    Route::post('/events/{event}/greeting-box', [\App\Http\Controllers\Admin\EventController::class, 'updateGreetingBox'])->name('events.greeting-box.update');
     Route::get('/users/finder-suggestions', [\App\Http\Controllers\Admin\UserController::class, 'finderSuggestions'])->name('users.finder-suggestions');
     Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::post('/users/{user}/impersonate', [ImpersonationController::class, 'start'])->name('users.impersonate');

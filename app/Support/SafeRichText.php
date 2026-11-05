@@ -325,9 +325,34 @@ class SafeRichText
                 $out[] = $prop . ': ' . strtolower($val);
                 continue;
             }
+
+            if ($prop === 'font-size' && preg_match('/^[0-9]{1,3}(\.[0-9]+)?(px|em|rem|%)$/i', $val)) {
+                $out[] = $prop . ': ' . strtolower($val);
+                continue;
+            }
+
+            if ($prop === 'font-family' && self::isSafeCssFontFamilyValue($val)) {
+                $out[] = $prop . ': ' . $val;
+                continue;
+            }
         }
 
         return implode('; ', $out);
+    }
+
+    /**
+     * Font-family scelto da CKEditor (es. "Arial, Helvetica, sans-serif" o
+     * "'Courier New', Courier, monospace"): solo lettere, spazi, virgole,
+     * trattini e apici singoli, niente url()/espressioni.
+     */
+    private static function isSafeCssFontFamilyValue(string $v): bool
+    {
+        $v = trim($v);
+        if ($v === '' || strlen($v) > 200) {
+            return false;
+        }
+
+        return (bool) preg_match('/^[a-zA-Z0-9 \',\-]+$/', $v);
     }
 
     private static function isSafeCssColorValue(string $v): bool

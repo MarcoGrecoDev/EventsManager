@@ -514,7 +514,7 @@
                                                                     </div>
                                                                 @else
                                                                     <button type="button"
-                                                                            class="btn btn-warning btn-sm w-100"
+                                                                            class="btn btn-warning btn-sm w-100 event-waitlist-btn-blink"
                                                                             data-bs-toggle="collapse"
                                                                             data-bs-target="#{{ $wlBoxId }}"
                                                                             aria-expanded="false"
@@ -2997,12 +2997,30 @@
         }
 
         .event-waitlist-box {
-            border: 2px dashed rgba(13, 110, 253, 0.65);
             background: rgba(255, 243, 205, 0.85);
         }
         .event-waitlist-explain {
             border: 2px solid rgba(13, 110, 253, 0.35);
             background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Pulsante "Inseriscimi in lista di riserva": bordo giallo scuro + lampeggio
+           (stesso stile di "Adesioni chiuse", ma con sfumatura gialla) */
+        .event-waitlist-btn-blink {
+            border: 2px solid #997404 !important;
+            animation: eventWaitlistBtnBlink 0.85s ease-in-out infinite;
+        }
+        @keyframes eventWaitlistBtnBlink {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(255,193,7,0);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 3px rgba(255,193,7,0.45),
+                    0 0 18px rgba(255,193,7,0.9);
+                transform: scale(1.03);
+            }
         }
 
         .event-waitlist-cta-blink {

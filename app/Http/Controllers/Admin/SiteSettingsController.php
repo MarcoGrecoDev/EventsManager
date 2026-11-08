@@ -32,6 +32,27 @@ class SiteSettingsController extends Controller
             ->with('success', $label . ': ' . ($new ? 'attivato' : 'nascosto') . '.');
     }
 
+    /**
+     * Promemoria "a evento concluso potrai votare" mostrato cliccando "Iscrivimi":
+     * un unico controllo per attivarlo/disattivarlo e per impostarne la durata.
+     */
+    public function updateVoteReminderTooltip(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'enabled' => 'sometimes|boolean',
+            'duration_seconds' => 'required|integer|min:1|max:60',
+        ]);
+
+        $enabled = $request->boolean('enabled');
+
+        SiteSettings::set('feature.vote_reminder_tooltip', $enabled);
+        SiteSettings::set('site.vote_reminder_tooltip_duration', $validated['duration_seconds']);
+
+        return redirect()
+            ->route('admin.dashboard')
+            ->with('success', 'Promemoria voto: ' . ($enabled ? 'attivato' : 'disattivato') . ', durata ' . $validated['duration_seconds'] . ' secondi.');
+    }
+
     public function updateAnnouncement(Request $request): RedirectResponse
     {
         $validated = $request->validate([

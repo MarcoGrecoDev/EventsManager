@@ -458,7 +458,7 @@
                                                             {{ $joinLabel }}
                                                         </button>
                                                     </form>
-                                                    @unless($cannotJoin)
+                                                    @unless($cannotJoin || !\App\Support\SiteSettings::getBool('feature.vote_reminder_tooltip', true))
                                                         <script>
                                                             (function() {
                                                                 var form = document.getElementById('participateForm{{ $event->getKey() }}');
@@ -476,7 +476,7 @@
                                                                         confirmed = true;
                                                                         tooltip.style.display = 'none';
                                                                         form.submit();
-                                                                    }, 7000);
+                                                                    }, {{ (int) \App\Support\SiteSettings::get('site.vote_reminder_tooltip_duration', 7) * 1000 }});
                                                                 });
                                                             })();
                                                         </script>

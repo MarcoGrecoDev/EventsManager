@@ -932,6 +932,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/site-settings/announcement', [\App\Http\Controllers\Admin\SiteSettingsController::class, 'updateAnnouncement'])
         ->name('site-settings.announcement');
 
+    Route::post('/site-settings/vote-reminder-tooltip', [\App\Http\Controllers\Admin\SiteSettingsController::class, 'updateVoteReminderTooltip'])
+        ->name('site-settings.vote-reminder-tooltip');
+
     Route::get('/common-event/users-search', [\App\Http\Controllers\Admin\CommonEventController::class, 'usersSearch'])
         ->name('common-event.users-search');
 

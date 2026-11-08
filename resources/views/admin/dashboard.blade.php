@@ -399,6 +399,23 @@
                                         <span class="badge bg-secondary">OFF</span>
                                     @endif
                                 </form>
+
+                                <form method="POST" action="{{ route('admin.site-settings.vote-reminder-tooltip') }}" class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                                    @csrf
+                                    <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="admin_toggle_vote_reminder" name="enabled" value="1" {{ ($voteReminderTooltipEnabled ?? true) ? 'checked' : '' }}>
+                                        <label class="form-check-label fw-semibold" for="admin_toggle_vote_reminder">
+                                            <i class="fas fa-star me-1"></i>Promemoria voto su «Iscrivimi»
+                                        </label>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <label for="admin_vote_reminder_duration" class="small text-muted mb-0">Durata (sec)</label>
+                                        <input type="number" class="form-control form-control-sm" style="width: 70px;"
+                                               id="admin_vote_reminder_duration" name="duration_seconds"
+                                               min="1" max="60" value="{{ $voteReminderTooltipDuration ?? 7 }}">
+                                        <button type="submit" class="btn btn-sm btn-success">Salva</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

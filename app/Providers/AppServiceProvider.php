@@ -59,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('featureChatSalottinoEnabled', SiteSettings::getBool('feature.chat_salottino', true));
             $view->with('featureAlbumsFotoEnabled', SiteSettings::getBool('feature.albums_foto', true));
             $view->with('featureChatReplyEmailUsersEnabled', SiteSettings::getBool('feature.chat_reply_email_users', true));
+            $view->with('voteReminderTooltipEnabled', SiteSettings::getBool('feature.vote_reminder_tooltip', true));
+            $view->with('voteReminderTooltipDuration', (int) SiteSettings::get('site.vote_reminder_tooltip_duration', 7));
         });
 
         // Contenuti esterni (es. Google Maps iframe).

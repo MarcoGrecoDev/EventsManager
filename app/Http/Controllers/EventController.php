@@ -571,6 +571,8 @@ class EventController extends Controller
             'notified_at' => null,
         ]);
 
+        $this->notifyAdminsEventSubscriptionChange($event, Auth::user(), 'iscritto in lista di attesa');
+
         return back()->with([
             'success' => 'Perfetto: ti ho messo in lista d’attesa. Se si libera un posto, ti avvisiamo via email.',
             'waitlist_flash_event_id' => $event->getKey(),
@@ -709,6 +711,10 @@ class EventController extends Controller
             $entry->status = 'notified';
             $entry->notified_at = now();
             $entry->save();
+
+            if ($user) {
+                $this->notifyAdminsEventSubscriptionChange($event, $user, 'avvisato che si è liberato un posto in lista di attesa');
+            }
         } catch (\Throwable $e) {
             \Log::warning('Notify waitlist failed: ' . $e->getMessage());
         }

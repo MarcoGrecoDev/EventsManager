@@ -694,9 +694,11 @@ class EventController extends Controller
 
             $eventUrl = route('events.show', $event);
             $when = optional($event->date)->timezone(config('app.timezone'))->format('d/m/Y H:i');
+            $nome = trim((string) ($user?->nome ?? ''));
+            $greeting = $nome !== '' ? "Ciao {$nome}!" : 'Ciao!';
             $subject = 'Excursio - Si è liberato un posto!';
             $body =
-                "Ciao!\n\n" .
+                "{$greeting}\n\n" .
                 "Buone notizie: si è liberato un posto per questo evento:\n" .
                 "{$event->title}\n" .
                 "Quando: {$when}\n\n" .

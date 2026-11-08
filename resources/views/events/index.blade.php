@@ -998,6 +998,21 @@
         .event-card-iscr--closed {
             color: #dc3545;
             font-weight: 900;
+            animation: eventCardIscrClosedBlink 0.85s ease-in-out infinite;
+        }
+        @keyframes eventCardIscrClosedBlink {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(220,53,69,0);
+                transform: scale(1);
+                background: rgba(255, 255, 255, 0.92);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 3px rgba(220,53,69,0.35),
+                    0 0 22px rgba(220,53,69,0.9);
+                transform: scale(1.03);
+                background: rgba(220, 53, 69, 0.2);
+            }
         }
         .event-card-iscr--soon {
             color: #198754;

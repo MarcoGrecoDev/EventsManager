@@ -2343,10 +2343,21 @@
             border: 2px solid #0d6efd !important;
             opacity: 1;
         }
-        /* Iscrizioni chiuse (manualmente o per scadenza): bordo e titolo rossi, sfondo grigio invariato */
+        /* Iscrizioni chiuse (manualmente o per scadenza): bordo e titolo rossi, sfondo grigio invariato, lampeggiante */
         .btn.event-btn-iscrivimi-all-evento.btn-iscrivimi-closed:disabled {
             border-color: #dc3545 !important;
             color: #dc3545 !important;
+            animation: eventIscrClosedBtnBlink 0.85s ease-in-out infinite;
+        }
+        @keyframes eventIscrClosedBtnBlink {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(220,53,69,0);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 3px rgba(220,53,69,0.35),
+                    0 0 18px rgba(220,53,69,0.9);
+            }
         }
         .btn.event-btn-iscrivimi-all-evento.btn-iscrivimi-full:disabled {
             background-color: #dc3545 !important;

@@ -11,12 +11,20 @@
             max-width: 100%;
             height: auto;
             object-fit: contain;
-            display: block;
-            margin: 8px auto;
         }
         /* Descrizioni legacy senza ridimensionamento in editor */
         .event-description img:not([width]) {
             max-height: 250px;
+        }
+        /* Un'immagine da sola in un paragrafo (senza allineamento scelto nell'editor)
+           diventa un piccolo blocco: cosi' inserendo piu' immagini di seguito si
+           accostano naturalmente una all'altra (a capo solo se non c'e' piu' spazio),
+           invece di finire sempre una sopra l'altra. Le immagini centrate o allineate
+           esplicitamente (hanno "text-align" impostato dall'editor) restano come scelto. */
+        .event-description p:has(> img:only-child):not([style*="text-align"]) {
+            display: inline-block;
+            vertical-align: top;
+            margin: 4px;
         }
 
         /* Pulsanti admin (Modifica / Chiudi Adesioni / Cancella): sempre sulla stessa riga, stessa larghezza */

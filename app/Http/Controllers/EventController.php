@@ -596,6 +596,24 @@ class EventController extends Controller
         ]);
     }
 
+    /**
+     * Rimozione manuale di un altro utente dalla lista d'attesa (solo admin,
+     * applicato anche dalla rotta con middleware 'admin').
+     */
+    public function adminRemoveFromWaitlist(Event $event, EventWaitlistEntry $waitlistEntry)
+    {
+        if ((int) $waitlistEntry->event_id !== (int) $event->getKey()) {
+            abort(404);
+        }
+
+        $waitlistEntry->delete();
+
+        return back()->with([
+            'success' => 'Utente rimosso dalla lista d’attesa.',
+            'waitlist_flash_event_id' => $event->getKey(),
+        ]);
+    }
+
     private function notifyAdminsEventSubscriptionChange(Event $event, User $actor, string $action): void
     {
         try {
@@ -710,9 +728,7 @@ class EventController extends Controller
                 $message->to($to)->subject($subject);
             });
 
-            $entry->status = 'notified';
-            $entry->notified_at = now();
-            $entry->save();
+            $entry->delete();
 
             if ($user) {
                 $this->notifyAdminsEventSubscriptionChange($event, $user, 'avvisato che si è liberato un posto in lista di attesa');

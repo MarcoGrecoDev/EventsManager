@@ -838,6 +838,11 @@ Route::middleware(['auth', 'approved'])->group(function () {
     Route::delete('/events/{event}/waitlist', [EventController::class, 'leaveWaitlist'])
         ->name('events.waitlist.leave');
 
+    // Rimozione manuale di un altro utente dalla lista d'attesa (solo amministratore)
+    Route::delete('/events/{event}/waitlist/{waitlistEntry}', [EventController::class, 'adminRemoveFromWaitlist'])
+        ->name('events.waitlist.admin-remove')
+        ->middleware('admin');
+
     // Stampa partecipanti (solo amministratori)
     Route::get('/events/{event}/print', [EventController::class, 'printParticipants'])
         ->name('events.print')

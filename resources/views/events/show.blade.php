@@ -1473,14 +1473,24 @@
                                             ?? trim((string) (($wl->user?->nome ?? '') . ' ' . ($wl->user?->cognome ?? '')))
                                             ?: ($wl->display_name ?? 'Utente');
                                     @endphp
-                                    <li>
-                                        @if($wl->user)
-                                            <a href="{{ route('profile.show', $wl->user) }}?{{ $eventProfileBackQuery }}" class="text-decoration-none">
+                                    <li class="d-flex align-items-center justify-content-between gap-2 py-1">
+                                        <span>
+                                            @if($wl->user)
+                                                <a href="{{ route('profile.show', $wl->user) }}?{{ $eventProfileBackQuery }}" class="text-decoration-none">
+                                                    <i class="fas fa-user"></i> {{ $wlName }}
+                                                </a>
+                                            @else
                                                 <i class="fas fa-user"></i> {{ $wlName }}
-                                            </a>
-                                        @else
-                                            <i class="fas fa-user"></i> {{ $wlName }}
-                                        @endif
+                                            @endif
+                                        </span>
+                                        <form action="{{ route('events.waitlist.admin-remove', [$event, $wl]) }}" method="POST" class="mb-0"
+                                              onsubmit="return confirm('Togliere {{ $wlName }} dalla lista d’attesa?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Togli dalla lista d’attesa">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </form>
                                     </li>
                                 @endforeach
                             </ul>

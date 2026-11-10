@@ -87,41 +87,7 @@
             if (CKEDITOR.instances[id]) {
                 return;
             }
-            // Immagini vecchie/incollate hanno spesso la dimensione scritta come stile
-            // CSS (style="width:...px;height:...px") invece che come attributo: lo
-            // stile vince sempre sulla visualizzazione, quindi ridimensionare (sia col
-            // dialogo che trascinando l'angolo) aggiorna l'attributo ma non si vede
-            // nessun cambiamento. Corretto agganciandosi alla DEFINIZIONE del widget
-            // immagine (non alla singola istanza): così vale anche per le immagini
-            // già presenti quando l'editor carica una descrizione esistente, non solo
-            // per quelle inserite dopo. Va registrato una sola volta per pagina.
-            if (!window.__excursioImageSizeFix) {
-                window.__excursioImageSizeFix = true;
-                CKEDITOR.on('widgetDefinition', function (ev) {
-                    var def = ev.data;
-                    if (def.name !== 'image') {
-                        return;
-                    }
-                    var originalData = def.data;
-                    def.data = function () {
-                        if (originalData) {
-                            originalData.call(this);
-                        }
-                        var img = this.parts && this.parts.image;
-                        if (!img) {
-                            return;
-                        }
-                        if (this.data.width) {
-                            img.removeStyle('width');
-                        }
-                        if (this.data.height) {
-                            img.removeStyle('height');
-                        }
-                    };
-                });
-            }
-
-            CKEDITOR.replace(id, {
+            var editorInstance = CKEDITOR.replace(id, {
                 language: 'it',
                 height: {{ $ckHeight }},
                 // "image2" (immagine avanzata) sostituisce "image": permette di centrare
@@ -156,6 +122,36 @@
                 // Upload generico (altri dialog)
                 filebrowserUploadUrl: @json(route('ckeditor.upload', ['_token' => csrf_token()])),
                 filebrowserUploadMethod: 'form'
+            });
+
+            // Immagini vecchie/incollate hanno spesso la dimensione scritta come stile
+            // CSS (style="width:...px;height:...px") invece che come attributo: lo
+            // stile vince sempre sulla visualizzazione, quindi ridimensionare (sia col
+            // dialogo che trascinando l'angolo) aggiorna l'attributo ma non si vede
+            // nessun cambiamento. Si aggancia qui, sul SINGOLO editor appena creato
+            // (non su CKEDITOR in modo statico, che non riceve questo evento), prima
+            // che il plugin immagine finisca di caricarsi in modo asincrono.
+            editorInstance.on('widgetDefinition', function (ev) {
+                var def = ev.data;
+                if (def.name !== 'image') {
+                    return;
+                }
+                var originalData = def.data;
+                def.data = function () {
+                    if (originalData) {
+                        originalData.call(this);
+                    }
+                    var img = this.parts && this.parts.image;
+                    if (!img) {
+                        return;
+                    }
+                    if (this.data.width) {
+                        img.removeStyle('width');
+                    }
+                    if (this.data.height) {
+                        img.removeStyle('height');
+                    }
+                };
             });
         }
         // Se la textarea è dentro un pannello a scomparsa (Bootstrap collapse) ancora chiuso,

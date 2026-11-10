@@ -87,7 +87,7 @@
             if (CKEDITOR.instances[id]) {
                 return;
             }
-            CKEDITOR.replace(id, {
+            var editorInstance = CKEDITOR.replace(id, {
                 language: 'it',
                 height: {{ $ckHeight }},
                 // "image2" (immagine avanzata) sostituisce "image": permette di centrare
@@ -122,6 +122,33 @@
                 // Upload generico (altri dialog)
                 filebrowserUploadUrl: @json(route('ckeditor.upload', ['_token' => csrf_token()])),
                 filebrowserUploadMethod: 'form'
+            });
+
+            // Immagini vecchie/incollate hanno spesso la dimensione scritta come stile
+            // CSS (style="width:...px;height:...px") invece che come attributo: lo
+            // stile vince sempre sulla visualizzazione, quindi ridimensionare (sia col
+            // dialogo che trascinando l'angolo) sembra non avere nessun effetto, anche
+            // se l'attributo width/height viene aggiornato correttamente. Appena si
+            // ridimensiona un'immagine, si rimuove lo stile in conflitto.
+            editorInstance.on('instanceReady', function () {
+                editorInstance.widgets.on('instanceCreated', function (evt) {
+                    var widget = evt.data;
+                    if (widget.name !== 'image') {
+                        return;
+                    }
+                    widget.on('data', function () {
+                        var img = widget.parts && widget.parts.image;
+                        if (!img) {
+                            return;
+                        }
+                        if (widget.data.width) {
+                            img.removeStyle('width');
+                        }
+                        if (widget.data.height) {
+                            img.removeStyle('height');
+                        }
+                    }, null, null, 20);
+                });
             });
         }
         // Se la textarea è dentro un pannello a scomparsa (Bootstrap collapse) ancora chiuso,

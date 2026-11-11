@@ -85,6 +85,11 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card event-main-card">
+                    @if(!$event->is_active && auth()->check() && auth()->user()->isAdmin())
+                        <div class="card-header bg-secondary text-white text-center py-1 small" data-hint="Visibile solo a te come amministratore: gli altri utenti non vedono questo evento">
+                            <i class="fas fa-eye-slash"></i> Non pubblicato — visibile solo a te
+                        </div>
+                    @endif
                     <div class="card-header">
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                             <h2 class="mb-0">{{ $event->title }}</h2>

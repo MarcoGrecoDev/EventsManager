@@ -382,7 +382,10 @@ class EventController extends Controller
                     'costo' => $event->costo,
                     'numeromax' => $event->numeromax,
                     'id_organizzatore' => $event->id_organizzatore,
-                    'pubblicato' => $event->pubblicato,
+                    // Sempre disattivato alla duplicazione, anche se l'originale era
+                    // pubblicato: evita che la copia (con data/dettagli ancora da
+                    // controllare) sia visibile a tutti prima della revisione.
+                    'pubblicato' => 0,
                     'elenco_visibile' => 0,
                     'sondaggio' => $event->sondaggio ?? '',
                     'url_galleria' => $event->url_galleria ?? '',

@@ -108,10 +108,16 @@ class GuestController extends Controller
                 'ospiti_inseriti_il' => OspitiGuestStore::encode($entries),
             ]);
 
-            AdminNotifier::notifyGuestRemovedFromEvent($event, Auth::user());
+            // Notifica l'organizzatore solo se l'ospite aveva davvero un nome:
+            // annullare una riga ancora vuota (es. "Annulla" prima di scrivere
+            // il nome) non ha mai davvero aggiunto nessun amico all'elenco.
+            if ($removedHadName) {
+                AdminNotifier::notifyGuestRemovedFromEvent($event, Auth::user());
+            }
 
             // Rimuovere un ospite libera un posto esattamente come una cancellazione
-            // completa: avvisa chi e' primo in lista d'attesa (e per conoscenza l'admin).
+            // completa: avvisa chi e' primo in lista d'attesa (e per conoscenza l'admin),
+            // indipendentemente dal nome: quel posto era comunque riservato.
             \App\Support\WaitlistNotifier::notifyNextIfAny($event);
 
             // Se l'ospite non aveva ancora un nome (es. aggiunto per sbaglio e poi

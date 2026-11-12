@@ -285,7 +285,7 @@
                                         <div class="form-check form-switch mb-0">
                                             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1"
                                                 {{ old('is_active', $event->is_active) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="is_active">Evento attivo</label>
+                                            <label class="form-check-label" for="is_active">Evento Attivo</label>
                                         </div>
                                         <div class="form-check form-switch mb-0">
                                             <input type="checkbox" class="form-check-input" id="allow_guests" name="allow_guests" value="1"
@@ -366,7 +366,7 @@
                     update();
                     cb.addEventListener('change', update);
                 }
-                syncLabel('is_active', 'Evento attivo', 'Evento Disattivo');
+                syncLabel('is_active', 'Evento Attivo', 'Evento Disattivo');
                 syncLabel('allow_guests', 'Si Ospiti', 'No ospiti');
             })();
 

@@ -1011,6 +1011,11 @@
                                     @endphp
 
                                     <div class="mb-2" id="participant-mobile-{{ $participant->getKey() }}">
+                                        @if($currentUserIsParticipant && (session('success') || session('error')))
+                                            <div class="small mb-2 {{ session('success') ? 'alert alert-success py-1 px-2 mb-2' : 'alert alert-danger py-1 px-2 mb-2' }}">
+                                                {{ session('success') ?? session('error') }}
+                                            </div>
+                                        @endif
                                         <div class="d-flex align-items-center flex-wrap gap-2">
                                             <div>
                                                 <a href="{{ route('profile.show', $participant) }}?{{ $eventProfileBackQuery }}" class="text-decoration-none d-inline-flex align-items-center gap-1">
@@ -1536,6 +1541,11 @@
                                     @endphp
 
                                     <div class="mb-2" id="participant-{{ $participant->getKey() }}">
+                                        @if($currentUserIsParticipant && (session('success') || session('error')))
+                                            <div class="small mb-2 {{ session('success') ? 'alert alert-success py-1 px-2 mb-2' : 'alert alert-danger py-1 px-2 mb-2' }}">
+                                                {{ session('success') ?? session('error') }}
+                                            </div>
+                                        @endif
                                         <div class="d-flex align-items-center flex-wrap gap-2">
                                             <div>
                                                 <a href="{{ route('profile.show', $participant) }}?{{ $eventProfileBackQuery }}" class="text-decoration-none d-inline-flex align-items-center gap-1">

@@ -79,7 +79,10 @@ class ImpersonationController extends Controller
             'ip' => $request->ip(),
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Impersonazione terminata: sei tornato come admin.');
+        // Torna alla pagina su cui si trovava mentre impersonava, non sempre
+        // alla lista utenti: più comodo per riprendere da dove si era rimasti.
+        return redirect(url()->previous(route('admin.users.index')))
+            ->with('success', 'Impersonazione terminata: sei tornato come admin.');
     }
 }
 

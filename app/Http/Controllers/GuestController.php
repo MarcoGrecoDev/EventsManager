@@ -56,7 +56,9 @@ class GuestController extends Controller
                 'ospiti_inseriti_il' => OspitiGuestStore::encode($entries),
             ]);
 
-            AdminNotifier::notifyGuestAddedToEvent($event, Auth::user());
+            // La notifica all'organizzatore parte solo quando l'ospite ha
+            // davvero un nome (vedi updateGuestName), non già qui: a questo
+            // punto è solo una riga vuota, non ancora un amico inserito.
 
             $newGuestsCount = $currentGuests + 1;
 
@@ -150,11 +152,18 @@ class GuestController extends Controller
         try {
             $entries = OspitiGuestStore::decode($participation->pivot->ospiti_inseriti_il ?? null);
             $entries = OspitiGuestStore::normalizeToCount($entries, $amici, $participation->pivot);
+            $isFirstTimeNamed = trim((string) ($entries[$validated['guest_index']]['nome'] ?? '')) === '';
             $entries[$validated['guest_index']]['nome'] = trim((string) ($validated['nome'] ?? ''));
 
             $event->participants()->updateExistingPivot(Auth::id(), [
                 'ospiti_inseriti_il' => OspitiGuestStore::encode($entries),
             ]);
+
+            // Notifica l'organizzatore solo la prima volta che l'ospite riceve
+            // un nome (non ad ogni correzione successiva del nome gia' inserito).
+            if ($isFirstTimeNamed) {
+                AdminNotifier::notifyGuestAddedToEvent($event, Auth::user());
+            }
 
             $maxGuests = (int) ($event->max_guests_per_user ?? 10);
             if ($maxGuests < 1) {

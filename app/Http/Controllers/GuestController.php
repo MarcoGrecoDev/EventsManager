@@ -58,7 +58,9 @@ class GuestController extends Controller
 
             AdminNotifier::notifyGuestAddedToEvent($event, Auth::user());
 
-            return back()->with('success', 'Aggiunta una riga amico: inserisci il nome nel campo sotto.')
+            $newGuestsCount = $currentGuests + 1;
+
+            return back()->with('success', "Aggiunta una riga amico ({$newGuestsCount} di {$maxGuests}): inserisci il nome nel campo sotto. Puoi portare fino a {$maxGuests} ospiti per questo evento.")
                 ->with('scrollTo', 'participant-' . Auth::id());
         } catch (\Exception $e) {
             \Log::error('Errore aggiunta ospite: ' . $e->getMessage());

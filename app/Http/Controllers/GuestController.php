@@ -98,6 +98,7 @@ class GuestController extends Controller
         try {
             $entries = OspitiGuestStore::decode($participation->pivot->ospiti_inseriti_il ?? null);
             $entries = OspitiGuestStore::normalizeToCount($entries, $currentGuests, $participation->pivot);
+            $removedHadName = trim((string) ($entries[$idx]['nome'] ?? '')) !== '';
             array_splice($entries, $idx, 1);
 
             $event->participants()->updateExistingPivot(Auth::id(), [
@@ -111,7 +112,12 @@ class GuestController extends Controller
             // completa: avvisa chi e' primo in lista d'attesa (e per conoscenza l'admin).
             \App\Support\WaitlistNotifier::notifyNextIfAny($event);
 
-            return back()->with('success', 'Amico rimosso dall\'elenco.')
+            // Se l'ospite non aveva ancora un nome (es. aggiunto per sbaglio e poi
+            // annullato con "Annulla" prima di scrivere il nome), "Amico rimosso
+            // dall'elenco" sarebbe ingannevole: non e' mai stato davvero inserito.
+            $removeSuccessMessage = $removedHadName ? 'Amico rimosso dall\'elenco.' : null;
+
+            return back()->with($removeSuccessMessage ? ['success' => $removeSuccessMessage] : [])
                 ->with('scrollTo', 'participant-' . Auth::id());
         } catch (\Exception $e) {
             \Log::error('Errore rimozione ospite: ' . $e->getMessage());

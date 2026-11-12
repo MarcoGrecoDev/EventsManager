@@ -625,7 +625,33 @@
                                                                 @csrf
                                                                 <div class="modal-body">
                                                                     <div class="alert alert-light small mb-3">
-                                                                        Verrà inviata una email a <strong>tutti gli iscritti</strong> all’evento che hanno un indirizzo email valido.
+                                                                        Verrà inviata una email a <strong>tutti gli iscritti</strong> all’evento che hanno un indirizzo email valido. Puoi scegliere i destinatari qui sotto.
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#eventCommsRecipients{{ $event->getKey() }}">
+                                                                            <i class="fas fa-users"></i> Scegli i destinatari
+                                                                        </button>
+                                                                        <div class="collapse mt-2" id="eventCommsRecipients{{ $event->getKey() }}">
+                                                                            <div class="small text-muted mb-2">
+                                                                                Di default sono tutti spuntati (email a tutti): togli la spunta a chi NON deve riceverla.
+                                                                            </div>
+                                                                            <div class="border rounded p-2" style="max-height: 220px; overflow-y: auto;">
+                                                                                @forelse($event->participants as $commsParticipant)
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox"
+                                                                                               name="recipient_ids[]"
+                                                                                               value="{{ $commsParticipant->getKey() }}"
+                                                                                               id="eventCommsRecipient{{ $event->getKey() }}_{{ $commsParticipant->getKey() }}"
+                                                                                               checked>
+                                                                                        <label class="form-check-label" for="eventCommsRecipient{{ $event->getKey() }}_{{ $commsParticipant->getKey() }}">
+                                                                                            {{ $commsParticipant->username }}
+                                                                                        </label>
+                                                                                    </div>
+                                                                                @empty
+                                                                                    <div class="small text-muted mb-0">Nessun iscritto.</div>
+                                                                                @endforelse
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label class="form-label fw-semibold" for="eventCommsSubject{{ $event->getKey() }}">Oggetto</label>

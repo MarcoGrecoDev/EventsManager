@@ -434,16 +434,23 @@ class EventController extends Controller
         $validated = $request->validate([
             'subject' => ['required', 'string', 'max:140'],
             'message' => ['required', 'string', 'max:4000'],
+            'recipient_ids' => ['nullable', 'array'],
+            'recipient_ids.*' => ['integer'],
         ]);
 
         $subject = trim((string) $validated['subject']);
         $body = trim((string) $validated['message']);
         $senderIsAdmin = $user->isAdmin();
 
-        // Destinatari: tutti i partecipanti con email valida.
+        // Destinatari: tutti i partecipanti con email valida, filtrati sulla
+        // selezione scelta nella finestra (se presente, es. qualcuno e' stato
+        // deselezionato; se assente, invia a tutti come prima).
+        $recipientIds = $validated['recipient_ids'] ?? null;
+
         $participants = $event->participants()
             ->whereNotNull('utente.email')
             ->where('utente.email', '!=', '')
+            ->when($recipientIds !== null, fn ($q) => $q->whereIn('utente.userID', $recipientIds))
             ->get(['utente.userID', 'utente.username', 'utente.nome', 'utente.cognome', 'utente.email']);
 
         $sent = 0;

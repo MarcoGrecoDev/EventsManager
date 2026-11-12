@@ -276,7 +276,7 @@
                                 </div>
                                 <div id="max_guests_container" class="col-6 col-lg-auto event-create-media-max {{ old('allow_guests', true) ? '' : 'd-none' }}">
                                     <div class="mb-3">
-                                        <label for="max_guests_per_user" class="form-label text-primary-emphasis mb-1">Max ospiti</label>
+                                        <label for="max_guests_per_user" class="form-label text-primary-emphasis mb-1">Max ospiti per persona</label>
                                         <input type="number" class="form-control form-control-sm border border-2 border-primary @error('max_guests_per_user') is-invalid @enderror"
                                                id="max_guests_per_user" name="max_guests_per_user"
                                                value="{{ old('max_guests_per_user', 3) }}" min="1" max="10">

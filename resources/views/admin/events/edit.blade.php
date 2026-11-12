@@ -262,7 +262,7 @@
                                     </div>
                                     <div class="col-6 col-md-4 col-xl-3" id="max_guests_container" style="{{ old('allow_guests', $event->allow_guests) ? '' : 'display: none;' }}">
                                         <div class="admin-max-guests-box mb-0">
-                                            <label for="max_guests_per_user" class="form-label small mb-1">Max Ospiti</label>
+                                            <label for="max_guests_per_user" class="form-label small mb-1">Max Ospiti per persona</label>
                                             @php
                                                 $guestsEnabled = (bool) old('allow_guests', $event->allow_guests);
                                                 $maxGuestsVal = old('max_guests_per_user', $event->max_guests_per_user);

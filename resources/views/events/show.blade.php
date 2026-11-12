@@ -696,7 +696,7 @@
                                                                         <i class="fas fa-times"></i> Annulla
                                                                     </button>
                                                                     <button type="submit" class="btn btn-sm btn-success text-nowrap">
-                                                                        <i class="fas fa-paper-plane"></i> Invia a tutti gli iscritti
+                                                                        <i class="fas fa-paper-plane"></i> Invia il messaggio
                                                                     </button>
                                                                 </div>
                                                             </form>

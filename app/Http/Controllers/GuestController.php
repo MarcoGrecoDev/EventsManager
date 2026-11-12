@@ -150,7 +150,12 @@ class GuestController extends Controller
                 'ospiti_inseriti_il' => OspitiGuestStore::encode($entries),
             ]);
 
-            return back()->with('success', 'Nome amico aggiornato.')
+            $maxGuests = (int) ($event->max_guests_per_user ?? 10);
+            if ($maxGuests < 1) {
+                $maxGuests = 10;
+            }
+
+            return back()->with('success', "Nome amico aggiornato ({$amici} di {$maxGuests}). Puoi portare fino a {$maxGuests} ospiti per questo evento.")
                 ->with('scrollTo', 'participant-' . Auth::id());
         } catch (\Exception $e) {
             \Log::error('Errore aggiornamento nome ospite: ' . $e->getMessage());

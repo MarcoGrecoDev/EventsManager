@@ -687,15 +687,15 @@
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn text-white" style="background-color: #0b9cb5;"
+                                                                <div class="modal-footer flex-nowrap">
+                                                                    <button type="button" class="btn btn-sm text-white text-nowrap" style="background-color: #0b9cb5;"
                                                                             data-bs-toggle="collapse" data-bs-target="#eventCommsRecipients{{ $event->getKey() }}">
                                                                         <i class="fas fa-users"></i> Scegli i destinatari
                                                                     </button>
-                                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap" data-bs-dismiss="modal">
                                                                         <i class="fas fa-times"></i> Annulla
                                                                     </button>
-                                                                    <button type="submit" class="btn btn-success">
+                                                                    <button type="submit" class="btn btn-sm btn-success text-nowrap">
                                                                         <i class="fas fa-paper-plane"></i> Invia a tutti gli iscritti
                                                                     </button>
                                                                 </div>

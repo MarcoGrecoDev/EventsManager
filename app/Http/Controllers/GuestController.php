@@ -105,6 +105,10 @@ class GuestController extends Controller
 
             AdminNotifier::notifyGuestRemovedFromEvent($event, Auth::user());
 
+            // Rimuovere un ospite libera un posto esattamente come una cancellazione
+            // completa: avvisa chi e' primo in lista d'attesa (e per conoscenza l'admin).
+            \App\Support\WaitlistNotifier::notifyNextIfAny($event);
+
             return back()->with('success', 'Amico rimosso dall\'elenco.')
                 ->with('scrollTo', 'participant-' . Auth::id());
         } catch (\Exception $e) {

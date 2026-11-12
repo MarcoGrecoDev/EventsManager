@@ -1100,8 +1100,17 @@
                                                                     <div class="event-guest-name-warning-msg">
                                                                         <i class="fas fa-exclamation-triangle me-1"></i> Inserisci il nome dell'amico che porti
                                                                     </div>
+                                                                    @php
+                                                                        $guestMaxTotal = (int) ($event->max_guests_per_user ?: 10);
+                                                                        $guestCurrentTotal = (int) ($participant->pivot->amici ?? 0);
+                                                                        $guestRemaining = max($guestMaxTotal - $guestCurrentTotal, 0);
+                                                                    @endphp
                                                                     <div class="small text-muted">
-                                                                        Puoi portare fino a {{ (int) $event->max_guests_per_user }} amici in totale per questo evento.
+                                                                        @if($guestRemaining > 0)
+                                                                            Hai portato {{ $guestCurrentTotal }} amici su un massimo di {{ $guestMaxTotal }}: puoi ancora aggiungerne {{ $guestRemaining }}.
+                                                                        @else
+                                                                            Hai raggiunto il limite massimo di {{ $guestMaxTotal }} amici per questo evento.
+                                                                        @endif
                                                                     </div>
                                                                     @error('nome')
                                                                         @if($nomeFormError)
@@ -1634,8 +1643,17 @@
                                                                     <div class="event-guest-name-warning-msg">
                                                                         <i class="fas fa-exclamation-triangle me-1"></i> Inserisci il nome dell'amico che porti
                                                                     </div>
+                                                                    @php
+                                                                        $guestMaxTotal = (int) ($event->max_guests_per_user ?: 10);
+                                                                        $guestCurrentTotal = (int) ($participant->pivot->amici ?? 0);
+                                                                        $guestRemaining = max($guestMaxTotal - $guestCurrentTotal, 0);
+                                                                    @endphp
                                                                     <div class="small text-muted">
-                                                                        Puoi portare fino a {{ (int) $event->max_guests_per_user }} amici in totale per questo evento.
+                                                                        @if($guestRemaining > 0)
+                                                                            Hai portato {{ $guestCurrentTotal }} amici su un massimo di {{ $guestMaxTotal }}: puoi ancora aggiungerne {{ $guestRemaining }}.
+                                                                        @else
+                                                                            Hai raggiunto il limite massimo di {{ $guestMaxTotal }} amici per questo evento.
+                                                                        @endif
                                                                     </div>
                                                                     @error('nome')
                                                                         @if($nomeFormError)

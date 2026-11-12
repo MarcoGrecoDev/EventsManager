@@ -3184,7 +3184,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             margin-top: 0.25rem;
-            display: none;
+            display: block;
         }
 
         /* Blocca il resto della pagina finché non si inserisce il nome dell'amico

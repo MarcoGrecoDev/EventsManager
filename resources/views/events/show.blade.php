@@ -628,9 +628,6 @@
                                                                         Verrà inviata una email a <strong>tutti gli iscritti</strong> all’evento che hanno un indirizzo email valido. Puoi scegliere i destinatari qui sotto.
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#eventCommsRecipients{{ $event->getKey() }}">
-                                                                            <i class="fas fa-users"></i> Scegli i destinatari
-                                                                        </button>
                                                                         <div class="collapse mt-2" id="eventCommsRecipients{{ $event->getKey() }}">
                                                                             <div class="small text-muted mb-2">
                                                                                 Di default sono tutti spuntati (email a tutti): togli la spunta a chi NON deve riceverla.
@@ -691,6 +688,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-sm text-white" style="background-color: #0dcaf0;"
+                                                                            data-bs-toggle="collapse" data-bs-target="#eventCommsRecipients{{ $event->getKey() }}">
+                                                                        <i class="fas fa-users"></i> Scegli i destinatari
+                                                                    </button>
                                                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                                                         <i class="fas fa-times"></i> Annulla
                                                                     </button>

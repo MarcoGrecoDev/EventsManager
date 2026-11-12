@@ -1100,6 +1100,9 @@
                                                                     <div class="event-guest-name-warning-msg">
                                                                         <i class="fas fa-exclamation-triangle me-1"></i> Inserisci il nome dell'amico che porti
                                                                     </div>
+                                                                    <div class="small text-muted">
+                                                                        Puoi portare fino a {{ (int) $event->max_guests_per_user }} amici in totale per questo evento.
+                                                                    </div>
                                                                     @error('nome')
                                                                         @if($nomeFormError)
                                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -1630,6 +1633,9 @@
                                                                     </form>
                                                                     <div class="event-guest-name-warning-msg">
                                                                         <i class="fas fa-exclamation-triangle me-1"></i> Inserisci il nome dell'amico che porti
+                                                                    </div>
+                                                                    <div class="small text-muted">
+                                                                        Puoi portare fino a {{ (int) $event->max_guests_per_user }} amici in totale per questo evento.
                                                                     </div>
                                                                     @error('nome')
                                                                         @if($nomeFormError)

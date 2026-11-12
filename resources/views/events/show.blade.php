@@ -688,7 +688,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-sm text-white" style="background-color: #0dcaf0;"
+                                                                    <button type="button" class="btn text-white" style="background-color: #0b9cb5;"
                                                                             data-bs-toggle="collapse" data-bs-target="#eventCommsRecipients{{ $event->getKey() }}">
                                                                         <i class="fas fa-users"></i> Scegli i destinatari
                                                                     </button>

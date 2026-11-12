@@ -86,7 +86,7 @@
             <div class="col-md-8">
                 <div class="card event-main-card">
                     @if(!$event->is_active && auth()->check() && auth()->user()->isAdmin())
-                        <div class="card-header bg-secondary text-white text-center py-1 small" style="border: 3px solid #495057;" data-hint="Visibile solo a te come amministratore: gli altri utenti non vedono questo evento">
+                        <div class="card-header bg-secondary text-white text-center py-1 small" data-hint="Visibile solo a te come amministratore: gli altri utenti non vedono questo evento">
                             <i class="fas fa-eye-slash"></i> Non pubblicato — visibile solo a te
                         </div>
                     @endif
@@ -406,7 +406,7 @@
                                                             <form action="{{ route('events.add-guest', $event) }}" method="POST" class="mb-0 d-flex align-items-stretch event-participation-grid__cell--row2-left">
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-success btn-sm event-btn-compact-height w-100"
-                                                                        @if(!$authCanAddMoreGuestsTop) disabled aria-disabled="true" style="border: 2px solid #495057;" @endif
+                                                                        @if(!$authCanAddMoreGuestsTop) disabled aria-disabled="true" @endif
                                                                         data-hint="Clicca se vuoi invitare un amico."
                                                                         title="{{ $authCanAddMoreGuestsTop ? 'Aggiungi una riga ospite in elenco' : $addGuestBlockReasonTop }}">
                                                                     <i class="fas fa-user-plus"></i> Porta un amico
@@ -1050,7 +1050,7 @@
                                                     <form action="{{ route('events.add-guest', $event) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <button type="submit" class="btn btn-outline-success btn-sm"
-                                                                @if(!$canAddMoreGuests) disabled aria-disabled="true" style="border: 2px solid #495057;" @endif
+                                                                @if(!$canAddMoreGuests) disabled aria-disabled="true" @endif
                                                                 title="{{ $canAddMoreGuests ? 'Con + aggiungi un amico, poi scrivi il nome nella riga sotto' : $addGuestBlockReason }}"
                                                                 aria-label="{{ $canAddMoreGuests ? 'Con + aggiungi un amico, poi scrivi il nome nella riga sotto' : $addGuestBlockReason }}">
                                                             <i class="fas fa-user-plus" aria-hidden="true"></i>
@@ -1576,7 +1576,7 @@
                                                     <form action="{{ route('events.add-guest', $event) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <button type="submit" class="btn btn-outline-success btn-sm"
-                                                                @if(!$canAddMoreGuests) disabled aria-disabled="true" style="border: 2px solid #495057;" @endif
+                                                                @if(!$canAddMoreGuests) disabled aria-disabled="true" @endif
                                                                 title="{{ $canAddMoreGuests ? 'Con + aggiungi un amico, poi scrivi il nome nella riga sotto' : $addGuestBlockReason }}"
                                                                 aria-label="{{ $canAddMoreGuests ? 'Con + aggiungi un amico, poi scrivi il nome nella riga sotto' : $addGuestBlockReason }}">
                                                             <i class="fas fa-user-plus" aria-hidden="true"></i>

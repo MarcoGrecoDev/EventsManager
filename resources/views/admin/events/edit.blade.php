@@ -621,6 +621,12 @@
             font-weight: 600;
         }
 
+        /* Interruttore spento: poco visibile di default, bordo piu' marcato */
+        #is_active:not(:checked),
+        #allow_guests:not(:checked) {
+            border: 2px solid #b02a37 !important;
+        }
+
         /* Card esterna "Modifica Evento": bordo verde */
         .admin-event-edit-shell {
             border: 2px solid #198754 !important;

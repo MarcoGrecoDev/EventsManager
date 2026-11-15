@@ -34,13 +34,14 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 10mm;
+                margin: 8mm;
             }
             .no-print { display: none !important; }
             body { padding: 0; margin: 0; }
-            .calendar-title { font-size: 1.15rem; }
-            table.calendar-table { font-size: 0.95rem; }
-            table.calendar-table th, table.calendar-table td { padding: 0.35rem 0.5rem; }
+            .calendar-title { font-size: 1rem; margin-bottom: 0.4rem; }
+            table.calendar-table { font-size: 0.75rem; }
+            table.calendar-table th, table.calendar-table td { padding: 0.12rem 0.35rem; }
+            table.calendar-table td div.mb-1 { margin-bottom: 0.1rem !important; }
         }
     </style>
 </head>

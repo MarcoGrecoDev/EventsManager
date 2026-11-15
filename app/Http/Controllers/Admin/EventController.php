@@ -33,7 +33,10 @@ class EventController extends Controller
             $field = 'nome';
         }
 
+        // Solo eventi attivi (passati e futuri): quelli disattivati hanno la
+        // loro pagina dedicata ("Eventi disattivati").
         $events = Event::with(['user', 'participants'])
+            ->where('pubblicato', 1)
             ->when($term !== '', function ($q) use ($term, $field) {
                 if ($field === 'data') {
                     try {

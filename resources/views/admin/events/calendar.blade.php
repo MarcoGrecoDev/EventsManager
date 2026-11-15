@@ -29,6 +29,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: #8B4513;
+            text-transform: uppercase;
         }
         table.calendar-table {
             font-size: 0.78rem;

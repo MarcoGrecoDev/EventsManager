@@ -78,9 +78,9 @@
                                 <td>
                                     @forelse($day['events'] as $event)
                                         <div class="mb-1">
-                                            {{ $event->participants_count }}
+                                            <span class="text-success fw-bold">{{ $event->participants_count }}</span>
                                             @if($event->max_participants)
-                                                / {{ (int) $event->max_participants }}
+                                                / <span class="text-danger fw-bold">{{ (int) $event->max_participants }}</span>
                                             @endif
                                         </div>
                                     @empty

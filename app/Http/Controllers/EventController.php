@@ -628,9 +628,11 @@ class EventController extends Controller
             abort(403);
         }
 
+        // Ordinato per nome (non cognome): nella stampa viene mostrato "Nome Cognome",
+        // quindi l'ordine alfabetico deve seguire quello che si vede per primo.
         $participants = $event->participants()
-            ->orderBy('cognome')
             ->orderBy('nome')
+            ->orderBy('cognome')
             ->get();
 
         $printDescriptionHtml = $event->print_description_html;

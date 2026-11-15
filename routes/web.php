@@ -953,6 +953,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // verrebbe intercettata da /admin/events/{event} (show).
     Route::get('/events/weekly-print', [\App\Http\Controllers\Admin\EventController::class, 'weeklyPrint'])
         ->name('events.weekly-print');
+    // Stessa ragione: va dichiarata prima della resource.
+    Route::get('/events/deactivated', [\App\Http\Controllers\Admin\EventController::class, 'deactivated'])
+        ->name('events.deactivated');
     Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
     Route::post('/events/{event}/duplicate', [\App\Http\Controllers\Admin\EventController::class, 'duplicate'])->name('events.duplicate');
     Route::post('/events/{event}/cancel-duplicate', [\App\Http\Controllers\Admin\EventController::class, 'cancelDuplicate'])->name('events.cancel-duplicate');

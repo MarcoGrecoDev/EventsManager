@@ -147,6 +147,29 @@ class EventController extends Controller
     }
 
     /**
+     * Elenco di tutti gli eventi disattivati (pubblicato=0), passati e futuri,
+     * divisi in due sezioni separate.
+     */
+    public function deactivated()
+    {
+        $now = now();
+
+        $upcoming = Event::with('user')
+            ->where('pubblicato', 0)
+            ->where('dataevento', '>=', $now)
+            ->orderBy('dataevento')
+            ->get();
+
+        $past = Event::with('user')
+            ->where('pubblicato', 0)
+            ->where('dataevento', '<', $now)
+            ->orderByDesc('dataevento')
+            ->get();
+
+        return view('admin.events.deactivated', compact('upcoming', 'past'));
+    }
+
+    /**
      * Pagina stampabile con il riepilogo di tutti gli eventi di una settimana
      * (lunedì-domenica): titolo + riassunto di ciascuno. Parametro opzionale
      * ?week=YYYY-MM-DD (una data qualsiasi dentro la settimana desiderata);

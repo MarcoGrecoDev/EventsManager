@@ -150,6 +150,36 @@ class EventController extends Controller
     }
 
     /**
+     * Calendario del mese corrente: una riga per ogni giorno del mese (anche
+     * senza eventi), con i titoli degli eventi in programma quel giorno
+     * (attivi e disattivati).
+     */
+    public function calendar()
+    {
+        $monthStart = now()->startOfMonth();
+        $monthEnd = now()->endOfMonth();
+
+        $events = Event::whereBetween('dataevento', [$monthStart, $monthEnd])
+            ->orderBy('dataevento')
+            ->get();
+
+        $eventsByDay = $events->groupBy(fn (Event $e) => $e->date ? $e->date->format('Y-m-d') : '');
+
+        $days = [];
+        for ($day = $monthStart->copy(); $day->lte($monthEnd); $day->addDay()) {
+            $days[] = [
+                'date' => $day->copy(),
+                'events' => $eventsByDay->get($day->format('Y-m-d'), collect()),
+            ];
+        }
+
+        return view('admin.events.calendar', [
+            'monthStart' => $monthStart,
+            'days' => $days,
+        ]);
+    }
+
+    /**
      * Elenco di tutti gli eventi disattivati (pubblicato=0), passati e futuri,
      * divisi in due sezioni separate. Ricerca opzionale per titolo/data/città.
      */

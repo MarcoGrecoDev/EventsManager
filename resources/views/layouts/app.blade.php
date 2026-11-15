@@ -435,6 +435,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{{ route('admin.events.index') }}">Gestione Eventi</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.events.deactivated') }}"><i class="fas fa-eye-slash me-1"></i>Eventi disattivati</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.events.calendar') }}"><i class="fas fa-calendar-day me-1"></i>Calendario eventi</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.users.gallery') }}">Admin immagini utenti</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.common-event.form') }}">Eventi in comune</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Gestione gruppi</a></li>

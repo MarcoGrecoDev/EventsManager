@@ -956,6 +956,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Stessa ragione: va dichiarata prima della resource.
     Route::get('/events/deactivated', [\App\Http\Controllers\Admin\EventController::class, 'deactivated'])
         ->name('events.deactivated');
+    Route::get('/events/calendar', [\App\Http\Controllers\Admin\EventController::class, 'calendar'])
+        ->name('events.calendar');
     Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
     Route::post('/events/{event}/duplicate', [\App\Http\Controllers\Admin\EventController::class, 'duplicate'])->name('events.duplicate');
     Route::post('/events/{event}/cancel-duplicate', [\App\Http\Controllers\Admin\EventController::class, 'cancelDuplicate'])->name('events.cancel-duplicate');

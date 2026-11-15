@@ -38,6 +38,9 @@
         table.calendar-table td {
             padding: 0.2rem 0.4rem;
         }
+        table.calendar-table thead th {
+            font-size: 1.05rem;
+        }
         @media print {
             @page {
                 size: A4 portrait;
@@ -49,6 +52,7 @@
             .calendar-title-month { font-size: 1.3rem; }
             table.calendar-table { font-size: 0.75rem; }
             table.calendar-table th, table.calendar-table td { padding: 0.12rem 0.35rem; }
+            table.calendar-table thead th { font-size: 0.95rem; }
             table.calendar-table td div.mb-1 { margin-bottom: 0.1rem !important; }
         }
     </style>

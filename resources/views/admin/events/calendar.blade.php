@@ -4,15 +4,35 @@
 @section('no_sidebar', '1')
 
 @section('content')
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+        }
+    </style>
+
     <div class="container-fluid">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
-            <h1 class="display-4 mb-0">
-                <i class="fas fa-calendar-day"></i> Calendario — {{ $monthStart->locale('it')->translatedFormat('F Y') }}
-            </h1>
-            <a href="{{ route('admin.events.index') }}" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left"></i> Torna a Gestione Eventi
-            </a>
+        <div class="no-print d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <a href="{{ route('admin.events.calendar', ['month' => $prevMonth]) }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-chevron-left"></i> Mese precedente
+                </a>
+                <a href="{{ route('admin.events.calendar', ['month' => $nextMonth]) }}" class="btn btn-outline-secondary">
+                    Mese successivo <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <i class="fas fa-print"></i> Stampa
+                </button>
+                <a href="{{ route('admin.events.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Torna a Gestione Eventi
+                </a>
+            </div>
         </div>
+
+        <h1 class="display-4 mb-4">
+            <i class="fas fa-calendar-day"></i> Calendario — {{ $monthStart->locale('it')->translatedFormat('F Y') }}
+        </h1>
 
         <div class="card">
             <div class="card-body p-0">
@@ -26,7 +46,7 @@
                                 <td style="width: 1%; white-space: nowrap;" class="fw-semibold">
                                     {{ $day['date']->locale('it')->translatedFormat('l j') }}
                                     @if($isToday)
-                                        <span class="badge bg-warning text-dark ms-1">Oggi</span>
+                                        <span class="badge bg-warning text-dark ms-1 no-print">Oggi</span>
                                     @endif
                                 </td>
                                 <td>

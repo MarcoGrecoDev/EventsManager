@@ -150,14 +150,19 @@ class EventController extends Controller
     }
 
     /**
-     * Calendario del mese corrente: una riga per ogni giorno del mese (anche
-     * senza eventi), con i titoli degli eventi in programma quel giorno
-     * (attivi e disattivati).
+     * Calendario di un mese (di default quello corrente, con ?month=YYYY-MM-DD
+     * per spostarsi a un altro mese, es. il successivo): una riga per ogni
+     * giorno del mese (anche senza eventi), con i titoli degli eventi in
+     * programma quel giorno (attivi e disattivati).
      */
-    public function calendar()
+    public function calendar(Request $request)
     {
-        $monthStart = now()->startOfMonth();
-        $monthEnd = now()->endOfMonth();
+        $refDate = $request->query('month')
+            ? \Illuminate\Support\Carbon::parse((string) $request->query('month'))
+            : now();
+
+        $monthStart = $refDate->copy()->startOfMonth();
+        $monthEnd = $refDate->copy()->endOfMonth();
 
         $events = Event::whereBetween('dataevento', [$monthStart, $monthEnd])
             ->orderBy('dataevento')
@@ -173,9 +178,14 @@ class EventController extends Controller
             ];
         }
 
+        $prevMonth = $monthStart->copy()->subMonth()->format('Y-m-d');
+        $nextMonth = $monthStart->copy()->addMonth()->format('Y-m-d');
+
         return view('admin.events.calendar', [
             'monthStart' => $monthStart,
             'days' => $days,
+            'prevMonth' => $prevMonth,
+            'nextMonth' => $nextMonth,
         ]);
     }
 

@@ -41,9 +41,10 @@
                         @foreach($days as $day)
                             @php
                                 $isToday = $day['date']->isToday();
+                                $isWeekend = $day['date']->isWeekend();
                             @endphp
                             <tr class="{{ $isToday ? 'table-warning' : '' }}">
-                                <td style="width: 1%; white-space: nowrap;" class="fw-semibold">
+                                <td style="width: 1%; white-space: nowrap;" class="fw-semibold {{ $isWeekend ? 'text-danger' : '' }}">
                                     {{ $day['date']->locale('it')->translatedFormat('l j') }}
                                     @if($isToday)
                                         <span class="badge bg-warning text-dark ms-1 no-print">Oggi</span>
@@ -51,8 +52,12 @@
                                 </td>
                                 <td>
                                     @forelse($day['events'] as $event)
+                                        @php
+                                            $isFutureInactive = !$event->is_active && $event->date && $event->date->isFuture();
+                                            $eventColorClass = $event->is_active ? 'text-success' : ($isFutureInactive ? 'text-danger' : '');
+                                        @endphp
                                         <div class="mb-1">
-                                            <a href="{{ route('admin.events.edit', $event) }}" class="text-decoration-none">
+                                            <a href="{{ route('admin.events.edit', $event) }}" class="text-decoration-none {{ $eventColorClass }}">
                                                 {{ $event->title }}
                                             </a>
                                             @if(!$event->is_active)

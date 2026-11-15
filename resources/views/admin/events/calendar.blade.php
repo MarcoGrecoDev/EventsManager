@@ -23,6 +23,12 @@
         .calendar-title {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
+            color: #000;
+        }
+        .calendar-title-month {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B4513;
         }
         table.calendar-table {
             font-size: 0.78rem;
@@ -39,6 +45,7 @@
             .no-print { display: none !important; }
             body { padding: 0; margin: 0; }
             .calendar-title { font-size: 1rem; margin-bottom: 0.4rem; }
+            .calendar-title-month { font-size: 1.3rem; }
             table.calendar-table { font-size: 0.75rem; }
             table.calendar-table th, table.calendar-table td { padding: 0.12rem 0.35rem; }
             table.calendar-table td div.mb-1 { margin-bottom: 0.1rem !important; }
@@ -66,7 +73,7 @@
 
     <div class="container-fluid">
         <h1 class="calendar-title">
-            <i class="fas fa-calendar-day"></i> Calendario — {{ $monthStart->locale('it')->translatedFormat('F Y') }}
+            <i class="fas fa-calendar-day"></i> Calendario — <span class="calendar-title-month">{{ $monthStart->locale('it')->translatedFormat('F Y') }}</span>
         </h1>
 
         <table class="table table-striped align-middle mb-0 calendar-table">

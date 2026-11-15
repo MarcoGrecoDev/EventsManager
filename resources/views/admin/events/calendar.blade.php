@@ -95,10 +95,17 @@
                 @foreach($days as $day)
                     @php
                         $isToday = $day['date']->isToday();
+                        // Festività nazionali fisse (stesso giorno/mese ogni anno):
+                        // Capodanno, Epifania, Liberazione, Festa del Lavoro, Festa
+                        // della Repubblica, Ferragosto, 4 ottobre, Tutti i Santi,
+                        // Immacolata, Natale, Santo Stefano.
+                        $fixedHolidays = ['01-01', '01-06', '04-25', '05-01', '06-02', '08-15', '10-04', '11-01', '12-08', '12-25', '12-26'];
+                        $isHoliday = in_array($day['date']->format('m-d'), $fixedHolidays, true);
                         $isWeekend = $day['date']->isWeekend();
+                        $isRedDay = $isWeekend || $isHoliday;
                     @endphp
                     <tr class="{{ $isToday ? 'table-warning' : '' }}">
-                        <td style="width: 1%; white-space: nowrap;" class="fw-semibold {{ $isWeekend ? 'text-danger' : '' }}">
+                        <td style="width: 1%; white-space: nowrap;" class="fw-semibold {{ $isRedDay ? 'text-danger' : '' }}">
                             {{ $day['date']->locale('it')->translatedFormat('l j') }}
                             @if($isToday)
                                 <span class="badge bg-warning text-dark ms-1 no-print">Oggi</span>

@@ -164,8 +164,7 @@ class EventController extends Controller
         $monthStart = $refDate->copy()->startOfMonth();
         $monthEnd = $refDate->copy()->endOfMonth();
 
-        $events = Event::with('participants')
-            ->whereBetween('dataevento', [$monthStart, $monthEnd])
+        $events = Event::whereBetween('dataevento', [$monthStart, $monthEnd])
             ->orderBy('dataevento')
             ->get();
 

@@ -37,6 +37,13 @@
         <div class="card">
             <div class="card-body p-0">
                 <table class="table table-striped align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Giorno</th>
+                            <th>Evento</th>
+                            <th>Partecipanti</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @foreach($days as $day)
                             @php
@@ -55,7 +62,6 @@
                                         @php
                                             $isFutureInactive = !$event->is_active && $event->date && $event->date->isFuture();
                                             $eventColorClass = $event->is_active ? 'text-success' : ($isFutureInactive ? 'text-danger' : '');
-                                            $friendsCount = $event->participants->sum(fn ($p) => (int) ($p->pivot->amici ?? 0));
                                         @endphp
                                         <div class="mb-1">
                                             <a href="{{ route('admin.events.edit', $event) }}" class="text-decoration-none {{ $eventColorClass }}">
@@ -64,9 +70,18 @@
                                             @if(!$event->is_active)
                                                 <span class="badge bg-secondary ms-1">Disattivato</span>
                                             @endif
-                                            <span class="badge bg-info ms-1" title="Amici iscritti">
-                                                <i class="fas fa-user-friends"></i> {{ $friendsCount }}
-                                            </span>
+                                        </div>
+                                    @empty
+                                        <span class="text-muted">—</span>
+                                    @endforelse
+                                </td>
+                                <td>
+                                    @forelse($day['events'] as $event)
+                                        <div class="mb-1">
+                                            {{ $event->participants_count }}
+                                            @if($event->max_participants)
+                                                / {{ (int) $event->max_participants }}
+                                            @endif
                                         </div>
                                     @empty
                                         <span class="text-muted">—</span>

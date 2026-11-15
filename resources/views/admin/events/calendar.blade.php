@@ -81,6 +81,8 @@
                 <tr>
                     <th>Giorno</th>
                     <th>Evento</th>
+                    <th>Locale</th>
+                    <th>Indirizzo</th>
                     <th>Partecipanti</th>
                 </tr>
             </thead>
@@ -111,6 +113,20 @@
                                         <span class="badge bg-secondary ms-1">Disattivato</span>
                                     @endif
                                 </div>
+                            @empty
+                                <span class="text-muted">—</span>
+                            @endforelse
+                        </td>
+                        <td>
+                            @forelse($day['events'] as $event)
+                                <div class="mb-1">{{ $event->venue ?: '—' }}</div>
+                            @empty
+                                <span class="text-muted">—</span>
+                            @endforelse
+                        </td>
+                        <td>
+                            @forelse($day['events'] as $event)
+                                <div class="mb-1">{{ $event->address ?: '—' }}</div>
                             @empty
                                 <span class="text-muted">—</span>
                             @endforelse

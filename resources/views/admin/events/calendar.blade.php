@@ -64,7 +64,7 @@
                                             $eventColorClass = $event->is_active ? 'text-success' : ($isFutureInactive ? 'text-danger' : '');
                                         @endphp
                                         <div class="mb-1">
-                                            <a href="{{ route('admin.events.edit', $event) }}" class="text-decoration-none {{ $eventColorClass }}">
+                                            <a href="{{ route('admin.events.edit', $event) }}" class="text-decoration-none fw-bold {{ $eventColorClass }}">
                                                 {{ $event->title }}
                                             </a>
                                             @if(!$event->is_active)

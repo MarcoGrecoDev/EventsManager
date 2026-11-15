@@ -82,8 +82,8 @@
                 <tr>
                     <th>Giorno</th>
                     <th>Evento</th>
-                    <th>Locale</th>
-                    <th>Indirizzo</th>
+                    <th class="text-primary">Locale</th>
+                    <th style="color: #8B4513;">Indirizzo</th>
                     <th>Partecipanti</th>
                 </tr>
             </thead>
@@ -120,14 +120,14 @@
                         </td>
                         <td>
                             @forelse($day['events'] as $event)
-                                <div class="mb-1">{{ $event->venue ?: '—' }}</div>
+                                <div class="mb-1 text-primary">{{ $event->venue ?: '—' }}</div>
                             @empty
                                 <span class="text-muted">—</span>
                             @endforelse
                         </td>
                         <td>
                             @forelse($day['events'] as $event)
-                                <div class="mb-1">{{ $event->address ?: '—' }}</div>
+                                <div class="mb-1" style="color: #8B4513;">{{ $event->address ?: '—' }}</div>
                             @empty
                                 <span class="text-muted">—</span>
                             @endforelse

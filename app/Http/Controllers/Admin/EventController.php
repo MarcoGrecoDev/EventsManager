@@ -148,25 +148,47 @@ class EventController extends Controller
 
     /**
      * Elenco di tutti gli eventi disattivati (pubblicato=0), passati e futuri,
-     * divisi in due sezioni separate.
+     * divisi in due sezioni separate. Ricerca opzionale per titolo/data/città.
      */
-    public function deactivated()
+    public function deactivated(Request $request)
     {
         $now = now();
+        $term = trim((string) $request->query('q', ''));
+        $field = (string) $request->query('field', 'nome');
+        if (!in_array($field, ['nome', 'citta', 'data'], true)) {
+            $field = 'nome';
+        }
 
-        $upcoming = Event::with('user')
-            ->where('pubblicato', 0)
-            ->where('dataevento', '>=', $now)
-            ->orderBy('dataevento')
-            ->get();
+        $applySearch = function ($query) use ($term, $field) {
+            if ($term === '') {
+                return;
+            }
 
-        $past = Event::with('user')
-            ->where('pubblicato', 0)
-            ->where('dataevento', '<', $now)
-            ->orderByDesc('dataevento')
-            ->get();
+            if ($field === 'data') {
+                try {
+                    $date = \Carbon\Carbon::createFromFormat('Y-m-d', $term);
+                } catch (\Throwable $e) {
+                    $date = null;
+                }
+                if ($date !== null) {
+                    $query->whereDate('dataevento', $date);
+                }
+                return;
+            }
 
-        return view('admin.events.deactivated', compact('upcoming', 'past'));
+            $column = $field === 'citta' ? 'citta' : 'nome';
+            $query->where($column, 'like', '%' . $term . '%');
+        };
+
+        $upcomingQuery = Event::with('user')->where('pubblicato', 0)->where('dataevento', '>=', $now);
+        $applySearch($upcomingQuery);
+        $upcoming = $upcomingQuery->orderBy('dataevento')->get();
+
+        $pastQuery = Event::with('user')->where('pubblicato', 0)->where('dataevento', '<', $now);
+        $applySearch($pastQuery);
+        $past = $pastQuery->orderByDesc('dataevento')->get();
+
+        return view('admin.events.deactivated', compact('upcoming', 'past', 'term', 'field'));
     }
 
     /**

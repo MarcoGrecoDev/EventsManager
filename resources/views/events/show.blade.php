@@ -1082,7 +1082,8 @@
                                                           onsubmit="return confirm('Rimuovere {{ $participant->nickname }} dagli iscritti a questo evento?');">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Rimuovi iscritto (solo admin)">
+                                                        <button type="submit" class="btn btn-outline-danger" title="Rimuovi iscritto (solo admin)"
+                                                                style="font-size: 0.55rem; padding: 0.05rem 0.2rem; line-height: 1; border-width: 1px;">
                                                             <i class="fas fa-times"></i>
                                                         </button>
                                                     </form>
@@ -1642,7 +1643,8 @@
                                                           onsubmit="return confirm('Rimuovere {{ $participant->nickname }} dagli iscritti a questo evento?');">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Rimuovi iscritto (solo admin)">
+                                                        <button type="submit" class="btn btn-outline-danger" title="Rimuovi iscritto (solo admin)"
+                                                                style="font-size: 0.55rem; padding: 0.05rem 0.2rem; line-height: 1; border-width: 1px;">
                                                             <i class="fas fa-times"></i>
                                                         </button>
                                                     </form>

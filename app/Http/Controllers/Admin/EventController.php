@@ -620,8 +620,10 @@ class EventController extends Controller
         $wasPastEvent = $event->is_past_event;
         $newDate = \Carbon\Carbon::parse($validated['date']);
 
+        $isDuplicateDraft = $this->isDuplicateDraft($event, $request);
+
         $title = $validated['title'];
-        if ($this->isDuplicateDraft($event, $request)) {
+        if ($isDuplicateDraft) {
             $title = $this->stripDuplicateCopySuffix($title);
         }
 
@@ -685,6 +687,8 @@ class EventController extends Controller
         // Homepage: pubblicato=1 e dataevento > adesso (scope upcoming).
         // Ripubblica se la nuova data è futura e: "Evento attivo" ON, oppure era concluso e ripassato al futuro,
         // oppure la data/ora è stata spostata in avanti (posticipato) rispetto a prima.
+        // Non vale per una copia appena duplicata: "Evento attivo" deve restare quello che
+        // l'admin ha scelto esplicitamente, anche se l'originale copiato era passato.
         $oldMoment = null;
         try {
             $oldMoment = $event->dataevento ? $event->date->copy() : null;
@@ -692,7 +696,7 @@ class EventController extends Controller
             $oldMoment = null;
         }
         $datePostponed = $oldMoment && $newDate->gt($oldMoment);
-        $republishOnHome = $newDate->gt(now()) && ($isActive || $wasPastEvent || $datePostponed);
+        $republishOnHome = $newDate->gt(now()) && ($isActive || (!$isDuplicateDraft && ($wasPastEvent || $datePostponed)));
         if ($republishOnHome) {
             $updateData['pubblicato'] = 1;
             // Solo se non è stata indicata una scadenza valida usiamo la data evento come

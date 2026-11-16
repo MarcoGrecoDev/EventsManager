@@ -101,8 +101,13 @@
                         // Immacolata, Natale, Santo Stefano.
                         $fixedHolidays = ['01-01', '01-06', '04-25', '05-01', '06-02', '08-15', '10-04', '11-01', '12-08', '12-25', '12-26'];
                         $isHoliday = in_array($day['date']->format('m-d'), $fixedHolidays, true);
+                        // Lunedì dell'Angelo (Pasquetta): data mobile, calcolata ogni
+                        // anno con la formula della Pasqua (funzione PHP easter_days).
+                        $easterMonday = \Carbon\Carbon::create($day['date']->year, 3, 21)
+                            ->addDays(easter_days($day['date']->year) + 1);
+                        $isEasterMonday = $day['date']->isSameDay($easterMonday);
                         $isWeekend = $day['date']->isWeekend();
-                        $isRedDay = $isWeekend || $isHoliday;
+                        $isRedDay = $isWeekend || $isHoliday || $isEasterMonday;
                     @endphp
                     <tr class="{{ $isToday ? 'table-warning' : '' }}">
                         <td style="width: 1%; white-space: nowrap;" class="fw-semibold {{ $isRedDay ? 'text-danger' : '' }}">

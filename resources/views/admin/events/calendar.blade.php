@@ -61,7 +61,7 @@
     <div class="no-print print-toolbar shadow-sm rounded mb-3">
         <div class="d-flex flex-wrap align-items-center gap-2">
             <strong class="me-2"><i class="fas fa-calendar-day"></i> Calendario eventi</strong>
-            <button type="button" class="btn btn-success" onclick="window.print()">
+            <button type="button" class="btn btn-secondary" onclick="window.print()">
                 <i class="fas fa-print"></i> Stampa
             </button>
             <a href="{{ route('admin.events.calendar', ['month' => $prevMonth]) }}" class="btn" style="background-color: #fd7e14; color: #fff;">
@@ -70,7 +70,7 @@
             <a href="{{ route('admin.events.calendar', ['month' => $nextMonth]) }}" class="btn btn-primary">
                 Mese successivo <i class="fas fa-chevron-right"></i>
             </a>
-            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('home') }}" class="btn btn-success">
                 <i class="fas fa-home"></i> Torna alla home
             </a>
         </div>

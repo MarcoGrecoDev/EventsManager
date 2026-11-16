@@ -825,6 +825,11 @@ Route::middleware(['auth', 'approved'])->group(function () {
     Route::post('/events/{event}/cancel', [EventController::class, 'cancelParticipation'])
         ->name('events.cancel');
 
+    // Rimozione manuale di un iscritto (solo amministratore)
+    Route::delete('/events/{event}/participants/{user}', [EventController::class, 'adminRemoveParticipant'])
+        ->name('events.admin-remove-participant')
+        ->middleware('admin');
+
     Route::post('/events/{event}/rating', [\App\Http\Controllers\EventRatingController::class, 'store'])
         ->name('events.rating.store');
     Route::put('/events/{event}/rating/{rating}', [\App\Http\Controllers\EventRatingController::class, 'update'])

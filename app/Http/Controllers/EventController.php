@@ -416,6 +416,21 @@ class EventController extends Controller
     }
 
     /**
+     * Rimozione manuale di un iscritto da parte dell'amministratore (applicato
+     * anche dalla rotta con middleware 'admin').
+     */
+    public function adminRemoveParticipant(Event $event, User $user)
+    {
+        $event->participants()->detach($user->getKey());
+
+        \App\Support\WaitlistNotifier::notifyAdminsEventSubscriptionChange($event, $user, 'rimosso dall\'amministratore');
+
+        \App\Support\WaitlistNotifier::notifyNextIfAny($event);
+
+        return back()->with('success', $user->nickname . ' è stato rimosso dall\'evento.');
+    }
+
+    /**
      * Invia una comunicazione via email a tutti gli iscritti all'evento.
      * Permessi: admin oppure organizzatore dell'evento.
      */

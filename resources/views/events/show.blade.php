@@ -1077,6 +1077,18 @@
                                                 @endif
                                             </div>
                                             @auth
+                                                @if(auth()->user()->isAdmin() && !$currentUserIsParticipant)
+                                                    <form action="{{ route('events.admin-remove-participant', [$event, $participant]) }}" method="POST"
+                                                          onsubmit="return confirm('Rimuovere {{ $participant->nickname }} dagli iscritti a questo evento?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Rimuovi iscritto (solo admin)">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @endauth
+                                            @auth
                                                 @if($currentUserIsParticipant)
                                                     @php
                                                         $addGuestBlockReason = '';
@@ -1624,6 +1636,18 @@
                                                     <span class="badge bg-warning text-dark ms-1"><i class="fas fa-crown"></i> Organizzatore</span>
                                                 @endif
                                             </div>
+                                            @auth
+                                                @if(auth()->user()->isAdmin() && !$currentUserIsParticipant)
+                                                    <form action="{{ route('events.admin-remove-participant', [$event, $participant]) }}" method="POST"
+                                                          onsubmit="return confirm('Rimuovere {{ $participant->nickname }} dagli iscritti a questo evento?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Rimuovi iscritto (solo admin)">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @endauth
                                             @auth
                                                 @if($currentUserIsParticipant)
                                                     @php

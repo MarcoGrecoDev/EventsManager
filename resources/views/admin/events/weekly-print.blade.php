@@ -184,7 +184,18 @@
 
             <div class="mt-4 pt-3 border-top small text-center">
                 <p class="mb-0 fw-bold text-start" style="text-transform: uppercase; color: #146c43; font-size: 1.1rem;"><i class="fas fa-calendar-check"></i> Prossimi eventi in programma</p>
-                <br><br><br>
+                <div class="text-start" style="color: #000;">
+                    @forelse($upcomingEvents as $upcomingEvent)
+                        <p class="mb-1">
+                            {{ $upcomingEvent->title }} —
+                            {{ $upcomingEvent->date->locale('it')->translatedFormat('l j F Y') }}
+                            ore {{ $upcomingEvent->date->format('H:i') }}
+                        </p>
+                    @empty
+                        <p class="mb-1">Nessun altro evento in programma al momento.</p>
+                    @endforelse
+                </div>
+                <br>
                 <p class="mb-1 fw-bold">PER TUTTI I DETTAGLI, FOTO, PARTECIPANTI ECC.</p>
                 <p class="mb-1">Sito: <a href="https://www.excursio.org" target="_blank" rel="noopener" class="fw-bold">www.excursio.org</a></p>
                 <p class="mb-3">Mail: excursio@libero.it — Loris cell. 3387717376</p>

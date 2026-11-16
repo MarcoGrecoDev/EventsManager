@@ -260,7 +260,16 @@ class EventController extends Controller
         $prevWeek = $weekStart->copy()->subWeek()->format('Y-m-d');
         $nextWeek = $weekStart->copy()->addWeek()->format('Y-m-d');
 
-        return view('admin.events.weekly-print', compact('events', 'weekStart', 'weekEnd', 'prevWeek', 'nextWeek'));
+        // Elenco rapido (titolo + data/ora) degli eventi successivi a questa
+        // settimana, solo quelli attivi: mostrato sotto "Prossimi eventi in programma".
+        $upcomingEvents = Event::query()
+            ->where('pubblicato', 1)
+            ->whereNotNull('dataevento')
+            ->where('dataevento', '>', $weekEnd)
+            ->orderBy('dataevento')
+            ->get();
+
+        return view('admin.events.weekly-print', compact('events', 'weekStart', 'weekEnd', 'prevWeek', 'nextWeek', 'upcomingEvents'));
     }
 
     /**

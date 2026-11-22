@@ -302,35 +302,29 @@
                     <div class="card-body">
                         <div class="admin-quick-actions flex-column">
                             <div class="admin-quick-actions-row">
-                                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary"
-                                   data-hint="Vedi e gestisci tutti gli utenti registrati al sito.">
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary">
                                     <i class="fas fa-users me-2"></i>Elenco utenti
                                 </a>
-                                <a href="{{ route('admin.events.create') }}" class="btn btn-primary"
-                                   data-hint="Crea un nuovo evento da pubblicare sul sito.">
+                                <a href="{{ route('admin.events.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i>Crea nuovo evento
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
-                                <a href="{{ route('admin.users.gallery') }}" class="btn btn-outline-success"
-                                   data-hint="Galleria con le foto profilo di tutti gli utenti registrati.">
+                                <a href="{{ route('admin.users.gallery') }}" class="btn btn-outline-success">
                                     <i class="fas fa-images me-2"></i>Foto utenti
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
-                                <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-outline-warning"
-                                   data-hint="Utenti appena registrati, in attesa che tu li approvi.">
+                                <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-outline-warning">
                                     <i class="fas fa-user-clock me-2"></i>Iscrizioni in attesa
                                 </a>
-                                <a href="{{ route('admin.newsletter.create') }}" class="btn btn-outline-info"
-                                   data-hint="Scrivi e invia una comunicazione via email a tutti gli iscritti al sito.">
+                                <a href="{{ route('admin.newsletter.create') }}" class="btn btn-outline-info">
                                     <i class="fas fa-envelope me-2"></i>Invia newsletter
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
                                 <a href="{{ route('admin.common-event.form') }}"
-                                   class="btn btn-outline-secondary"
-                                   data-hint="Trova rapidamente gli eventi in comune tra due utenti, indicati tramite username.">
+                                   class="btn btn-outline-secondary">
                                     <i class="fas fa-random me-2"></i>Trova evento in comune
                                 </a>
                             </div>
@@ -409,8 +403,7 @@
                                     @csrf
                                     <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
                                         <input class="form-check-input" type="checkbox" role="switch" id="admin_toggle_vote_reminder" name="enabled" value="1" {{ ($voteReminderTooltipEnabled ?? true) ? 'checked' : '' }}>
-                                        <label class="form-check-label fw-semibold" for="admin_toggle_vote_reminder"
-                                               data-hint="Quando un utente clicca «Iscrivimi» a un evento, prima di registrare l'iscrizione compare per qualche secondo un messaggio che gli ricorda che, a evento concluso, potrà votarlo. Se spegni l'interruttore, l'iscrizione avviene subito senza mostrare nessun messaggio.">
+                                        <label class="form-check-label fw-semibold" for="admin_toggle_vote_reminder">
                                             <i class="fas fa-star me-1"></i>Promemoria voto su «Iscrivimi»
                                         </label>
                                     </div>
@@ -445,8 +438,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-danger btn-sm flex-shrink-0 admin-dashboard-stat-btn"
-                                       data-hint="Vai all'elenco degli utenti appena registrati, in attesa che tu li approvi.">
+                                    <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-danger btn-sm flex-shrink-0 admin-dashboard-stat-btn">
                                         Approva iscrizioni
                                     </a>
                                 </div>
@@ -462,8 +454,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn"
-                                       data-hint="Vedi, modifica o gestisci tutti gli utenti registrati al sito.">
+                                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn">
                                         Gestisci utenti
                                     </a>
                                 </div>
@@ -479,30 +470,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.events.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn"
-                                       data-hint="Vai all'elenco degli eventi attivi, per modificarli o gestirli.">
+                                    <a href="{{ route('admin.events.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn">
                                         Gestisci eventi
                                     </a>
                                 </div>
                             </div>
 
-                            <a href="{{ route('admin.users.gallery') }}" class="btn btn-success admin-tools-btn"
-                               data-hint="Vedi le foto profilo di tutti gli utenti registrati, in un'unica galleria.">
+                            <a href="{{ route('admin.users.gallery') }}" class="btn btn-success admin-tools-btn">
                                 <i class="fas fa-images me-2"></i>Galleria avatar utenti
                             </a>
-                            <a href="{{ route('chat.index') }}" class="btn btn-primary admin-tools-btn" target="_blank" rel="noopener"
-                               data-hint="Apri il Salottino (la chat pubblica del sito) in una nuova scheda.">
+                            <a href="{{ route('chat.index') }}" class="btn btn-primary admin-tools-btn" target="_blank" rel="noopener">
                                 <i class="fas fa-comments me-2"></i>Apri chat
                                 @if(!($featureChatSalottinoEnabled ?? true))
                                     <span class="ms-1 badge bg-secondary">OFF per utenti</span>
                                 @endif
                             </a>
-                            <a href="{{ route('admin.groups.index') }}" class="btn btn-warning admin-tools-btn text-dark"
-                               data-hint="Crea e gestisci i gruppi di utenti del sito.">
+                            <a href="{{ route('admin.groups.index') }}" class="btn btn-warning admin-tools-btn text-dark">
                                 <i class="fas fa-users-cog me-2"></i>Gruppi
                             </a>
-                            <a href="{{ route('admin.users.simple-list') }}" class="btn btn-info admin-tools-btn text-dark"
-                               data-hint="Elenco semplice e completo di tutti gli utenti registrati, senza i dettagli di gestione.">
+                            <a href="{{ route('admin.users.simple-list') }}" class="btn btn-info admin-tools-btn text-dark">
                                 <i class="fas fa-list me-2"></i>Elenco completo utenti
                             </a>
                         </div>

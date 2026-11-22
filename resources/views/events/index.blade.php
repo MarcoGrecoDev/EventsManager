@@ -737,7 +737,10 @@
                 display: block;
                 text-align: center;
                 background-color: #198754;
-                border: 2px solid #146c43;
+                /* Bordo "finto" con box-shadow invece di border: evidenzia il
+                   contorno senza aggiungere spessore e cambiare le dimensioni
+                   del pulsante (border vero le aumentava leggermente). */
+                box-shadow: inset 0 0 0 2px #146c43;
                 color: #fff;
                 font-weight: 700;
                 font-size: 0.72rem;

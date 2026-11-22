@@ -1071,31 +1071,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Non duplicare tooltip se già creato
                     if (bootstrap.Tooltip.getInstance(el)) return;
-                    var tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(el, {
+                    bootstrap.Tooltip.getOrCreateInstance(el, {
                         trigger: 'hover focus',
                         container: 'body',
                         boundary: document.body
                     });
-
-                    // Su telefono/tablet (nessun vero "hover") il suggerimento non si
-                    // vedrebbe mai: l'icona già presente nel pulsante/link (es. l'icona
-                    // FontAwesome davanti al testo) diventa toccabile per mostrare la
-                    // spiegazione, senza seguire il link. Il resto dell'elemento
-                    // continua a funzionare normalmente (va alla pagina collegata).
-                    var existingIcon = el.querySelector('i.fa, i.fas, i.far, i.fab, i.fal');
-                    if (existingIcon && !existingIcon.dataset.hintClickBound) {
-                        existingIcon.dataset.hintClickBound = '1';
-                        existingIcon.style.cursor = 'pointer';
-                        existingIcon.addEventListener('click', function (ev) {
-                            ev.preventDefault();
-                            ev.stopPropagation();
-                            // Il fumetto di Bootstrap non si vedeva in modo affidabile su
-                            // alcuni browser di telefoni reali (probabile problema di
-                            // posizionamento): un avviso del browser stesso funziona sempre,
-                            // su qualunque dispositivo, senza bisogno di nessun calcolo grafico.
-                            alert(hint);
-                        });
-                    }
                 });
             }
         } catch (e) {

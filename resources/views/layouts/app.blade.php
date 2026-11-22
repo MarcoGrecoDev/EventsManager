@@ -1241,6 +1241,16 @@ document.addEventListener('DOMContentLoaded', function () {
         color: #198754;
         font-weight: 600;
     }
+    .chatbot-suggestion-btn--close {
+        background: #fff;
+        border-color: #999;
+        color: #666;
+    }
+    .chatbot-suggestion-btn--close:hover {
+        background: #e9e9e9;
+        color: #333;
+        border-color: #999;
+    }
     .chatbot-related-label {
         font-size: 0.75rem;
         color: #666;
@@ -1304,6 +1314,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var suggestionsPage = 0;
     var suggestionsPerPage = 5;
 
+    function appendCloseSuggestionsButton() {
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'chatbot-suggestion-btn chatbot-suggestion-btn--close';
+        closeBtn.textContent = 'Chiudi senza scegliere';
+        closeBtn.addEventListener('click', function() {
+            chatWindow.style.display = 'none';
+        });
+        suggestions.appendChild(closeBtn);
+    }
+
     function showSuggestions(excludeQuestion) {
         if (!suggestions) return;
         suggestions.innerHTML = '';
@@ -1339,6 +1359,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             suggestions.appendChild(moreBtn);
         }
+        appendCloseSuggestionsButton();
     }
 
     function showRelatedSuggestions(answeredItem) {
@@ -1374,6 +1395,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scrollDown();
         });
         suggestions.appendChild(allBtn);
+        appendCloseSuggestionsButton();
     }
 
     function findRelated(item, count) {

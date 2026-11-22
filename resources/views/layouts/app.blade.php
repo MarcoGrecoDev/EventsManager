@@ -1089,7 +1089,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         existingIcon.addEventListener('click', function (ev) {
                             ev.preventDefault();
                             ev.stopPropagation();
-                            tooltipInstance.toggle();
+                            // "show" (non "toggle"): su telefono il tocco da' anche il focus
+                            // all'elemento prima di questo click, che con trigger "focus" fa
+                            // gia' comparire il suggerimento; un "toggle" lo farebbe sparire
+                            // nello stesso istante, sembrando che non succeda nulla.
+                            tooltipInstance.show();
+                            clearTimeout(existingIcon._hintHideTimer);
+                            existingIcon._hintHideTimer = setTimeout(function () {
+                                tooltipInstance.hide();
+                            }, 4000);
                         });
                     }
                 });

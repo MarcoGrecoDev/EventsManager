@@ -1089,15 +1089,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         existingIcon.addEventListener('click', function (ev) {
                             ev.preventDefault();
                             ev.stopPropagation();
-                            // "show" (non "toggle"): su telefono il tocco da' anche il focus
-                            // all'elemento prima di questo click, che con trigger "focus" fa
-                            // gia' comparire il suggerimento; un "toggle" lo farebbe sparire
-                            // nello stesso istante, sembrando che non succeda nulla.
-                            tooltipInstance.show();
-                            clearTimeout(existingIcon._hintHideTimer);
-                            existingIcon._hintHideTimer = setTimeout(function () {
-                                tooltipInstance.hide();
-                            }, 4000);
+                            // Il fumetto di Bootstrap non si vedeva in modo affidabile su
+                            // alcuni browser di telefoni reali (probabile problema di
+                            // posizionamento): un avviso del browser stesso funziona sempre,
+                            // su qualunque dispositivo, senza bisogno di nessun calcolo grafico.
+                            alert(hint);
                         });
                     }
                 });

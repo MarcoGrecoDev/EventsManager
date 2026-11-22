@@ -334,7 +334,7 @@
         .excursio-hint-touch-icon {
             display: none;
         }
-        @media (hover: none) {
+        @media (hover: none), (pointer: coarse) {
             .excursio-hint-touch-icon {
                 display: inline-block;
                 margin-left: 0.3rem;

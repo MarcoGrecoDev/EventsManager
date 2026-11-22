@@ -1062,13 +1062,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         el.setAttribute('data-bs-title', hint);
                     }
-                    // Fallback: se non esiste title o è troppo generico, metti il title uguale all'hint,
-                    // così almeno il tooltip nativo del browser mostra la spiegazione.
-                    var currentTitle = (el.getAttribute('title') || '').trim();
-                    if (currentTitle === '' || currentTitle.length <= 10) {
-                        el.setAttribute('title', hint);
-                    }
-
                     // Non duplicare tooltip se già creato
                     if (bootstrap.Tooltip.getInstance(el)) return;
                     bootstrap.Tooltip.getOrCreateInstance(el, {

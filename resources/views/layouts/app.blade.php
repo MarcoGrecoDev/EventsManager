@@ -327,6 +327,21 @@
             font-size: 0.75rem;
             color: #ffc107 !important;
         }
+        /* Suggerimenti (data-hint/tooltip) in tutto il sito: su telefono/tablet
+           non esiste un vero "hover", quindi il suggerimento al passaggio del
+           mouse non si vedrebbe mai. La "i" toccabile (vedi script) compare
+           solo su quei dispositivi. */
+        .excursio-hint-touch-icon {
+            display: none;
+        }
+        @media (hover: none) {
+            .excursio-hint-touch-icon {
+                display: inline-block;
+                margin-left: 0.3rem;
+                opacity: 0.85;
+                cursor: pointer;
+            }
+        }
         .excursio-quickbar__welcome {
             color: #495057;
         }
@@ -1071,11 +1086,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Non duplicare tooltip se già creato
                     if (bootstrap.Tooltip.getInstance(el)) return;
-                    bootstrap.Tooltip.getOrCreateInstance(el, {
+                    var tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(el, {
                         trigger: 'hover focus',
                         container: 'body',
                         boundary: document.body
                     });
+
+                    // Su telefono/tablet (nessun vero "hover") il suggerimento non si
+                    // vedrebbe mai: aggiunge una piccola "i" toccabile, visibile solo
+                    // in quel caso, che mostra lo stesso testo senza seguire il link.
+                    var voidTags = ['INPUT', 'IMG', 'BR', 'HR'];
+                    if (voidTags.indexOf(el.tagName) === -1 && !el.querySelector(':scope > .excursio-hint-touch-icon')) {
+                        var touchIcon = document.createElement('i');
+                        touchIcon.className = 'fas fa-info-circle excursio-hint-touch-icon';
+                        touchIcon.setAttribute('role', 'button');
+                        touchIcon.setAttribute('aria-label', 'Informazioni: ' + hint);
+                        touchIcon.addEventListener('click', function (ev) {
+                            ev.preventDefault();
+                            ev.stopPropagation();
+                            tooltipInstance.toggle();
+                        });
+                        el.appendChild(touchIcon);
+                    }
                 });
             }
         } catch (e) {

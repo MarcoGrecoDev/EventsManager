@@ -737,6 +737,7 @@
                 display: block;
                 text-align: center;
                 background-color: #198754;
+                border: 2px solid #146c43;
                 color: #fff;
                 font-weight: 700;
                 font-size: 0.72rem;

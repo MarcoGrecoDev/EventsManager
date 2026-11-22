@@ -409,7 +409,8 @@
                                     @csrf
                                     <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
                                         <input class="form-check-input" type="checkbox" role="switch" id="admin_toggle_vote_reminder" name="enabled" value="1" {{ ($voteReminderTooltipEnabled ?? true) ? 'checked' : '' }}>
-                                        <label class="form-check-label fw-semibold" for="admin_toggle_vote_reminder">
+                                        <label class="form-check-label fw-semibold" for="admin_toggle_vote_reminder"
+                                               data-hint="Quando un utente clicca «Iscrivimi» a un evento, prima di registrare l'iscrizione compare per qualche secondo un messaggio che gli ricorda che, a evento concluso, potrà votarlo. Se spegni l'interruttore, l'iscrizione avviene subito senza mostrare nessun messaggio.">
                                             <i class="fas fa-star me-1"></i>Promemoria voto su «Iscrivimi»
                                         </label>
                                     </div>

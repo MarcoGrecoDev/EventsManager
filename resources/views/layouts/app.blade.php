@@ -345,7 +345,7 @@
 <nav class="navbar navbar-dark bg-dark excursio-navbar py-1">
     <div class="container-fluid px-3 px-xl-4">
         <div class="d-flex align-items-center" style="gap: 0.15rem;">
-            <a href="{{ route('home') }}" class="navbar-brand mb-0 text-white fw-semibold py-1" title="Home">
+            <a href="{{ route('home') }}" class="navbar-brand mb-0 me-0 text-white fw-semibold py-1" title="Home">
                 <i class="fas fa-home me-1"></i><span class="d-none d-sm-inline">Home</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

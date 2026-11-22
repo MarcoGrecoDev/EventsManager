@@ -302,30 +302,35 @@
                     <div class="card-body">
                         <div class="admin-quick-actions flex-column">
                             <div class="admin-quick-actions-row">
-                                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary">
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary"
+                                   data-hint="Vedi e gestisci tutti gli utenti registrati al sito.">
                                     <i class="fas fa-users me-2"></i>Elenco utenti
                                 </a>
-                                <a href="{{ route('admin.events.create') }}" class="btn btn-primary">
+                                <a href="{{ route('admin.events.create') }}" class="btn btn-primary"
+                                   data-hint="Crea un nuovo evento da pubblicare sul sito.">
                                     <i class="fas fa-plus me-2"></i>Crea nuovo evento
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
-                                <a href="{{ route('admin.users.gallery') }}" class="btn btn-outline-success">
+                                <a href="{{ route('admin.users.gallery') }}" class="btn btn-outline-success"
+                                   data-hint="Galleria con le foto profilo di tutti gli utenti registrati.">
                                     <i class="fas fa-images me-2"></i>Foto utenti
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
-                                <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-outline-warning">
+                                <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-outline-warning"
+                                   data-hint="Utenti appena registrati, in attesa che tu li approvi.">
                                     <i class="fas fa-user-clock me-2"></i>Iscrizioni in attesa
                                 </a>
-                                <a href="{{ route('admin.newsletter.create') }}" class="btn btn-outline-info">
+                                <a href="{{ route('admin.newsletter.create') }}" class="btn btn-outline-info"
+                                   data-hint="Scrivi e invia una comunicazione via email a tutti gli iscritti al sito.">
                                     <i class="fas fa-envelope me-2"></i>Invia newsletter
                                 </a>
                             </div>
                             <div class="admin-quick-actions-row mt-2">
                                 <a href="{{ route('admin.common-event.form') }}"
                                    class="btn btn-outline-secondary"
-                                   title="Serve per trovare rapidamente gli eventi in comune tra due utenti indicati tramite username.">
+                                   data-hint="Trova rapidamente gli eventi in comune tra due utenti, indicati tramite username.">
                                     <i class="fas fa-random me-2"></i>Trova evento in comune
                                 </a>
                             </div>

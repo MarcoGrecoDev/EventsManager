@@ -445,7 +445,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-danger btn-sm flex-shrink-0 admin-dashboard-stat-btn">
+                                    <a href="{{ route('admin.users.index', ['registrations' => 'pending']) }}" class="btn btn-danger btn-sm flex-shrink-0 admin-dashboard-stat-btn"
+                                       data-hint="Vai all'elenco degli utenti appena registrati, in attesa che tu li approvi.">
                                         Approva iscrizioni
                                     </a>
                                 </div>
@@ -461,7 +462,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn">
+                                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn"
+                                       data-hint="Vedi, modifica o gestisci tutti gli utenti registrati al sito.">
                                         Gestisci utenti
                                     </a>
                                 </div>
@@ -477,25 +479,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.events.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn">
+                                    <a href="{{ route('admin.events.index') }}" class="btn btn-secondary btn-sm text-white fw-semibold flex-shrink-0 admin-dashboard-stat-btn"
+                                       data-hint="Vai all'elenco degli eventi attivi, per modificarli o gestirli.">
                                         Gestisci eventi
                                     </a>
                                 </div>
                             </div>
 
-                            <a href="{{ route('admin.users.gallery') }}" class="btn btn-success admin-tools-btn">
+                            <a href="{{ route('admin.users.gallery') }}" class="btn btn-success admin-tools-btn"
+                               data-hint="Vedi le foto profilo di tutti gli utenti registrati, in un'unica galleria.">
                                 <i class="fas fa-images me-2"></i>Galleria avatar utenti
                             </a>
-                            <a href="{{ route('chat.index') }}" class="btn btn-primary admin-tools-btn" target="_blank" rel="noopener">
+                            <a href="{{ route('chat.index') }}" class="btn btn-primary admin-tools-btn" target="_blank" rel="noopener"
+                               data-hint="Apri il Salottino (la chat pubblica del sito) in una nuova scheda.">
                                 <i class="fas fa-comments me-2"></i>Apri chat
                                 @if(!($featureChatSalottinoEnabled ?? true))
                                     <span class="ms-1 badge bg-secondary">OFF per utenti</span>
                                 @endif
                             </a>
-                            <a href="{{ route('admin.groups.index') }}" class="btn btn-warning admin-tools-btn text-dark">
+                            <a href="{{ route('admin.groups.index') }}" class="btn btn-warning admin-tools-btn text-dark"
+                               data-hint="Crea e gestisci i gruppi di utenti del sito.">
                                 <i class="fas fa-users-cog me-2"></i>Gruppi
                             </a>
-                            <a href="{{ route('admin.users.simple-list') }}" class="btn btn-info admin-tools-btn text-dark">
+                            <a href="{{ route('admin.users.simple-list') }}" class="btn btn-info admin-tools-btn text-dark"
+                               data-hint="Elenco semplice e completo di tutti gli utenti registrati, senza i dettagli di gestione.">
                                 <i class="fas fa-list me-2"></i>Elenco completo utenti
                             </a>
                         </div>

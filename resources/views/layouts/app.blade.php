@@ -1028,7 +1028,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Bootstrap Tooltip (se disponibile).
-            if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+            // Su dispositivi touch il primo tocco su un elemento con stile ":hover" viene
+            // spesso simulato dal browser come un "passaggio del mouse": il tooltip si apre
+            // ma, non esistendo un vero mouseleave su touch, resta visibile e sembra bloccato
+            // a schermo intero. Per evitarlo, il tooltip viene creato solo su dispositivi
+            // che hanno davvero un mouse (hover reale e puntatore preciso).
+            var isTouchPrimaryDevice = !!(window.matchMedia && (
+                window.matchMedia('(hover: none)').matches ||
+                window.matchMedia('(pointer: coarse)').matches
+            ));
+            if (!isTouchPrimaryDevice && typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
                 var selectors = [
                     '.btn',
                     'a.nav-link',

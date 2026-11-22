@@ -344,9 +344,15 @@
 </div>
 <nav class="navbar navbar-dark bg-dark excursio-navbar py-1">
     <div class="container-fluid px-3 px-xl-4">
-        <a href="{{ route('home') }}" class="navbar-brand mb-0 text-white fw-semibold py-1" title="Home">
-            <i class="fas fa-home me-1"></i><span class="d-none d-sm-inline">Home</span>
-        </a>
+        <div class="d-flex align-items-center gap-2">
+            <a href="{{ route('home') }}" class="navbar-brand mb-0 text-white fw-semibold py-1" title="Home">
+                <i class="fas fa-home me-1"></i><span class="d-none d-sm-inline">Home</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Apri il menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
         <span class="navbar-text excursio-navbar__hamburger-hint me-2"
               role="button"
               tabindex="0"
@@ -355,10 +361,6 @@
               aria-controls="navbarNav"
               aria-expanded="false"
               style="cursor:pointer;">Clicca/Tocca per tutti i link</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Apri il menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             @php
                 $isAdmin = auth()->check() && auth()->user()->isAdmin();

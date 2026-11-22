@@ -1065,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Non duplicare tooltip se già creato
                     if (bootstrap.Tooltip.getInstance(el)) return;
                     bootstrap.Tooltip.getOrCreateInstance(el, {
-                        trigger: 'hover focus',
+                        trigger: 'hover',
                         container: 'body',
                         boundary: document.body
                     });

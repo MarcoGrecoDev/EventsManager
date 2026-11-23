@@ -244,7 +244,10 @@
             <h2 class="mb-0 text-uppercase title-algerian">Eventi in programma</h2>
             @auth
                 @if(auth()->user()->isAdmin())
-                    <div class="mt-3 text-md-end">
+                    <div class="mt-3 d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-2">
+                        <button type="button" id="toggle-hidden-events-btn" class="btn btn-warning">
+                            <i class="fas fa-eye"></i> Visualizza eventi nascosti
+                        </button>
                         <a href="{{ route('admin.events.create') }}" class="btn btn-success">
                             <i class="fas fa-plus"></i> Crea Evento
                         </a>
@@ -277,7 +280,7 @@
             {{-- PC: 2 card per riga, stessa altezza; immagine a sinistra, contenuto a destra --}}
             <div class="row g-4 align-items-stretch">
                 @foreach($events as $event)
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex{{ (!$event->is_active && auth()->check() && auth()->user()->isAdmin()) ? ' admin-hidden-event d-none' : '' }}">
                         <div id="event-card-{{ $event->getKey() }}"
                              class="card h-100 w-100 event-box {{ $event->isFull() ? 'event-box--full' : '' }} {{ session('waitlist_flash_event_id') == $event->getKey() ? 'event-box--flash' : '' }}">
                             @if(!$event->is_active && auth()->check() && auth()->user()->isAdmin())
@@ -1168,6 +1171,27 @@
                 'field' => 'announcementMessage',
                 'height' => 260,
             ])
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var toggleBtn = document.getElementById('toggle-hidden-events-btn');
+                    if (!toggleBtn) return;
+                    var hiddenEvents = document.querySelectorAll('.admin-hidden-event');
+                    if (!hiddenEvents.length) {
+                        toggleBtn.style.display = 'none';
+                        return;
+                    }
+                    var shown = false;
+                    toggleBtn.addEventListener('click', function () {
+                        shown = !shown;
+                        hiddenEvents.forEach(function (el) {
+                            el.classList.toggle('d-none', !shown);
+                        });
+                        toggleBtn.innerHTML = shown
+                            ? '<i class="fas fa-eye-slash"></i> Nascondi eventi non pubblicati'
+                            : '<i class="fas fa-eye"></i> Visualizza eventi nascosti';
+                    });
+                });
+            </script>
         @endif
     @endauth
     @if(isset($slideImages) && count($slideImages) > 0)

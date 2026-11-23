@@ -244,9 +244,9 @@
             <h2 class="mb-0 text-uppercase title-algerian">Eventi in programma</h2>
             @auth
                 @if(auth()->user()->isAdmin())
-                    <div class="mt-3 d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-2">
+                    <div class="mt-3 d-flex flex-row justify-content-between align-items-center gap-2">
                         <button type="button" id="toggle-hidden-events-btn" class="btn btn-warning">
-                            <i class="fas fa-eye"></i> Visualizza eventi nascosti
+                            <i class="fas fa-eye"></i> Mostra Tutti
                         </button>
                         <a href="{{ route('admin.events.create') }}" class="btn btn-success">
                             <i class="fas fa-plus"></i> Crea Evento
@@ -1187,8 +1187,8 @@
                             el.classList.toggle('d-none', !shown);
                         });
                         toggleBtn.innerHTML = shown
-                            ? '<i class="fas fa-eye-slash"></i> Nascondi eventi non pubblicati'
-                            : '<i class="fas fa-eye"></i> Visualizza eventi nascosti';
+                            ? '<i class="fas fa-eye-slash"></i> Solo Online'
+                            : '<i class="fas fa-eye"></i> Mostra Tutti';
                     });
                 });
             </script>

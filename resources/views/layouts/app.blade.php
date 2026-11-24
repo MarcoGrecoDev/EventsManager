@@ -426,6 +426,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.events.index') }}">Gestione Eventi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.events.calendar') }}"><i class="fas fa-calendar-day me-1"></i>Calendario eventi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.events.deactivated') }}"><i class="fas fa-eye-slash me-1"></i>Eventi disattivati</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.common-event.form') }}">Eventi in comune</a></li>
                             <li><a class="dropdown-item" href="{{ route('users.search') }}"><i class="fas fa-search me-1"></i>Cerca utenti</a></li>
                             <li>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between gap-2 {{ ($adminPendingUsersCount ?? 0) > 0 ? 'fw-semibold text-dark' : '' }}"
@@ -436,11 +440,7 @@
                                     @endif
                                 </a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('admin.events.index') }}">Gestione Eventi</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.events.deactivated') }}"><i class="fas fa-eye-slash me-1"></i>Eventi disattivati</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.events.calendar') }}"><i class="fas fa-calendar-day me-1"></i>Calendario eventi</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.users.gallery') }}">Admin immagini utenti</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.common-event.form') }}">Eventi in comune</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Gestione gruppi</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.newsletter.create') }}">Newsletter</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.events.weekly-print') }}"><i class="fas fa-print me-1"></i>Promemoria settimanale</a></li>

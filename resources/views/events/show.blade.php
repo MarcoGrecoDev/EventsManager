@@ -1157,15 +1157,10 @@
                                                                         $guestMaxTotal = (int) ($event->max_guests_per_user ?: 10);
                                                                         $guestCurrentTotal = (int) ($participant->pivot->amici ?? 0);
                                                                         $guestRemaining = max($guestMaxTotal - $guestCurrentTotal, 0);
-                                                                        // Conta solo gli amici con un nome gia' inserito: la riga
-                                                                        // ancora vuota (questa) non e' "portata" finche' non si
-                                                                        // scrive il nome, altrimenti il numero sembra sbagliato
-                                                                        // (es. "3" quando in realta' ne sono stati nominati 2).
-                                                                        $guestNamedTotal = count(array_filter($ospitiEntries, fn ($e) => trim((string) ($e['nome'] ?? '')) !== ''));
                                                                     @endphp
                                                                     <div class="small text-muted">
                                                                         @if($guestRemaining > 0)
-                                                                            Hai già aggiunto {{ $guestNamedTotal }} amici su un massimo di {{ $guestMaxTotal }}: puoi ancora aggiungerne {{ $guestRemaining }}.
+                                                                            Puoi portare al massimo {{ $guestMaxTotal }} amici. Puoi portarne ancora {{ $guestRemaining }}.
                                                                         @else
                                                                             Hai raggiunto il limite massimo di {{ $guestMaxTotal }} amici per questo evento.
                                                                         @endif
@@ -1718,15 +1713,10 @@
                                                                         $guestMaxTotal = (int) ($event->max_guests_per_user ?: 10);
                                                                         $guestCurrentTotal = (int) ($participant->pivot->amici ?? 0);
                                                                         $guestRemaining = max($guestMaxTotal - $guestCurrentTotal, 0);
-                                                                        // Conta solo gli amici con un nome gia' inserito: la riga
-                                                                        // ancora vuota (questa) non e' "portata" finche' non si
-                                                                        // scrive il nome, altrimenti il numero sembra sbagliato
-                                                                        // (es. "3" quando in realta' ne sono stati nominati 2).
-                                                                        $guestNamedTotal = count(array_filter($ospitiEntries, fn ($e) => trim((string) ($e['nome'] ?? '')) !== ''));
                                                                     @endphp
                                                                     <div class="small text-muted">
                                                                         @if($guestRemaining > 0)
-                                                                            Hai già aggiunto {{ $guestNamedTotal }} amici su un massimo di {{ $guestMaxTotal }}: puoi ancora aggiungerne {{ $guestRemaining }}.
+                                                                            Puoi portare al massimo {{ $guestMaxTotal }} amici. Puoi portarne ancora {{ $guestRemaining }}.
                                                                         @else
                                                                             Hai raggiunto il limite massimo di {{ $guestMaxTotal }} amici per questo evento.
                                                                         @endif

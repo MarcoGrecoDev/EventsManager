@@ -94,7 +94,13 @@
                 // le immagini (sinistra/centro/destra), cosa che il plugin "image" base
                 // non consente in modo affidabile insieme ai pulsanti di giustificazione.
                 removePlugins: 'elementspath,image',
-                extraPlugins: 'justify,lineheight,image2',
+                // "autogrow": l'editor si allunga man mano che si scrive (es. liste lunghe),
+                // cosi' il contenuto resta sempre visibile senza restare "tagliato" dentro
+                // un'altezza fissa senza modo di scorrere.
+                extraPlugins: 'justify,lineheight,image2,autogrow',
+                autoGrow_minHeight: {{ $ckHeight }},
+                autoGrow_maxHeight: 700,
+                autoGrow_onStartup: true,
                 resize_dir: 'vertical',
                 versionCheck: false,
                 toolbar: [
